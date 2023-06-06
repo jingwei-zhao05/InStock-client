@@ -18,90 +18,97 @@
 
 // Type Kit
 
+//Handle Text when font is not matching mockups
+@mixin handleText($fontSize, $lineHeight, $weight) {
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  font-family: $weight;
+}
+
 // Mobile Text
 @mixin page-header {
   font-size: 1.75rem;
   line-height: 2.25rem;
-  font-family: $font-bold;
+  font-family: 600;
 }
 
 @mixin subheader {
   font-size: 1.25rem;
   line-height: 1.75rem;
-  font-family: $font-bold;
+  font-family: 600;
 }
 
 @mixin labels-buttons {
   font-size: 0.8125rem;
   line-height: 1.25rem;
-  font-family: $font-bold;
+  font-family: 600;
 }
 
 @mixin table-header {
   font-size: 0.6875rem;
   line-height: 1rem;
-  font-family: $font-regular;
+  font-family: 400;
 }
 
 @mixin body-large {
   font-size: 0.9375rem;
   line-height: 1.625rem;
-  font-family: $font-regular;
+  font-family: 400;
 }
 
 @mixin body-medimum {
   font-size: 0.8125rem;
   line-height: 1.25rem;
-  font-family: $font-regular;
+  font-family: 400;
 }
 
 @mixin body-small {
   font-size: 0.6875rem;
   line-height: 0.0725rem;
-  font-family: $font-regular;
+  font-family: 400;
 }
 
 // Tablet & Desktop
 @mixin tablet_desktop_page-header {
   font-size: 2rem;
   line-height: 2.5rem;
-  font-family: $font-bold;
+  font-family: 600;
 }
 
 @mixin tablet_desktop_subheader {
   font-size: 1.5rem;
   line-height: 2rem;
-  font-family: $font-bold;
+  font-family: 600;
 }
 
 @mixin tablet_desktop_labels-buttons {
   font-size: 0.875rem;
   line-height: 1.375rem;
-  font-family: $font-bold;
+  font-family: 600;
 }
 
 @mixin tablet_desktop_table-header {
   font-size: 0.75rem;
   line-height: 1.125rem;
-  font-family: $font-regular;
+  font-family: 400;
 }
 
 @mixin tablet_desktop_body-large {
   font-size: 1rem;
   line-height: 1.75rem;
-  font-family: $font-regular;
+  font-family: 400;
 }
 
 @mixin tablet_desktop_body-medimum {
   font-size: 0.875rem;
   line-height: 1.375rem;
-  font-family: $font-regular;
+  font-family: 400;
 }
 
 @mixin tablet_desktop_body-small {
   font-size: 0.75rem;
   line-height: 1.125rem;
-  font-family: $font-regular;
+  font-family: 400;
 }
 
 //Layout Grid
