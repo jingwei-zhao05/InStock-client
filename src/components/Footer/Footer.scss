@@ -1,9 +1,10 @@
-@import "../../styles//partials/fonts";
-@import "../../styles//partials/global";
-@import "../../styles//partials/mixins";
-@import "../../styles//partials/variables";
+@import "../../styles/partials/fonts";
+@import"../../App.scss";
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/variables";
 
-.footer__copyright {
+.footer{
+  &__copyright {
   @include labels-buttons;
   @include mobile-grid;
   background-color: $Light-Grey;
@@ -17,11 +18,10 @@
 
   @include tablet {
     @include tablet_desktop_labels-buttons;
-    @include tablet-grid;
     bottom: -300px;
   }
   @include desktop {
-    @include desktop-grid;
     bottom: -200px;
   }
+}
 }
