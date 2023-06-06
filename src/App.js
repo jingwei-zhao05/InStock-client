@@ -3,7 +3,6 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 function App() {
   return (
-    <>
     <BrowserRouter>
       <Header/>
       <Routes>
@@ -18,7 +17,6 @@ function App() {
       </Routes>
       <Footer/>
     </BrowserRouter>
-    </>
   );
 }
 
