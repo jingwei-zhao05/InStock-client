@@ -3,11 +3,14 @@
 
 .header {
   background-color: #232940;
-  padding: 2rem;
+  padding: 2rem 2rem 7rem 2rem;
   width: 100%;
   display: flex;
   justify-content: center;
   width: 100%;
+  @include tablet {
+    padding-bottom: 7rem;
+  }
 
   &__container {
     display: flex;
