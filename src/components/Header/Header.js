@@ -1,7 +1,7 @@
-import './Header.scss';
-import logo from '../../assets/images/logo/InStock-Logo.svg';
-import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import "./Header.scss";
+import logo from "../../assets/images/logo/InStock-Logo.svg";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function Header() {
   const location = useLocation();
@@ -12,15 +12,35 @@ function Header() {
   };
 
   return (
-    <div className='header'>
-      <div className='header__container'>
-        <Link to="/" className='header__link'>
-          <img src={logo} alt="Logo" className='header__img' />
+    <div className="header">
+      <div className="header__container">
+        <Link to="/" className="header__link">
+          <img src={logo} alt="Logo" className="header__img" />
         </Link>
-        <nav className='header__nav'>
-          <ul className='header__list-container'>
-            <Link to="/" onClick={() => handleLinkClick('/')} className={activeLink === '/' ? 'header__active-list-item' : 'header__list-item'}>Warehouses</Link>
-            <Link to="/inventory" onClick={() => handleLinkClick('/inventory')} className={activeLink === '/inventory' ? 'header__active-list-item' : 'header__list-item'}>Inventory</Link>
+        <nav className="header__nav">
+          <ul className="header__list-container">
+            <Link
+              to="/"
+              onClick={() => handleLinkClick("/")}
+              className={
+                activeLink === "/"
+                  ? "header__active-list-item"
+                  : "header__list-item"
+              }
+            >
+              Warehouses
+            </Link>
+            <Link
+              to="/inventories"
+              onClick={() => handleLinkClick("/inventory")}
+              className={
+                activeLink === "/inventory"
+                  ? "header__active-list-item"
+                  : "header__list-item"
+              }
+            >
+              Inventory
+            </Link>
           </ul>
         </nav>
       </div>
@@ -29,4 +49,3 @@ function Header() {
 }
 
 export default Header;
-

@@ -1,0 +1,9 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+.main {
+  background-color: gray;
+  z-index: 1;
+  position: absolute;
+  width: 10rem;
+  height: 240px;
+}
