@@ -1,22 +1,49 @@
-import { useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import arrowBack from "../../assets/icons/arrow_back-24px.svg";
+import {
+  getWarehousesEndpoint,
+  getWarehouseDetailEndpoint,
+  postWarehouseEndpoint,
+  putWarehouseEndpoint,
+  deleteWarehouseEndpoint,
+} from "../../utils/api";
+
+const initialValues = {
+  warehouseName: "",
+  address: "",
+  city: "",
+  country: "",
+  contactName: "",
+  position: "",
+  phoneNum: "",
+  email: "",
+};
 
 export default function EditWarehousePage() {
-  //   const { warehouseId } = useParams();
-
-  const initialValues = {
-    warehouseName: "",
-    address: "",
-    city: "",
-    country: "",
-    contactName: "",
-    position: "",
-    phoneNum: "",
-    email: "",
-  };
-
+  const { id: warehouseId } = useParams();
   const [values, setValues] = useState(initialValues);
+
+  useEffect(() => {
+    axios
+      .get(getWarehouseDetailEndpoint(warehouseId))
+      .then((response) => {
+        setValues({
+          warehouseName: response.data.warehouse_name,
+          address: response.data.address,
+          city: response.data.city,
+          country: response.data.country,
+          contactName: response.data.contact_name,
+          position: response.data.contact_position,
+          phoneNum: response.data.contact_phone,
+          email: response.data.contact_email,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
