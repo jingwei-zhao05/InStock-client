@@ -6,9 +6,7 @@ import errorIcon from "../../assets/icons/error-24px.svg";
 import {
   getWarehousesEndpoint,
   getWarehouseDetailEndpoint,
-  postWarehouseEndpoint,
   putWarehouseEndpoint,
-  deleteWarehouseEndpoint,
 } from "../../utils/api";
 import "./EditWarehousePage.scss";
 
@@ -47,7 +45,7 @@ export default function EditWarehousePage() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [warehouseId]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -106,7 +104,7 @@ export default function EditWarehousePage() {
           contact_phone: values.phoneNum,
           contact_email: values.email,
         })
-        .then((response) => {
+        .then(() => {
           navigate(`/warehouses/${warehouseId}`);
         })
         .catch((error) => {
@@ -128,7 +126,7 @@ export default function EditWarehousePage() {
       <form className="edit-warehouse-form" onSubmit={handleSubmit}>
         <div className="warehouse-form">
           <h2 className="warehouse-form__title">Warehouse Details</h2>
-          <lable>
+          <lable classname="warehouse-from__lable" htmlFor="warehouseName">
             Warehouse Name
             <input
               className={
@@ -142,13 +140,19 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.warehouseName && (
-              <div>
-                <img src={errorIcon} alt="something wrong here" />
-                <span className="error">This field is required</span>
+              <div className="warehouse-from__error">
+                <img
+                  className="warehouse-from__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="warehouse-from__error-message">
+                  This field is required
+                </p>
               </div>
             )}
           </lable>
-          <lable>
+          <lable classname="warehouse-from__lable" htmlFor="address">
             Street Address
             <input
               className={
@@ -163,12 +167,18 @@ export default function EditWarehousePage() {
             />
             {errors.address && (
               <div>
-                <img src={errorIcon} alt="something wrong here" />
-                <span className="error">This field is required</span>
+                <img
+                  className="warehouse-from__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="warehouse-from__error-message">
+                  This field is required
+                </p>
               </div>
             )}
           </lable>
-          <lable>
+          <lable classname="warehouse-from__lable" htmlFor="city">
             City
             <input
               className={
@@ -183,12 +193,18 @@ export default function EditWarehousePage() {
             />
             {errors.city && (
               <div>
-                <img src={errorIcon} alt="something wrong here" />
-                <span className="error">This field is required</span>
+                <img
+                  className="warehouse-from__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="warehouse-from__error-message">
+                  This field is required
+                </p>
               </div>
             )}
           </lable>
-          <lable>
+          <lable classname="warehouse-from__lable" htmlFor="country">
             Country
             <input
               className={
@@ -203,15 +219,21 @@ export default function EditWarehousePage() {
             />
             {errors.country && (
               <div>
-                <img src={errorIcon} alt="something wrong here" />
-                <span className="error">This field is required</span>
+                <img
+                  className="warehouse-from__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="warehouse-from__error-message">
+                  This field is required
+                </p>
               </div>
             )}
           </lable>
         </div>
         <div className="contact-form">
           <h2 className="contact-form__title">Contact Details</h2>
-          <lable>
+          <lable classname="contact-from__lable" htmlFor="contactName">
             Contact Name
             <input
               className={
@@ -226,12 +248,18 @@ export default function EditWarehousePage() {
             />
             {errors.contactName && (
               <div>
-                <img src={errorIcon} alt="something wrong here" />
-                <span className="error">This field is required</span>
+                <img
+                  className="warehouse-from__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="warehouse-from__error-message">
+                  This field is required
+                </p>
               </div>
             )}
           </lable>
-          <lable>
+          <lable classname="contact-from__lable" htmlFor="position">
             Position
             <input
               className={
@@ -246,12 +274,18 @@ export default function EditWarehousePage() {
             />
             {errors.position && (
               <div>
-                <img src={errorIcon} alt="something wrong here" />
-                <span className="error">This field is required</span>
+                <img
+                  className="warehouse-from__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="warehouse-from__error-message">
+                  This field is required
+                </p>
               </div>
             )}
           </lable>
-          <lable>
+          <lable classname="contact-from__lable" htmlFor="phoneNum">
             Phone Number
             <input
               className={
@@ -266,12 +300,18 @@ export default function EditWarehousePage() {
             />
             {errors.phoneNum && (
               <div>
-                <img src={errorIcon} alt="something wrong here" />
-                <span className="error">This field is required</span>
+                <img
+                  className="warehouse-from__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="warehouse-from__error-message">
+                  This field is required
+                </p>
               </div>
             )}
           </lable>
-          <lable>
+          <lable classname="contact-from__lable" htmlFor="email">
             Email
             <input
               className={
@@ -286,8 +326,14 @@ export default function EditWarehousePage() {
             />
             {errors.email && (
               <div>
-                <img src={errorIcon} alt="something wrong here" />
-                <span className="error">This field is required</span>
+                <img
+                  className="warehouse-from__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="warehouse-from__error-message">
+                  This field is required
+                </p>
               </div>
             )}
           </lable>
