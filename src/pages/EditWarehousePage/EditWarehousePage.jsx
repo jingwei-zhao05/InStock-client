@@ -126,7 +126,7 @@ export default function EditWarehousePage() {
       <form className="edit-warehouse-form" onSubmit={handleSubmit}>
         <div className="warehouse-form">
           <h2 className="warehouse-form__title">Warehouse Details</h2>
-          <lable classname="warehouse-from__lable" htmlFor="warehouseName">
+          <lable className="warehouse-form__lable" htmlFor="warehouseName">
             Warehouse Name
             <input
               className={
@@ -140,19 +140,19 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.warehouseName && (
-              <div className="warehouse-from__error">
+              <div className="warehouse-form__error">
                 <img
-                  className="warehouse-from__error-icon"
+                  className="warehouse-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-from__error-message">
+                <p className="warehouse-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
           </lable>
-          <lable classname="warehouse-from__lable" htmlFor="address">
+          <lable className="warehouse-form__lable" htmlFor="address">
             Street Address
             <input
               className={
@@ -166,19 +166,19 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.address && (
-              <div>
+              <div className="warehouse-form__error">
                 <img
-                  className="warehouse-from__error-icon"
+                  className="warehouse-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-from__error-message">
+                <p className="warehouse-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
           </lable>
-          <lable classname="warehouse-from__lable" htmlFor="city">
+          <lable className="warehouse-form__lable" htmlFor="city">
             City
             <input
               className={
@@ -192,19 +192,19 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.city && (
-              <div>
+              <div className="warehouse-form__error">
                 <img
-                  className="warehouse-from__error-icon"
+                  className="warehouse-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-from__error-message">
+                <p className="warehouse-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
           </lable>
-          <lable classname="warehouse-from__lable" htmlFor="country">
+          <lable className="warehouse-form__lable" htmlFor="country">
             Country
             <input
               className={
@@ -218,28 +218,28 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.country && (
-              <div>
+              <div className="warehouse-form__error">
                 <img
-                  className="warehouse-from__error-icon"
+                  className="warehouse-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-from__error-message">
+                <p className="warehouse-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
           </lable>
         </div>
-        <div className="contact-form">
-          <h2 className="contact-form__title">Contact Details</h2>
-          <lable classname="contact-from__lable" htmlFor="contactName">
+        <div className="warehouse-form">
+          <h2 className="warehouse-form__title">Contact Details</h2>
+          <lable className="warehouse-form__lable" htmlFor="contactName">
             Contact Name
             <input
               className={
                 errors.contactName
-                  ? "contact-form__input contact-form__input--error"
-                  : "contact-form__input"
+                  ? "warehouse-form__input warehouse-form__input--error"
+                  : "warehouse-form__input"
               }
               type="text"
               name="contactName"
@@ -247,25 +247,25 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.contactName && (
-              <div>
+              <div className="warehouse-form__error">
                 <img
-                  className="warehouse-from__error-icon"
+                  className="warehouse-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-from__error-message">
+                <p className="warehouse-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
           </lable>
-          <lable classname="contact-from__lable" htmlFor="position">
+          <lable className="warehouse-form__lable" htmlFor="position">
             Position
             <input
               className={
                 errors.position
-                  ? "contact-form__input contact-form__input--error"
-                  : "contact-form__input"
+                  ? "warehouse-form__input warehouse-form__input--error"
+                  : "warehouse-form__input"
               }
               type="text"
               name="position"
@@ -273,25 +273,25 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.position && (
-              <div>
+              <div className="warehouse-form__error">
                 <img
-                  className="warehouse-from__error-icon"
+                  className="warehouse-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-from__error-message">
+                <p className="warehouse-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
           </lable>
-          <lable classname="contact-from__lable" htmlFor="phoneNum">
+          <lable className="warehouse-form__lable" htmlFor="phoneNum">
             Phone Number
             <input
               className={
                 errors.phoneNum
-                  ? "contact-form__input contact-form__input--error"
-                  : "contact-form__input"
+                  ? "warehouse-form__input warehouse-form__input--error"
+                  : "warehouse-form__input"
               }
               type="text"
               name="phoneNum"
@@ -299,25 +299,25 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.phoneNum && (
-              <div>
+              <div className="warehouse-form__error">
                 <img
-                  className="warehouse-from__error-icon"
+                  className="warehouse-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-from__error-message">
+                <p className="warehouse-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
           </lable>
-          <lable classname="contact-from__lable" htmlFor="email">
+          <lable className="warehouse-form__lable" htmlFor="email">
             Email
             <input
               className={
                 errors.email
-                  ? "contact-form__input contact-form__input--error"
-                  : "contact-form__input"
+                  ? "warehouse-form__input warehouse-form__input--error"
+                  : "warehouse-form__input"
               }
               type="email"
               name="email"
@@ -325,13 +325,13 @@ export default function EditWarehousePage() {
               onChange={handleInputChange}
             />
             {errors.email && (
-              <div>
+              <div className="warehouse-form__error">
                 <img
-                  className="warehouse-from__error-icon"
+                  className="warehouse-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-from__error-message">
+                <p className="warehouse-form__error-message">
                   This field is required
                 </p>
               </div>

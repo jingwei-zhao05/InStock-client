@@ -2,12 +2,15 @@
 @use "../../styles/partials/mixins" as *;
 
 .header {
-  background-color: #232940;
+  background-color: $Graphite;
   padding: 2rem;
   width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
   display: flex;
   justify-content: center;
-  width: 100%;
+  height: 12.5rem;
 
   &__container {
     display: flex;
