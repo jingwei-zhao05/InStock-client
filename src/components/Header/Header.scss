@@ -1,0 +1,72 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.header {
+  background-color: #232940;
+  padding: 2rem 2rem 7rem 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  @include tablet {
+    padding-bottom: 7rem;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+    @include desktop {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    list-style-type: none;
+  }
+
+  &__img {
+    @include tablet {
+      padding-top: 0.5rem;
+    }
+  }
+
+  &__list-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__list-item {
+    color: white;
+    margin: 1rem 2rem 0.5rem 2rem;
+    list-style-type: none;
+    color: grey;
+
+    &:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+
+  &__active-list-item {
+    color: white;
+    margin: 1rem 2rem 0.5rem 2rem;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    list-style-type: none;
+    border: 2px solid #13182c;
+    border-radius: 5rem;
+    background: #13182c;
+    @include tablet {
+      padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+  }
+}
