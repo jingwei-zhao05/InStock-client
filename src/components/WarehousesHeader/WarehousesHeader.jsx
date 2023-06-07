@@ -27,7 +27,7 @@ function WarehousesHeader() {
         </div>
 
         <section className="warehouses__heading">
-          <div className="warehouses__container warehouses__container--short">
+          <div className="warehouses__container">
             <h4 className="warehouses__heading-warehouse">WAREHOUSE</h4>
             <img
               src={Arrows}
@@ -35,7 +35,7 @@ function WarehousesHeader() {
               className="warehouses__heading-icon "
             />
           </div>
-          <div className="warehouses__container warehouses__container--long">
+          <div className="warehouses__container">
             <h4 className="warehouses__heading-warehouse">ADDRESS</h4>
             <img
               src={Arrows}
@@ -43,7 +43,7 @@ function WarehousesHeader() {
               className="warehouses__heading-icon"
             />
           </div>
-          <div className="warehouses__container warehouses__container--short">
+          <div className="warehouses__container">
             <h4 className="warehouses__heading-warehouse">CONTACT NAME</h4>
             <img
               src={Arrows}
@@ -51,7 +51,7 @@ function WarehousesHeader() {
               className="warehouses__heading-icon"
             />
           </div>
-          <div className="warehouses__container warehouses__container--long">
+          <div className="warehouses__container">
             <h4 className="warehouses__heading-warehouse">
               CONTACT INFORMATION
             </h4>
@@ -61,7 +61,7 @@ function WarehousesHeader() {
               className="warehouses__heading-icon"
             />
           </div>
-          <div className="warehouses__container warehouses__container--action">
+          <div className="warehouses__container">
             <h4 className="warehouses__heading-warehouse">ACTIONS</h4>
           </div>
         </section>

@@ -1,6 +1,13 @@
+@import "./styles//partials/fonts";
+@import "./styles//partials/mixins";
+@import "./styles//partials/variables";
 * {
   font-family: "Titillium";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
+}
+body {
+  background-color: $Light-Grey;
 }
