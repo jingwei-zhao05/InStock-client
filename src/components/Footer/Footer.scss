@@ -10,10 +10,10 @@
   padding: 40px;
   width: stretch;
   position: absolute;
-  bottom: -1000px;
+  bottom: -1350px;
 
   @include tablet {
     @include tablet_desktop_labels-buttons;
-    bottom: -100px;
+    bottom: -450px;
   }
 }
