@@ -1,0 +1,11 @@
+.details {
+  &__button {
+    padding: 1rem;
+    border-radius: 50%;
+    background-image: url(../../assets/images/icons/edit-24px.svg);
+    background-position: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: lightblue;
+  }
+}
