@@ -5,7 +5,6 @@ import "./App.scss";
 import InventoryPage from "../pages/InventoryPage/InventoryPage";
 
 
-
 function App() {
   return (
     <BrowserRouter>
