@@ -1,0 +1,15 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
+@use "../../styles/partials/fonts";
+
+.warehouse-form,
+.contact-form {
+  &__input {
+    border: 1px solid $Cloud;
+
+    &--error {
+      border-color: $Red;
+    }
+  }
+}

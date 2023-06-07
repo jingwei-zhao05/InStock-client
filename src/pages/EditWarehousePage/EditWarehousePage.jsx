@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import arrowBack from "../../assets/icons/arrow_back-24px.svg";
+import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
+import errorIcon from "../../assets/icons/error-24px.svg";
 import {
   getWarehousesEndpoint,
   getWarehouseDetailEndpoint,
@@ -9,6 +10,7 @@ import {
   putWarehouseEndpoint,
   deleteWarehouseEndpoint,
 } from "../../utils/api";
+import "./EditWarehousePage.scss";
 
 const initialValues = {
   warehouseName: "",
@@ -24,6 +26,7 @@ const initialValues = {
 export default function EditWarehousePage() {
   const { id: warehouseId } = useParams();
   const [values, setValues] = useState(initialValues);
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,17 +64,36 @@ export default function EditWarehousePage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const validationErrors = {};
 
-    if (
-      !!values.warehouseName &&
-      !!values.address &&
-      !!values.city &&
-      !!values.country &&
-      !!values.contactName &&
-      !!values.position &&
-      !!values.phoneNum &&
-      !!values.email
-    ) {
+    if (values.warehouseName.trim() === "") {
+      validationErrors.warehouseName = "Warehouse name is required";
+    }
+    if (values.address.trim() === "") {
+      validationErrors.address = "Address is required";
+    }
+    if (values.city.trim() === "") {
+      validationErrors.city = "City is required";
+    }
+    if (values.country.trim() === "") {
+      validationErrors.country = "Country is required";
+    }
+    if (values.contactName.trim() === "") {
+      validationErrors.contactName = "Contact name is required";
+    }
+    if (values.position.trim() === "") {
+      validationErrors.position = "Position is required";
+    }
+    if (values.phoneNum.trim() === "") {
+      validationErrors.phoneNum = "Phone number is required";
+    }
+    if (values.email.trim() === "") {
+      validationErrors.email = "Email is required";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
       axios
         .put(putWarehouseEndpoint(warehouseId), {
           id: warehouseId,
@@ -90,102 +112,184 @@ export default function EditWarehousePage() {
         .catch((error) => {
           alert(error);
         });
-    } else {
-      alert("Need type in form field");
     }
   };
 
   return (
     <article className="edit-warehouse">
       <div className="edit-warehouse__header">
-        <img className="go-back-arrow" src={arrowBack} alt="go back button" />
+        <img
+          className="go-back-arrow"
+          src={arrowBackIcon}
+          alt="go back button"
+        />
         <h1 className="edit-warehouse__title">Edit Warehouse</h1>
       </div>
       <form className="edit-warehouse-form" onSubmit={handleSubmit}>
-        <div className="warehouse-details-form">
-          <h2 className="warehouse-details-form__title">Warehouse Details</h2>
+        <div className="warehouse-form">
+          <h2 className="warehouse-form__title">Warehouse Details</h2>
           <lable>
             Warehouse Name
             <input
-              className="name"
+              className={
+                errors.warehouseName
+                  ? "warehouse-form__input warehouse-form__input--error"
+                  : "warehouse-form__input"
+              }
               type="text"
               name="warehouseName"
               value={values.warehouseName}
               onChange={handleInputChange}
             />
+            {errors.warehouseName && (
+              <div>
+                <img src={errorIcon} alt="something wrong here" />
+                <span className="error">This field is required</span>
+              </div>
+            )}
           </lable>
           <lable>
             Street Address
             <input
-              className="address"
+              className={
+                errors.address
+                  ? "warehouse-form__input warehouse-form__input--error"
+                  : "warehouse-form__input"
+              }
               type="text"
               name="address"
               value={values.address}
               onChange={handleInputChange}
             />
+            {errors.address && (
+              <div>
+                <img src={errorIcon} alt="something wrong here" />
+                <span className="error">This field is required</span>
+              </div>
+            )}
           </lable>
           <lable>
             City
             <input
-              className="city"
+              className={
+                errors.city
+                  ? "warehouse-form__input warehouse-form__input--error"
+                  : "warehouse-form__input"
+              }
               type="text"
               name="city"
               value={values.city}
               onChange={handleInputChange}
             />
+            {errors.city && (
+              <div>
+                <img src={errorIcon} alt="something wrong here" />
+                <span className="error">This field is required</span>
+              </div>
+            )}
           </lable>
           <lable>
             Country
             <input
-              className="country"
+              className={
+                errors.country
+                  ? "warehouse-form__input warehouse-form__input--error"
+                  : "warehouse-form__input"
+              }
               type="text"
               name="country"
               value={values.country}
               onChange={handleInputChange}
             />
+            {errors.country && (
+              <div>
+                <img src={errorIcon} alt="something wrong here" />
+                <span className="error">This field is required</span>
+              </div>
+            )}
           </lable>
         </div>
-        <div className="contact-details-form">
-          <h2 className="contact-details-form__title">Contact Details</h2>
+        <div className="contact-form">
+          <h2 className="contact-form__title">Contact Details</h2>
           <lable>
             Contact Name
             <input
-              className="contactName"
+              className={
+                errors.contactName
+                  ? "contact-form__input contact-form__input--error"
+                  : "contact-form__input"
+              }
               type="text"
               name="contactName"
               value={values.contactName}
               onChange={handleInputChange}
             />
+            {errors.contactName && (
+              <div>
+                <img src={errorIcon} alt="something wrong here" />
+                <span className="error">This field is required</span>
+              </div>
+            )}
           </lable>
           <lable>
             Position
             <input
-              className="position"
+              className={
+                errors.position
+                  ? "contact-form__input contact-form__input--error"
+                  : "contact-form__input"
+              }
               type="text"
               name="position"
               value={values.position}
               onChange={handleInputChange}
             />
+            {errors.position && (
+              <div>
+                <img src={errorIcon} alt="something wrong here" />
+                <span className="error">This field is required</span>
+              </div>
+            )}
           </lable>
           <lable>
             Phone Number
             <input
-              className="phone num"
+              className={
+                errors.phoneNum
+                  ? "contact-form__input contact-form__input--error"
+                  : "contact-form__input"
+              }
               type="text"
               name="phoneNum"
               value={values.phoneNum}
               onChange={handleInputChange}
             />
+            {errors.phoneNum && (
+              <div>
+                <img src={errorIcon} alt="something wrong here" />
+                <span className="error">This field is required</span>
+              </div>
+            )}
           </lable>
           <lable>
             Email
             <input
-              className="email"
+              className={
+                errors.email
+                  ? "contact-form__input contact-form__input--error"
+                  : "contact-form__input"
+              }
               type="email"
               name="email"
               value={values.email}
               onChange={handleInputChange}
             />
+            {errors.email && (
+              <div>
+                <img src={errorIcon} alt="something wrong here" />
+                <span className="error">This field is required</span>
+              </div>
+            )}
           </lable>
         </div>
         <div className="edit-warehouse__buttons">
