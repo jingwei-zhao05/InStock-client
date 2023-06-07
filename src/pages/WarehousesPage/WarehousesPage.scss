@@ -6,8 +6,9 @@
   position: absolute;
   width: 90%;
   left: 1rem;
-  top: 5rem;
+  top: 10rem;
   @include tablet {
     width: 100%;
+    top: 8rem;
   }
 }
