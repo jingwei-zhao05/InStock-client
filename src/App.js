@@ -8,10 +8,10 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <WarehouseDetails />
+     
       <Routes>
         <Route path="/" element />
-        <Route path="/warehouses/:id" element />
+        <Route path="/warehouses/:id" element= {<WarehouseDetails />} />
         <Route path="/warehouses/:id/edit" element />
         <Route path="/warehouses/add" element />
         <Route path="/inventories" element />
