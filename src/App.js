@@ -2,13 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import "./App.scss";
+import WarehousesPage from "./pages/WarehousesPage/WarehousesPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element />
+        <Route path="/" element={<WarehousesPage />} />
         <Route path="/warehouses/:id" element />
         <Route path="/warehouses/:id/edit" element />
         <Route path="/warehouses/add" element />
