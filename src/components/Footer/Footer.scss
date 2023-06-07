@@ -1,27 +1,29 @@
 @import "../../styles/partials/fonts";
+<<<<<<< HEAD
 @import "../../styles/partials/global";
+=======
+>>>>>>> develop
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/variables";
 
-.footer__copyright {
-  @include labels-buttons;
-  @include mobile-grid;
-  background-color: $Light-Grey;
-  color: $Slate;
-  text-align: center;
-  vertical-align: center;
-  padding: 40px;
-  width: stretch;
-  position: absolute;
-  bottom: -1000px;
+.footer {
+  &__copyright {
+    @include labels-buttons;
+    background-color: $Light-Grey;
+    color: $Slate;
+    text-align: center;
+    vertical-align: center;
+    padding: 40px;
+    width: stretch;
+    position: absolute;
+    bottom: -1000px;
 
-  @include tablet {
-    @include tablet_desktop_labels-buttons;
-    @include tablet-grid;
-    bottom: -300px;
-  }
-  @include desktop {
-    @include desktop-grid;
-    bottom: -200px;
+    @include tablet {
+      @include tablet_desktop_labels-buttons;
+      bottom: -300px;
+    }
+    @include desktop {
+      bottom: -200px;
+    }
   }
 }

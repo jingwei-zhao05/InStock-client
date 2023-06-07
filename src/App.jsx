@@ -1,7 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+<<<<<<< HEAD:src/App.jsx
 import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage";
+=======
+import './App.scss';
+
+>>>>>>> develop:src/App.js
 function App() {
   return (
     <BrowserRouter>
