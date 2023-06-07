@@ -1,7 +1,7 @@
-@import "../../styles//partials/fonts";
-@import "../../styles//partials/global";
-@import "../../styles//partials/mixins";
-@import "../../styles//partials/variables";
+@import "../../styles/partials/fonts";
+@import "../../styles/partials/global";
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/variables";
 
 .footer__copyright {
   @include labels-buttons;
