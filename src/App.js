@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import "./App.scss";
 import InventoryPage from "../pages/InventoryPage/InventoryPage";
 
+import './App.scss';
 
 function App() {
   return (
