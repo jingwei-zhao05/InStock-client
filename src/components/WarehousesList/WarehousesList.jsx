@@ -1,6 +1,6 @@
 import "../WarehousesList/WarehousesList.scss";
 import Warehouse from "../Warehouse/Warehouse";
-import { apiUrlWarehouses } from "../../pages/Utilities/apiUrlWarehouses";
+import { getWarehousesEndpoint } from "../../utils/api";
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ function WarehousesList() {
 
   useEffect(() => {
     axios
-      .get(apiUrlWarehouses)
+      .get(getWarehousesEndpoint)
       .then((response) => {
         setdefaultWarehouses(response.data);
       })
