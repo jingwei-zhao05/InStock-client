@@ -2,12 +2,13 @@
 @import "./styles//partials/mixins";
 @import "./styles//partials/variables";
 * {
-  font-family: "Titillium";
+  font-family: "Titillium Web";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
+  list-style: none;
 }
 body {
   background-color: $Light-Grey;
