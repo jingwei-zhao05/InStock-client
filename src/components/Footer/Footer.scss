@@ -1,10 +1,6 @@
 @import "../../styles/partials/fonts";
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/variables";
-@import "../../styles/partials/fonts";
-@import "../../App.scss";
-@import "../../styles/partials/mixins";
-@import "../../styles/partials/variables";
 
 .footer {
   &__copyright {
@@ -20,7 +16,6 @@
     .footer {
       &__copyright {
         @include labels-buttons;
-        @include mobile-grid;
         background-color: $Light-Grey;
         color: $Slate;
         text-align: center;

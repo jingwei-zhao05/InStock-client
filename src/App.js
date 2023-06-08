@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Inventories from "../pages/Inventories/InventorieList";
-import InventorieList from "../pages/Inventories/InventorieList";
+// import Inventories from "../pages/Inventories/InventorieList";
+import InventorieList from "./pages/Inventories/InventorieList";
 import "./App.scss";
-import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 
 function App() {
   return (
