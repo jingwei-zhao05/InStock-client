@@ -2,12 +2,11 @@
 @use "../../styles/partials/mixins" as *;
 
 .header {
-  background-color: #232940;
+  background-color: $Graphite;
   padding: 2rem 2rem 7rem 2rem;
   width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
   @include tablet {
     padding-bottom: 7rem;
   }

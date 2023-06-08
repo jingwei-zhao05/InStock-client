@@ -3,12 +3,13 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import './App.scss';
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
+import Experient from './components/Experiment';
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
-     
+      <Experient />
       <Routes>
         <Route path="/" element />
         <Route path="/warehouses/:id" element= {<WarehouseDetails />} />

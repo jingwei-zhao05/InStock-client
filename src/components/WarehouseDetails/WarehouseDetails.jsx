@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import arrow from '../../assets/images/icons/arrow_back-24px.svg';
+import arrow from '../../assets/icons/arrow_back-24px.svg';
 import './WarehouseDetails.scss';
 import axios from 'axios';
 
