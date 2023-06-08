@@ -1,4 +1,4 @@
-import "../InventoryItemDetails/InventoryItemDetails.scss";
+import "./InventoryItemDetails.scss";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
@@ -24,15 +24,18 @@ function InventoryItemDetails() {
   if (!InventoryItem) {
     return <div>Loading...</div>;
   }
+  const checkStatus = (status) => status === "In Stock";
 
   return (
     <section className="item-details">
       <div className="item-details__header">
-        <img
-          className="item-details__arrow-icon"
-          src={ArrowBack}
-          alt="arrow back"
-        />
+        <Link to="/inventories">
+          <img
+            className="item-details__arrow-icon"
+            src={ArrowBack}
+            alt="arrow back"
+          />
+        </Link>
         <h1 className="item-details__title">{InventoryItem.item_name}</h1>
         <Link
           to={`/inventories/${id}/edit`}
@@ -66,10 +69,13 @@ function InventoryItemDetails() {
           <div className="item-details__availability-amount">
             <div className="item-details__availability-amount-status">
               <h3 className="item-details__availability-header">STATUS:</h3>
-              <p className="item-details__availability-instock">
-                {InventoryItem.status}
-              </p>
-              <p className="item-details__availability-outstock">
+              <p
+                className={
+                  checkStatus(InventoryItem.status)
+                    ? "item-details__availability-instock"
+                    : "item-details__availability-outstock"
+                }
+              >
                 {InventoryItem.status}
               </p>
             </div>
