@@ -7,33 +7,31 @@ import { Link } from "react-router-dom";
 import Arrows from "../../assets/icons/sort-24px.svg";
 
 function InventorieList() {
+  const [InventoryList, setInventoryList] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
+  const [hasError, sethasError] = useState(false);
 
-    const [InventoryList, setInventoryList] = useState([]);
-    const [isLoading, setisLoading] = useState(true);
-    const [hasError, sethasError] = useState(false);
-  
-    useEffect(() => {
-      axios
-        .get(GetInventoryList)
-        .then((response) => {
-          setisLoading(false);
-          setInventoryList(response.data);
-          console.log(response);
-        })
-        .catch(() => {
-          sethasError(true);
-          setisLoading(false);
-        });
-    }, []);
-  
-    if (isLoading) {
-      return <h1>Loading ...</h1>;
-    }
-    if (hasError) {
-      return <h1>error</h1>;
-    }
-    console.log(InventoryList);
-  
+  useEffect(() => {
+    axios
+      .get(GetInventoryList)
+      .then((response) => {
+        setisLoading(false);
+        setInventoryList(response.data);
+        console.log(response);
+      })
+      .catch(() => {
+        sethasError(true);
+        setisLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <h1>Loading ...</h1>;
+  }
+  if (hasError) {
+    return <h1>error</h1>;
+  }
+  console.log(InventoryList);
 
   return (
     <>
@@ -92,24 +90,6 @@ function InventorieList() {
             />
           </div>
           <div className="inventories__container">
-            <h4 className="inventories__heading-warehouse">WAREHOUSE</h4>
-            <img
-              src={Arrows}
-              alt="filter-arrows"
-              className="inventories__heading-icon"
-            />
-          </div>
-          <div className="inventories__container">
-            <h4 className="inventories__heading-warehouse">
-              CONTACT INFORMATION
-            </h4>
-            <img
-              src={Arrows}
-              alt="filter-arrows"
-              className="inventories__heading-icon"
-            />
-          </div>
-          <div className="inventories__container">
             <h4 className="inventories__heading-warehouse">ACTIONS</h4>
           </div>
         </section>
@@ -124,5 +104,3 @@ function InventorieList() {
   );
 }
 export default InventorieList;
-
-
