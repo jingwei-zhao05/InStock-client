@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import arrow from '../../assets/icons/arrow_back-24px.svg';
-import './WarehouseDetails.scss';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import arrow from "../../assets/icons/arrow_back-24px.svg";
+import "./WarehouseDetails.scss";
+import axios from "axios";
 
 function WarehouseDetails() {
   const { id } = useParams();
