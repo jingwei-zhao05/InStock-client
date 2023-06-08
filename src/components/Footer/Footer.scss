@@ -6,16 +6,7 @@
   @include table-header;
   color: $Slate;
   text-align: center;
-<<<<<<< HEAD
   margin-bottom: 2.5rem;
-=======
-  vertical-align: center;
-  padding: 40px;
-  width: stretch;
-
-  position: absolute;
-  bottom: -1300px;
->>>>>>> develop
 
   @include tablet {
     @include tablet_desktop_table-header;

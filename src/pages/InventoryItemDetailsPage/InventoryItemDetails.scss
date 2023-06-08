@@ -3,15 +3,9 @@
 @import "../../styles/partials/variables";
 
 .item-details {
-  @include mobile-grid;
-  position: absolute;
-  top: 8.5rem;
-  width: stretch;
   display: flex;
   flex-direction: column;
-  background: $White;
-  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
-  border-radius: 3px;
+  @include cardSizing;
 
   @include tablet {
     @include tablet-grid;
