@@ -1,24 +1,29 @@
 import "../InventoryItemDetails/InventoryItemDetails.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Edit from "../../assets/icons/edit-24px.svg";
 import ArrowBack from "../../assets/icons/arrow_back-24px.svg";
-import getInventoriesEndpoint from "../../utils/api";
+import { getInventoryDetailEndpoint } from "../../utils/api";
 
 function InventoryItemDetails() {
   const { id } = useParams();
+  const [InventoryItem, setInventoryItem] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/invetories/${id}`)
+      .get(getInventoryDetailEndpoint(id))
       .then((response) => {
-        return response.data;
+        setInventoryItem(response.data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
+
+  if (!InventoryItem) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="item-details">
@@ -28,9 +33,9 @@ function InventoryItemDetails() {
           src={ArrowBack}
           alt="arrow back"
         />
-        <h1 className="item-details__title">Television</h1>
+        <h1 className="item-details__title">{InventoryItem.item_name}</h1>
         <Link
-          to="/warehouses/:id/edit"
+          to={`/inventories/${id}/edit`}
           className="item-details__edit-container"
         >
           <button className="item-details__header-button">
@@ -49,30 +54,37 @@ function InventoryItemDetails() {
             ITEM DESCRIPTION:
           </h3>
           <p className="item-details__description-description">
-            This 50", 4K LED TV provides a crystal-clear picture and vivid
-            colors.
+            {InventoryItem.description}
           </p>
           <h3 className="item-details__description-header">CATEGORY:</h3>
-          <p className="item-details__description-description">Electronics</p>
+          <p className="item-details__description-description">
+            {InventoryItem.category}
+          </p>
         </div>
         <div className="item-details__line"></div>
         <div className="item-details__availability">
           <div className="item-details__availability-amount">
             <div className="item-details__availability-amount-status">
               <h3 className="item-details__availability-header">STATUS:</h3>
-              <p className="item-details__availability-instock">IN STOCK</p>
+              <p className="item-details__availability-instock">
+                {InventoryItem.status}
+              </p>
               <p className="item-details__availability-outstock">
-                OUT OF STOCK
+                {InventoryItem.status}
               </p>
             </div>
             <div className="item-details__availability-amount-quantity">
               <h3 className="item-details__availability-header">QUANTITY:</h3>
-              <p className="item-details__availability-description">500</p>
+              <p className="item-details__availability-description">
+                {InventoryItem.quantity}
+              </p>
             </div>
           </div>
           <div className="item-details__availability-warehouse">
             <h3 className="item-details__availability-header">WAREHOUSE:</h3>
-            <p className="item-details__availability-description">Manhattan</p>
+            <p className="item-details__availability-description">
+              {InventoryItem.warehouse_id}
+            </p>
           </div>
         </div>
       </div>
