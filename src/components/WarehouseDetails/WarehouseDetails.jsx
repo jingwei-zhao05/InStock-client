@@ -5,16 +5,16 @@ import './WarehouseDetails.scss';
 import axios from 'axios';
 
 function WarehouseDetails() {
-  const {id} = useParams();
+  const { id } = useParams();
   const [warehouse, setWarehouse] = useState(null);
 
   useEffect(() => {
     axios
       .get(`http://localhost:8080/warehouses/${id}`)
-      .then(response => {
+      .then((response) => {
         setWarehouse(response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, [id]);
@@ -27,21 +27,23 @@ function WarehouseDetails() {
     <div className="details">
       <div className="details__header-container">
         <div className="details__title-arrow">
-            <img src={arrow} alt="Back" className="details__arrow" />
-            <h1 className="details__title">{warehouse.warehouse_name}</h1>
+          <img src={arrow} alt="Back" className="details__arrow" />
+          <h1 className="details__title">{warehouse.warehouse_name}</h1>
         </div>
         <Link to={`/warehouses/${id}/edit`}>
-            <button className="details__button"></button>
+          <button className="details__button"></button>
         </Link>
         <Link to={`/warehouses/${id}/edit`}>
-            <button className="details__tablet-button">Edit</button>
+          <button className="details__tablet-button">Edit</button>
         </Link>
       </div>
       <div className="details__info-container">
         <div className="details__location-container">
           <p className="details__subheader">WAREHOUSE ADDRESS:</p>
           <p className="details__location">{warehouse.address}, </p>
-          <p className="details__location">{warehouse.city}, {warehouse.country}</p>
+          <p className="details__location">
+            {warehouse.city}, {warehouse.country}
+          </p>
         </div>
         <div className="details__contact-container">
           <div className="details__contact-box">

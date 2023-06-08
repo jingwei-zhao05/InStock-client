@@ -1,0 +1,26 @@
+@import "../../styles/partials/fonts";
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/variables";
+
+.warehouse-page {
+  color: $Instock-Black;
+  background-color: $White;
+  box-shadow: 0 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 0.1875rem;
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  top: 8.5rem;
+  height: 57.625rem;
+
+  @include tablet {
+    height: 38.25rem;
+    left: 2rem;
+    right: 2rem;
+  }
+
+  @include desktop {
+    width: 63.75rem;
+    margin: 0 auto;
+  }
+}
