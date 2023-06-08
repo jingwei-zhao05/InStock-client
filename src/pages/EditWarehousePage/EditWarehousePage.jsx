@@ -124,7 +124,7 @@ export default function EditWarehousePage() {
         <h1 className="edit-warehouse__title">Edit Warehouse</h1>
       </div>
       <form className="edit-warehouse-form" onSubmit={handleSubmit}>
-        <div className="warehouse-form">
+        <div className="warehouse-form warehouse-form--left">
           <h2 className="warehouse-form__title">Warehouse Details</h2>
           <lable className="warehouse-form__lable" htmlFor="warehouseName">
             Warehouse Name
