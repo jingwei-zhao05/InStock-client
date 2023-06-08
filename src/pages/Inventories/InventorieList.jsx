@@ -1,37 +1,32 @@
 import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails";
-import "./InventorieList.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { GetInventoryList } from "../../utility/API";
-import { Link } from "react-router-dom";
 import Arrows from "../../assets/icons/sort-24px.svg";
-
+import { useParams, Link } from "react-router-dom";
+// import arrow from '../../assets/images/icons/arrow_back-24px.svg';
+import WarehouseItemsList from "../../components/WarehouseItemsList/WarehouseItemsList";
 function InventorieList() {
-  const [InventoryList, setInventoryList] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
-  const [hasError, sethasError] = useState(false);
+  // const [InventoryList, setInventoryList] = useState([]);
+  // const [isLoading, setisLoading] = useState(true);
+  // const [hasError, sethasError] = useState(false);
+
+  const { id } = useParams();
+  const [warehouseItemsList, setwarehouseItemsList] = useState(null);
 
   useEffect(() => {
     axios
-      .get(GetInventoryList)
+      .get(`http://localhost:8080/warehouses/${id}`)
       .then((response) => {
-        setisLoading(false);
-        setInventoryList(response.data);
-        console.log(response);
+        setwarehouseItemsList(response.data);
       })
-      .catch(() => {
-        sethasError(true);
-        setisLoading(false);
+      .catch((error) => {
+        console.error(error);
       });
-  }, []);
+  }, [id]);
 
-  if (isLoading) {
-    return <h1>Loading ...</h1>;
+  if (!warehouseItemsList) {
+    return <div>Loading...</div>;
   }
-  if (hasError) {
-    return <h1>error</h1>;
-  }
-  console.log(InventoryList);
 
   return (
     <>
@@ -93,10 +88,13 @@ function InventorieList() {
             <h4 className="inventories__heading-warehouse">ACTIONS</h4>
           </div>
         </section>
-        {InventoryList.map((itemDetails) => {
+        {warehouseItemsList.map((itemDetails) => {
           console.log(itemDetails);
           return (
-            <InventoryItem itemDetails={itemDetails} key={itemDetails.id} />
+            <WarehouseItemsList
+              itemDetails={itemDetails}
+              key={itemDetails.id}
+            />
           );
         })}
       </section>
