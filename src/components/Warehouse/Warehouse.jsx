@@ -86,7 +86,6 @@ export default function Warehouse({
         onClose={handleCloseModal}
         warehouseId={id}
         warehouseName={name}
-       
       />
     </div>
   );
