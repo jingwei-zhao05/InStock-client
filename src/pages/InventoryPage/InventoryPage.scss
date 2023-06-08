@@ -1,9 +1,109 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
-.main {
-  background-color: gray;
-  z-index: 1;
-  position: absolute;
-  width: 10rem;
-  height: 240px;
+
+.inventories {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 4px;
+  background: $White;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  top: 6.25rem;
+  width: stretch;
+
+  @include tablet {
+    @include tablet-grid;
+    padding-left: 0;
+    padding-right: 0;
+    top: 6.25rem;
+    width: 90%;
+  }
+
+  @include desktop {
+    @include desktop-grid;
+    width: 80%;
+    left: 9rem;
+  }
+
+  &__header-title {
+    @include page-header;
+    color: $Instock-Black;
+    margin-top: 0.75rem;
+
+    @include tablet {
+      margin-top: 2rem;
+    }
+  }
+
+  &__header-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: normal;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  @include tablet {
+    @include tablet-grid;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  @include desktop {
+    @include desktop-grid;
+  }
+
+  &__header-form {
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid $Cloud;
+
+    @include tablet {
+      display: flex;
+      height: 40px;
+      margin-top: 10px;
+      border-bottom: none;
+    }
+  }
+
+  &__header-form-search {
+    background-image: url("../../assets/icons/search-24px.svg");
+    background-repeat: no-repeat;
+    background-position: 94%;
+    border-radius: 20px;
+    border: 1px solid $Cloud;
+    padding: 7px 16px;
+    width: stretch;
+    height: 2.25rem;
+    margin-bottom: 15px;
+    &:focus {
+      outline: none;
+      border: 1px solid $Instock-Indigo;
+    }
+
+    @include tablet {
+      margin-right: 0.9375rem;
+      width: 13rem;
+      height: 2.375rem;
+    }
+    @include desktop {
+      width: 20rem;
+    }
+  }
+
+  &__header-form-button {
+    background-color: $Instock-Indigo;
+    color: $White;
+    width: stretch;
+    border-radius: 1.25rem;
+    border: none;
+    margin-bottom: 5px;
+    height: 2.25rem;
+
+    @include tablet {
+      height: 2.375rem;
+      width: 11rem;
+    }
+    &:hover {
+      background-color: $Instock-Black;
+    }
+  }
 }

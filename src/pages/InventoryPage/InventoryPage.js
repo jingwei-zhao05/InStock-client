@@ -30,18 +30,70 @@ function InventoryPage() {
   console.log(InventoryList);
   return (
     <>
-      <section className="main">
+      <section className="inventories">
+        <div className="inventories__header">
+          <h1 className="inventories__header-title">inventory</h1>
+          <div className="inventories__header-container">
+            <form className="inventories__header-form">
+              <input
+                type="search"
+                name="search"
+                className="inventories__header-form-search"
+                placeholder="Search..."
+              />
+              <Link to="">
+                <button className="inventories__header-form-button">
+                  + Add New Warehouse
+                </button>
+              </Link>
+            </form>
+          </div>
+        </div>
+        {/* 
+        <section className="inventories__heading">
+          <div className="inventories__container">
+            <h4 className="inventories__heading-warehouse">WAREHOUSE</h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="inventories__heading-icon "
+            />
+          </div>
+          <div className="inventories__container">
+            <h4 className="inventories__heading-warehouse">ADDRESS</h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="inventories__heading-icon"
+            />
+          </div>
+          <div className="inventories__container">
+            <h4 className="inventories__heading-warehouse">CONTACT NAME</h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="inventories__heading-icon"
+            />
+          </div>
+          <div className="inventories__container">
+            <h4 className="inventories__heading-warehouse">
+              CONTACT INFORMATION
+            </h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="inventories__heading-icon"
+            />
+          </div>
+          <div className="inventories__container">
+            <h4 className="inventories__heading-warehouse">ACTIONS</h4>
+          </div>
+        </section> */}
         {InventoryList.map((itemDetails) => {
           return (
             <InventoryItem itemDetails={itemDetails} key={itemDetails.id} />
           );
         })}
-        <h1>feed</h1>
-        <h1>feed</h1>
-        <h1>feed</h1>
-        <h1>feed</h1>
-        <h1>feed</h1>
-        <h1>feed</h1>
       </section>
     </>
   );
