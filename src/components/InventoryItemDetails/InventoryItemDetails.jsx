@@ -1,11 +1,25 @@
 import "../InventoryItemDetails/InventoryItemDetails.scss";
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Edit from "../../assets/icons/edit-24px.svg";
 import ArrowBack from "../../assets/icons/arrow_back-24px.svg";
+import getInventoriesEndpoint from "../../utils/api";
 
 function InventoryItemDetails() {
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/invetories/${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   return (
     <section className="item-details">
       <div className="item-details__header">
