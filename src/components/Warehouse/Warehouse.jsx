@@ -61,7 +61,7 @@ export default function Warehouse({
             className="warehouses__icon"
           />
         </Link>
-        <Link to="/" class="warehouses__link">
+        <Link to={`/warehouses/${id}/edit`} class="warehouses__link">
           <img src={EditIcon} alt="edit icon" class="warehouses__icon" />
         </Link>
       </div>
