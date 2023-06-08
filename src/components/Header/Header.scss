@@ -3,32 +3,34 @@
 
 .header {
   background-color: $Graphite;
-  padding: 2rem 2rem 7rem 2rem;
   width: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 12.5rem;
   min-width: 12.5rem;
   @include tablet {
-    padding-bottom: 7rem;
+    height: 11.625rem;
   }
 
   &__container {
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
+    margin: 1.5rem 1rem 5.5rem 1rem;
+    gap: 1.5rem;
 
     @include tablet {
       flex-direction: row;
-      justify-content: space-between;
       width: 100%;
+      margin: 2rem 2rem 7.5625rem 2rem;
     }
     @include desktop {
-      max-width: 1120px;
+      max-width: 1020px;
       margin: 0 auto;
+      margin-bottom: 7.5625rem;
+      margin-top: 2rem;
     }
   }
 
@@ -37,23 +39,44 @@
     list-style-type: none;
   }
 
+  &__nav {
+    width: 100%;
+  }
+
   &__img {
-    @include tablet {
-      padding-top: 0.5rem;
-    }
+    width: 8.0369rem;
+    height: 1.75rem;
   }
 
   &__list-container {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    @include tablet {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+    }
   }
 
-  &__list-item {
-    color: white;
-    margin: 1rem 2rem 0.5rem 2rem;
+  &__list-item,
+  &__active-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5rem;
+    height: 2.25rem;
+    width: 50%;
     list-style-type: none;
-    color: grey;
+    @include labels-buttons;
+
+    @include tablet {
+      width: auto;
+      padding: 0.5rem 1rem;
+      @include tablet_desktop_labels-buttons;
+    }
 
     &:hover {
       color: white;
@@ -61,14 +84,15 @@
     }
   }
 
+  &__list-item {
+    color: $Cloud;
+  }
+
   &__active-list-item {
-    color: white;
-    margin: 1rem 2rem 0.5rem 2rem;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    list-style-type: none;
-    border: 2px solid #13182c;
-    border-radius: 5rem;
-    background: #13182c;
+    color: $White;
+    border-radius: 1.25rem;
+    background: $Instock-Black;
+
     @include tablet {
       padding: 0.5rem 1rem 0.5rem 1rem;
     }
