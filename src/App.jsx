@@ -16,10 +16,10 @@ function App() {
         <Route path="/warehouses/:id" element={<WarehouseDetails />} />
         <Route path="/warehouses/:id/edit" element={<EditWarehousePage />} />
         <Route path="/warehouses/add" element />
-        <Route path="/inventories" element />
-        <Route path="/inventories/:id" element={<InventoryItemDetailsPage />} />
-        <Route path="/inventories/:id/edit" element />
-        <Route path="/inventories/add" element />
+        <Route path="/inventory" element />
+        <Route path="/inventory/:id" element={<InventoryItemDetailsPage />} />
+        <Route path="/inventory/:id/edit" element />
+        <Route path="/inventory/add" element />
       </Routes>
       <Footer />
     </BrowserRouter>

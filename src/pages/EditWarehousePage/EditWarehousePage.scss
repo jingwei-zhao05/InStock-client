@@ -3,25 +3,14 @@
 @use "../../styles/partials/fonts";
 
 .edit-warehouse {
-  color: $Instock-Black;
-  background-color: $White;
-  box-shadow: 0 2px 5px rgba(19, 24, 44, 0.1);
-  border-radius: 0.1875rem;
-  position: absolute;
-  left: 1rem;
-  right: 1rem;
-  top: 8.5rem;
-  height: 57.625rem;
+  @include cardSizing;
 
   @include tablet {
-    height: 38.25rem;
-    left: 2rem;
-    right: 2rem;
+    margin-bottom: 16.375rem;
   }
 
   @include desktop {
-    width: 63.75rem;
-    margin: 0 auto;
+    margin: -5.875rem auto 5.9375rem auto;
   }
 
   &__header {
