@@ -21,21 +21,21 @@ function InventoryItem({ itemDetails }) {
         <div className="inventory__box">
           <div className="inventory__text-box">
             <div className="inventory__column">
-                <h3 class="inventory__mobile-header">INVENTORYITEM</h3>
                 <div className="inventory__chevron">
                   <div className="inventory__chevron-link">
-                    <Link to={`#`} class="inventory__link-anchor">
+                <h3 className="inventory__mobile-header">INVENTORYITEM</h3>
+                    <Link to={`#`} className="inventory__link-anchor">
                       {itemDetails.item_name}
-                    </Link>
                     <img
-                      class="inventory__chevron-image"
+                      className="inventory__chevron-image"
                       src={Chevron}
                       alt="chevron"
-                    ></img>
+                    />
+                    </Link>
                   </div>
                 </div>
               <div className="inventory__info-address">
-                <h3 class="inventory__mobile-header">CATEGORY</h3>
+                <h3 className="inventory__mobile-header">CATEGORY</h3>
                 <p className="inventory__text">{itemDetails.category}</p>
               </div>
             </div>
@@ -47,7 +47,7 @@ function InventoryItem({ itemDetails }) {
                 <p className={itemDetails.status === "In Stock" ? "inventory__contact-text in-stock" : "inventory__contact-text out-stock"}>{itemDetails.status}</p>
               </div>
               <div className="inventory__info-contact-info">
-                <h3 class="inventory__mobile-header">QTY</h3>
+                <h3 className="inventory__mobile-header">QTY</h3>
                 <p>{itemDetails.quantity}</p>
               </div>
               <div className="inventory__info-contact-info">

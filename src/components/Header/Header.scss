@@ -4,14 +4,14 @@
 .header {
   background-color: $Graphite;
   padding: 2rem 2rem 7rem 2rem;
-  width: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
+  width: 100vw;
+  // position: absolute;
+  // left: 0px;
+  // top: 0px;
   display: flex;
   justify-content: center;
   height: 12.5rem;
-  min-width: 12.5rem;
+  // min-width: 12.5rem;
   @include tablet {
     padding-bottom: 7rem;
   }

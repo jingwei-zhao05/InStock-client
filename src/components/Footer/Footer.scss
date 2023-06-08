@@ -2,18 +2,21 @@
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/variables";
 
-.footer__copyright {
-  @include labels-buttons;
-  color: $Slate;
-  text-align: center;
-  vertical-align: center;
-  padding: 40px;
-  width: stretch;
-  position: absolute;
-  bottom: -1300px;
-
-  @include tablet {
-    @include tablet_desktop_labels-buttons;
-    bottom: -450px;
+.footer {
+  padding: 2rem;
+  &__copyright{
+    @include labels-buttons;
+    color: $Slate;
+    text-align: center;
+    vertical-align: center;
+    padding: 40px;
+    width: stretch;
+    // position: absolute;
+    // bottom: -1300px;
+  
+    @include tablet {
+      @include tablet_desktop_labels-buttons;
+      bottom: -450px;
+    }
   }
 }

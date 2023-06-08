@@ -33,8 +33,30 @@ function InventoryPage() {
   console.log(InventoryList);
   return (
     <>
-      <section className="inventories">
-        <div className="inventories__header">
+     <section className="inventories">
+      {/* <section className="inventory">
+        <section className="inventory__head">
+          <h1 className="inventory__header">Inventory</h1>
+          <form className="form">
+            <lable>
+            <input
+                type="search"
+                name="search"
+                className="form__search"
+                placeholder="Search..."
+              />
+              <img src={"#"}/>
+            </lable>
+            <input   
+                type="text"
+                name="add-buton"
+                placeholder="+Add New Item"
+                className="form__add-button"
+                />
+          </form>
+        </section> */}
+        
+           <div className="inventories__header">
           <h1 className="inventories__header-title">inventory</h1>
           <div className="inventories__header-container">
             <form className="inventories__header-form">
@@ -103,7 +125,7 @@ function InventoryPage() {
           return (
             <InventoryItem itemDetails={itemDetails} key={itemDetails.id} />
           );
-        })}
+        })} 
       </section>
     </>
   );
