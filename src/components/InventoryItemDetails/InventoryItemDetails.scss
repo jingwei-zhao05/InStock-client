@@ -73,13 +73,13 @@
     padding-right: 1rem;
   }
   &__title {
-    @include subheader;
+    @include page-header;
     width: stretch;
     color: $Instock-Black;
     margin: 1rem 0;
 
     @include tablet {
-      @include tablet_desktop_subheader;
+      @include tablet_desktop_page-header;
     }
   }
 
@@ -97,11 +97,11 @@
       width: 50%;
     }
     &-header {
-      @include table-header;
+      @include labels-buttons;
       color: $Slate;
       margin-bottom: 0.3rem;
       @include tablet {
-        @include tablet_desktop_table-header;
+        @include tablet_desktop_labels-buttons;
       }
     }
     &-description {
@@ -150,11 +150,11 @@
       }
     }
     &-header {
-      @include table-header;
+      @include labels-buttons;
       color: $Slate;
       margin-bottom: 0.5rem;
       @include tablet {
-        @include tablet_desktop_table-header;
+        @include tablet_desktop_labels-buttons;
       }
     }
     &-instock {
@@ -163,8 +163,8 @@
       margin-bottom: 0.2rem;
       margin-top: 0.25rem;
       color: $Green;
-      background: $Light-Grey;
-      padding: 3px 4px;
+      background: #15846312;
+      padding: 2px 4px;
       border-radius: 1.25rem;
       text-align: center;
     }
@@ -174,9 +174,10 @@
       text-transform: uppercase;
       margin: 0;
       color: $Red;
-      background: $Light-Grey;
+      background: $Red;
+      background-color: #c9451512;
       margin-bottom: 1rem;
-      padding: 3px 4px;
+      padding: 2px 4px;
       border-radius: 1.25rem;
       @include tablet {
         margin-bottom: 1rem;

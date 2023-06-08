@@ -2,8 +2,8 @@ import "../InventoryItemDetails/InventoryItemDetails.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Edit from "../../assets/images/icons/edit-24px.svg";
-import ArrowBack from "../../assets/images/icons/arrow_back-24px.svg";
+import Edit from "../../assets/icons/edit-24px.svg";
+import ArrowBack from "../../assets/icons/arrow_back-24px.svg";
 
 function InventoryItemDetails() {
   return (
