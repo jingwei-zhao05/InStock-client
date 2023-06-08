@@ -10,7 +10,6 @@
   background: $White;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   top: 6.25rem;
-  width: stretch;
 
   @include tablet {
     @include tablet-grid;

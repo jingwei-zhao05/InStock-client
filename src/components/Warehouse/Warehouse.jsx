@@ -3,7 +3,7 @@ import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import RemoveIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Warehouse({
   id,
