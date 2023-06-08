@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 
 function WarehousesList() {
   const [defaultWarehouses, setdefaultWarehouses] = useState(null);
-
-  useEffect(() => {
-    axios
+  
+    const fetchWarehouses = () => {
+      axios
       .get(getWarehousesEndpoint)
       .then((response) => {
         setdefaultWarehouses(response.data);
@@ -17,6 +17,10 @@ function WarehousesList() {
       .catch((err) => {
         console.error(err);
       });
+    }
+
+  useEffect(() => {
+    fetchWarehouses();
   }, []);
 
   if (!defaultWarehouses) {
@@ -38,6 +42,7 @@ function WarehousesList() {
                 contactName={warehouse.contact_name}
                 contactPhone={warehouse.contact_phone}
                 contactEmail={warehouse.contact_email}
+                fetchWarehouses= {fetchWarehouses}
               />
             }
           </li>

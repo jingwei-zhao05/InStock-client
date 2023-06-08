@@ -1,9 +1,11 @@
-import "../Warehouse/Warehouse.scss";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import RemoveIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import Modal from "../../modal/WarehouseModal/WarehouseModal";
+import "../../modal/WarehouseModal/WarehouseModal.scss";
+import "./Warehouse.scss";
 
 export default function Warehouse({
   id,
@@ -14,11 +16,23 @@ export default function Warehouse({
   contactName,
   contactPhone,
   contactEmail,
+  fetchWarehouses,
 }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = (isDeleted) => {
+    setIsModalOpen(false);
+    if (isDeleted) {
+      fetchWarehouses();
+    }
+  };
+
   return (
     <div className="warehouseList__box">
-      {/* <div className="warehouseList__text-box"> */}
-      {/* <div className="warehouseList__column"> */}
       <div className="warehouseList__info-warehouse">
         <h3 class="warehouseList__mobile-header">Warehouse</h3>
         <div className="warehouseList__chevron">
@@ -40,8 +54,6 @@ export default function Warehouse({
           {address}, {city}, {country}
         </p>
       </div>
-      {/* </div> */}
-      {/* <div className="warehouseList__column-contacts"> */}
       <div className="warehouseList__info-contact">
         <h3 class="warehouseList__mobile-header">Contact Name</h3>
         <p className="warehouseList__contact-text">{contactName}</p>
@@ -51,20 +63,26 @@ export default function Warehouse({
         <p>{contactPhone}</p>
         <p>{contactEmail}</p>
       </div>
-      {/* </div> */}
-      {/* </div> */}
+
       <div className="warehouseList__actions">
         <Link to="/">
           <img
             src={RemoveIcon}
             alt="remove icon"
             className="warehouseList__icon"
+            onClick={handleOpenModal}
           />
         </Link>
         <Link to={`/warehouses/${id}/edit`} class="warehouseList__link">
           <img src={EditIcon} alt="edit icon" class="warehouseList__icon" />
         </Link>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        warehouseId={id}
+        warehouseName={name}
+      />
     </div>
   );
 }
