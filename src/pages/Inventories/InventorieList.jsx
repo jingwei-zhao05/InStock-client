@@ -6,16 +6,14 @@ import { useParams, Link } from "react-router-dom";
 // import arrow from '../../assets/images/icons/arrow_back-24px.svg';
 import WarehouseItemsList from "../../components/WarehouseItemsList/WarehouseItemsList";
 function InventorieList() {
-  // const [InventoryList, setInventoryList] = useState([]);
-  // const [isLoading, setisLoading] = useState(true);
-  // const [hasError, sethasError] = useState(false);
 
   const { id } = useParams();
-  const [warehouseItemsList, setwarehouseItemsList] = useState(null);
+  const [warehouseItemsList, setwarehouseItemsList] = useState([]);
+
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/warehouses/${id}`)
+      .get(`http://localhost:8080/warehouses/${id}/inventories`)
       .then((response) => {
         setwarehouseItemsList(response.data);
       })
@@ -28,9 +26,10 @@ function InventorieList() {
     return <div>Loading...</div>;
   }
 
+  console.log(warehouseItemsList);
   return (
     <>
-      <WarehouseDetails />
+      <WarehouseDetails/>
       <section className="inventories">
         <div className="inventories__header">
           <h1 className="inventories__header-title">inventory</h1>
