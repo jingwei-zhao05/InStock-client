@@ -4,7 +4,6 @@ import axios from "axios";
 import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/icons/error-24px.svg";
 import {
-  getWarehousesEndpoint,
   getWarehouseDetailEndpoint,
   putWarehouseEndpoint,
 } from "../../utils/api";
@@ -54,10 +53,6 @@ export default function EditWarehousePage() {
       ...values,
       [name]: value,
     });
-  };
-
-  const handleCancelClick = () => {
-    navigate(`/warehouses/${warehouseId}`);
   };
 
   const handleSubmit = (event) => {
@@ -111,6 +106,8 @@ export default function EditWarehousePage() {
           alert(error);
         });
     }
+
+    navigate(-1);
   };
 
   return (
@@ -120,6 +117,9 @@ export default function EditWarehousePage() {
           className="go-back-arrow"
           src={arrowBackIcon}
           alt="go back button"
+          onClick={() => {
+            navigate(-1);
+          }}
         />
         <h1 className="edit-warehouse__title">Edit Warehouse</h1>
       </div>
@@ -341,7 +341,9 @@ export default function EditWarehousePage() {
         <div className="edit-warehouse__buttons">
           <button
             className="edit-warehouse__buttons-cancel"
-            onClick={handleCancelClick}
+            onClick={() => {
+              navigate(-1);
+            }}
           >
             Cancel
           </button>
