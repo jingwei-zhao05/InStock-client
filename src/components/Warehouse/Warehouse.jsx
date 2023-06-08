@@ -77,7 +77,7 @@ export default function Warehouse({
         </Link>
       </div>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>Delete Warehouse?</h2>
+        <h2>Delete {name} Warehouse?</h2>
         <p>Please confirm that you'd like to delete the {name} from the list of warehouses. You won't be able to undo this action.</p>
       </Modal>
     </div>
