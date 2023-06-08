@@ -11,15 +11,16 @@
     vertical-align: center;
     padding: 40px;
     width: stretch;
-    position: absolute;
-    bottom: -1000px;
+  // position: absolute;
+  // bottom: 0;
+    // bottom: -1000px;
 
     @include tablet {
       @include tablet_desktop_labels-buttons;
-      bottom: -300px;
+      // bottom: -300px;
     }
     @include desktop {
-      bottom: -200px;
+      // bottom: -200px;
     }
   }
 }

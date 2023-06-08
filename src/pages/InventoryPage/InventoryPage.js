@@ -2,6 +2,8 @@ import "./InventoryPage.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { GetInventoryList } from "../../utility/API";
+import { Link } from "react-router-dom";
+import Arrows from "../../assets/icons/sort-24px.svg";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 function InventoryPage() {
   const [InventoryList, setInventoryList] = useState([]);
@@ -14,6 +16,7 @@ function InventoryPage() {
       .then((response) => {
         setisLoading(false);
         setInventoryList(response.data);
+        console.log(response);
       })
       .catch(() => {
         sethasError(true);
@@ -49,10 +52,10 @@ function InventoryPage() {
             </form>
           </div>
         </div>
-        {/* 
+
         <section className="inventories__heading">
           <div className="inventories__container">
-            <h4 className="inventories__heading-warehouse">WAREHOUSE</h4>
+            <h4 className="inventories__heading-warehouse">INVENTORYITEM</h4>
             <img
               src={Arrows}
               alt="filter-arrows"
@@ -60,7 +63,7 @@ function InventoryPage() {
             />
           </div>
           <div className="inventories__container">
-            <h4 className="inventories__heading-warehouse">ADDRESS</h4>
+            <h4 className="inventories__heading-warehouse">CATEGORY</h4>
             <img
               src={Arrows}
               alt="filter-arrows"
@@ -68,7 +71,23 @@ function InventoryPage() {
             />
           </div>
           <div className="inventories__container">
-            <h4 className="inventories__heading-warehouse">CONTACT NAME</h4>
+            <h4 className="inventories__heading-warehouse">STATUS</h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="inventories__heading-icon"
+            />
+          </div>
+          <div className="inventories__container">
+            <h4 className="inventories__heading-warehouse">QTY</h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="inventories__heading-icon"
+            />
+          </div>
+          <div className="inventories__container">
+            <h4 className="inventories__heading-warehouse">WAREHOUSE</h4>
             <img
               src={Arrows}
               alt="filter-arrows"
@@ -88,8 +107,9 @@ function InventoryPage() {
           <div className="inventories__container">
             <h4 className="inventories__heading-warehouse">ACTIONS</h4>
           </div>
-        </section> */}
+        </section>
         {InventoryList.map((itemDetails) => {
+          console.log(itemDetails);
           return (
             <InventoryItem itemDetails={itemDetails} key={itemDetails.id} />
           );
