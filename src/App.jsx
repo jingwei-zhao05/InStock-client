@@ -11,7 +11,6 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-
       <Routes>
         <Route path="/" element={<WarehousesPage />} />
         <Route path="/warehouses/:id" element={<WarehouseDetails />} />

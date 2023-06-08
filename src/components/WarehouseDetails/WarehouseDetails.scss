@@ -106,11 +106,12 @@
     padding: 1.5rem;
     @include tablet {
       display: flex;
+      justify-content: space-between;
     }
   }
 
   &__location-container {
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
     @include tablet {
       display: flex;
       flex-direction: column;
@@ -129,6 +130,7 @@
 
   &__contact-container {
     display: flex;
+    justify-content: space-between;
   }
 
   &__contact-box {
