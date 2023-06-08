@@ -1,5 +1,5 @@
 import "./Header.scss";
-import logo from "../../assets/logo/InStock-Logo.svg";
+import logo from "../../assets/logos/InStock-Logo.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
@@ -31,7 +31,7 @@ function Header() {
               Warehouses
             </Link>
             <Link
-              to="/inventories"
+              to="/inventory"
               onClick={() => handleLinkClick("/inventory")}
               className={
                 activeLink === "/inventory"
