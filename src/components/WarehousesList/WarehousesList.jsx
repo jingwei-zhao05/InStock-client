@@ -31,7 +31,7 @@ function WarehousesList() {
     <ul>
       {defaultWarehouses.map((warehouse) => {
         return (
-          <li className="warehouses">
+          <li className="warehouse">
             {
               <Warehouse
                 id={warehouse.id}
