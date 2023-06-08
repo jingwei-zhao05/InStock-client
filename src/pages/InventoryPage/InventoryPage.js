@@ -95,16 +95,6 @@ function InventoryPage() {
             />
           </div>
           <div className="inventories__container">
-            <h4 className="inventories__heading-warehouse">
-              CONTACT INFORMATION
-            </h4>
-            <img
-              src={Arrows}
-              alt="filter-arrows"
-              className="inventories__heading-icon"
-            />
-          </div>
-          <div className="inventories__container">
             <h4 className="inventories__heading-warehouse">ACTIONS</h4>
           </div>
         </section>
