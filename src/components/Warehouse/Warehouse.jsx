@@ -16,53 +16,53 @@ export default function Warehouse({
   contactEmail,
 }) {
   return (
-    <div className="warehouses__box">
-      <div className="warehouses__text-box">
-        <div className="warehouses__column">
-          <div className="warehouses__info-warehouse">
-            <h3 class="warehouses__mobile-header">Warehouse</h3>
-            <div className="warehouses__chevron">
-              <div className="warehouses__chevron-link">
-                <Link to={`/warehouses/${id}`} class="warehouses__link-anchor">
-                  {name}
-                </Link>
-                <img
-                  class="warehouses__chevron-image"
-                  src={Chevron}
-                  alt="chevron"
-                ></img>
-              </div>
-            </div>
-          </div>
-          <div className="warehouses__info-address">
-            <h3 class="warehouses__mobile-header">Address</h3>
-            <p className="warehouses__text">
-              {address}, {city}, {country}
-            </p>
-          </div>
-        </div>
-        <div className="warehouses__column-contacts">
-          <div className="warehouses__info-contact">
-            <h3 class="warehouses__mobile-header">Contact Name</h3>
-            <p className="warehouses__contact-text">{contactName}</p>
-          </div>
-          <div className="warehouses__info-contact-info">
-            <h3 class="warehouses__mobile-header">Contact Information</h3>
-            <p>{contactPhone}</p>
-            <p>{contactEmail}</p>
+    <div className="warehouseList__box">
+      {/* <div className="warehouseList__text-box"> */}
+      {/* <div className="warehouseList__column"> */}
+      <div className="warehouseList__info-warehouse">
+        <h3 class="warehouseList__mobile-header">Warehouse</h3>
+        <div className="warehouseList__chevron">
+          <div className="warehouseList__chevron-link">
+            <Link to={`/warehouses/${id}`} class="warehouseList__link-anchor">
+              {name}
+            </Link>
+            <img
+              class="warehouseList__chevron-image"
+              src={Chevron}
+              alt="chevron"
+            ></img>
           </div>
         </div>
       </div>
-      <div className="warehouses__actions">
+      <div className="warehouseList__info-address">
+        <h3 class="warehouseList__mobile-header">Address</h3>
+        <p className="warehouseList__text">
+          {address}, {city}, {country}
+        </p>
+      </div>
+      {/* </div> */}
+      {/* <div className="warehouseList__column-contacts"> */}
+      <div className="warehouseList__info-contact">
+        <h3 class="warehouseList__mobile-header">Contact Name</h3>
+        <p className="warehouseList__contact-text">{contactName}</p>
+      </div>
+      <div className="warehouseList__info-contact-info">
+        <h3 class="warehouseList__mobile-header">Contact Information</h3>
+        <p>{contactPhone}</p>
+        <p>{contactEmail}</p>
+      </div>
+      {/* </div> */}
+      {/* </div> */}
+      <div className="warehouseList__actions">
         <Link to="/">
           <img
             src={RemoveIcon}
             alt="remove icon"
-            className="warehouses__icon"
+            className="warehouseList__icon"
           />
         </Link>
-        <Link to={`/warehouses/${id}/edit`} class="warehouses__link">
-          <img src={EditIcon} alt="edit icon" class="warehouses__icon" />
+        <Link to={`/warehouses/${id}/edit`} class="warehouseList__link">
+          <img src={EditIcon} alt="edit icon" class="warehouseList__icon" />
         </Link>
       </div>
     </div>
