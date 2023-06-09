@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link , useNavigate} from "react-router-dom";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import "./WarehouseDetails.scss";
 import axios from "axios";
@@ -7,7 +7,7 @@ import axios from "axios";
 function WarehouseDetails() {
   const { id } = useParams();
   const [warehouse, setWarehouse] = useState(null);
-
+  const navigate=useNavigate();
   useEffect(() => {
     axios
       .get(`http://localhost:8080/warehouses/${id}`)
@@ -27,7 +27,9 @@ function WarehouseDetails() {
     <div className="details">
       <div className="details__header-container">
         <div className="details__title-arrow">
-          <img src={arrow} alt="Back" className="details__arrow" />
+          <img src={arrow} alt="Back" className="details__arrow" 
+            onClick={()=>{navigate(-1)}}
+          />
           <h1 className="details__title">{warehouse.warehouse_name}</h1>
         </div>
         <Link to={`/warehouses/${id}/edit`}>

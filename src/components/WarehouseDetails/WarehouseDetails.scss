@@ -4,7 +4,6 @@
 .details {
   display: flex;
   flex-direction: column;
-  @include cardSizing;
 
   &__header-container {
     display: flex;
