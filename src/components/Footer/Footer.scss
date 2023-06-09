@@ -3,18 +3,16 @@
 @import "../../styles/partials/variables";
 
 .footer__copyright {
-  @include labels-buttons;
+  @include table-header;
   color: $Slate;
   text-align: center;
-  vertical-align: center;
-  padding: 40px;
-  width: stretch;
-
-  position: absolute;
-  bottom: -1300px;
+  margin-bottom: 2.5rem;
 
   @include tablet {
-    @include tablet_desktop_labels-buttons;
-    bottom: -450px;
+    @include tablet_desktop_table-header;
+  }
+
+  @include desktop {
+    margin-bottom: 3rem;
   }
 }
