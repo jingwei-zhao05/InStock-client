@@ -1,44 +1,42 @@
-import React, { useState, useEffect } from "react";
+import "./InventoryPageList.scss";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { GetInventoryList } from "../../utility/API";
 import { Link } from "react-router-dom";
 import Arrows from "../../assets/icons/sort-24px.svg";
-import InventoryItem from "../../components/InventoryItem/InventoryItem";
-import { GetInventoryList } from "../../utility/API";
-import './InventoryPage.scss';
+import InventoryItemDetailsPage from "../../pages/InventoryItemDetailsPage/InventoryItemDetails";
+import InventoryItem from "../InventoryItem/InventoryItem";
 
-function InventoryPage() {
+function InventoryPageList() {
   const [InventoryList, setInventoryList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  const [isLoading, setisLoading] = useState(true);
+  const [hasError, sethasError] = useState(false);
 
-  const fetchWarehouses = () => {
+  useEffect(() => {
     axios
       .get(GetInventoryList)
       .then((response) => {
-        setIsLoading(false);
+        setisLoading(false);
         setInventoryList(response.data);
+        console.log(response);
       })
       .catch(() => {
-        setHasError(true);
-        setIsLoading(false);
+        sethasError(true);
+        setisLoading(false);
       });
-  };
-
-  useEffect(() => {
-    fetchWarehouses();
   }, []);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1>Loading ...</h1>;
   }
   if (hasError) {
-    return <h1>Error</h1>;
+    return <h1>error</h1>;
   }
-
+  console.log(InventoryList);
   return (
     <>
-     <section className="inventories">
-           <div className="inventories__header">
+      <section className="inventories">
+        <div className="inventories__header">
           <h1 className="inventories__header-title">inventory</h1>
           <div className="inventories__header-container">
             <form className="inventories__header-form">
@@ -48,7 +46,7 @@ function InventoryPage() {
                 className="inventories__header-form-search"
                 placeholder="Search..."
               />
-              <Link to={'#'}>
+              <Link to={"#"}>
                 <button className="inventories__header-form-button">
                   + Add New Warehouse
                 </button>
@@ -56,6 +54,7 @@ function InventoryPage() {
             </form>
           </div>
         </div>
+
         <section className="inventories__heading">
           <div className="inventories__container inventories__container--inventoryitemWidth">
             <h4 className="inventories__heading-warehouse">INVENTORYITEM</h4>
@@ -102,17 +101,17 @@ function InventoryPage() {
           </div>
         </section>
         {InventoryList.map((itemDetails) => {
+          console.log(itemDetails);
           return (
             <InventoryItem
               itemDetails={itemDetails}
               key={itemDetails.id}
               id={itemDetails.id}
-              fetchWarehouses={fetchWarehouses}
             />
           );
-        })} 
+        })}
       </section>
     </>
   );
 }
-export default InventoryPage;
+export default InventoryPageList;
