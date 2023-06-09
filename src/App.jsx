@@ -5,9 +5,13 @@ import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import InventoryItemDetailsPage from "./pages/InventoryItemDetailsPage/InventoryItemDetails";
 import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage";
+// import InventorieList from "./pages/Inventories/InventorieList";
+import WarehouseInventorieListPage from "./pages/WarehouseInventorieListPage/WarehouseInventorieListPage";
+
 import AddWarehousePage from "./pages/AddWarehousePage/AddWarehousePage";
 import "./App.scss";
 import InventoryPageList from "./components/InventoryPageList/InventoryPageList";
+import WarehouseInventorieListPage from "./pages/WarehouseInventorieListPage/WarehouseInventorieListPage";
 
 function App() {
   return (
@@ -15,6 +19,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<WarehousesPage />} />
+        <Route path="/warehouses/:id" element={<WarehouseInventorieListPage/>} />
         <Route path="/warehouses/:id" element={<WarehouseInventorieListPage/>} />
         <Route path="/warehouses/:id/edit" element={<EditWarehousePage />} />
         <Route path="/warehouses/add" element={<AddWarehousePage />} />
