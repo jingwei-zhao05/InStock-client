@@ -127,3 +127,21 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+//card size for everypage
+@mixin cardSizing {
+  color: $Instock-Black;
+  background-color: $White;
+  box-shadow: 0 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 0.1875rem;
+  margin: -4rem 1rem 2.5rem 1rem;
+
+  @include tablet {
+    margin: -5.875rem 2rem 4.375rem 2rem;
+  }
+
+  @include desktop {
+    width: 63.75rem;
+    margin: -5.875rem auto 5.9375rem auto;
+  }
+}

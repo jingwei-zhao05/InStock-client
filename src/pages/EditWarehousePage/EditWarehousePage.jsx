@@ -100,14 +100,12 @@ export default function EditWarehousePage() {
           contact_email: values.email,
         })
         .then(() => {
-          navigate(`/warehouses/${warehouseId}`);
+          navigate(-1);
         })
         .catch((error) => {
           alert(error);
         });
     }
-
-    navigate(-1);
   };
 
   return (

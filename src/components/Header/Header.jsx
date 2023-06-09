@@ -31,7 +31,7 @@ function Header() {
               Warehouses
             </Link>
             <Link
-              to="/inventories"
+              to="/inventory"
               onClick={() => handleLinkClick("/inventory")}
               className={
                 activeLink === "/inventory"

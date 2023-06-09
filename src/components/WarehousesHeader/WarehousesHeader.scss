@@ -4,26 +4,17 @@
 
 .warehouses {
   width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
   border-radius: 4px;
   background: $White;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
   top: 6.25rem;
-  width: stretch;
 
   @include tablet {
-    @include tablet-grid;
-    padding-left: 0;
-    padding-right: 0;
-    top: 6.25rem;
-    width: 90%;
   }
 
   @include desktop {
     @include desktop-grid;
     width: 80%;
-    left: 9rem;
   }
   &__heading {
     background-color: $Light-Grey;
@@ -36,6 +27,7 @@
       flex-wrap: nowrap;
       justify-content: flex-start;
       align-items: center;
+      padding-left: 4rem;
     }
   }
   &__header {
@@ -72,7 +64,6 @@
     margin-top: 1.5rem;
   }
   @include tablet {
-    @include tablet-grid;
     flex-direction: row;
     flex-wrap: nowrap;
   }
@@ -141,12 +132,11 @@
   &__heading {
     @include tablet {
       display: flex;
-      justify-content: space-around;
+      justify-content: flex-start;
     }
   }
   &__container {
     display: flex;
-    justify-content: center;
     width: 20%;
   }
 
