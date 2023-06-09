@@ -2,10 +2,9 @@
 @use "../../styles/partials/mixins" as *;
 
 .inventories {
-  width: 100%;
+  // width: 100%;
   margin-top: -4rem;
   padding-inline: 1rem;
-  margin-inline: 1rem;
   border-radius: 4px;
   background: $White;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
@@ -18,7 +17,7 @@
     right: 0%;
     left: 0%;
     top: 7.25rem;
-    width: 85%;
+    // width: 85%;
   }
 
   @include desktop {
@@ -132,6 +131,8 @@
     @include tablet {
       display: flex;
       justify-content: space-around;
+      padding-inline: 1rem;
+
     }
   }
   &__container {

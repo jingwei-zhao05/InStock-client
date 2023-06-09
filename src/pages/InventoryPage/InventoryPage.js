@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { GetInventoryList } from "../../utility/API";
 import { Link } from "react-router-dom";
 import Arrows from "../../assets/icons/sort-24px.svg";
+import InventoryItemDetailsPage from "../../pages/InventoryItemDetailsPage/InventoryItemDetails"
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 function InventoryPage() {
   const [InventoryList, setInventoryList] = useState([]);
@@ -66,7 +67,7 @@ function InventoryPage() {
                 className="inventories__header-form-search"
                 placeholder="Search..."
               />
-              <Link to="">
+              <Link to={'#'}>
                 <button className="inventories__header-form-button">
                   + Add New Warehouse
                 </button>

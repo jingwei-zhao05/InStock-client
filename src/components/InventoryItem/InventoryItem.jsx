@@ -9,15 +9,6 @@ function InventoryItem({ itemDetails }) {
   return (
     <>
       <section>
-        {/* <h1>{itemDetails.item_name}</h1>
-        <h1>{itemDetails.category}</h1>
-        <h1>{itemDetails.status}</h1>
-        <h1>{itemDetails.quantity}</h1>
-        <h1>{itemDetails.warehouse_name}</h1>
-        <div>
-          <img src={""} />
-          <img src={""} />
-        </div> */}
         <div className="inventory__box">
           <div className="inventory__text-box">
             <div className="inventory__column">

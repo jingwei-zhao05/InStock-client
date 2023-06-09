@@ -29,7 +29,7 @@ function InventoryItemDetails() {
   return (
     <section className="item-details">
       <div className="item-details__header">
-        <Link to="/inventories">
+        <Link to="/inventory">
           <img
             className="item-details__arrow-icon"
             src={ArrowBack}
@@ -38,7 +38,7 @@ function InventoryItemDetails() {
         </Link>
         <h1 className="item-details__title">{InventoryItem.item_name}</h1>
         <Link
-          to={`/inventories/${id}/edit`}
+          to={`/inventory/${id}/edit`}
           className="item-details__edit-container"
         >
           <button className="item-details__header-button">

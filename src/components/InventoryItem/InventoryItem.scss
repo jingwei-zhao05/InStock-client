@@ -8,9 +8,11 @@
     padding: 1rem 0;
     
     @include tablet {
+      padding-inline: 1rem;
       display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
+      flex-direction: row;
+      // flex-wrap: nowrap;
+      justify-content: space-around;
     }
   }
   &__text-box {
@@ -20,6 +22,17 @@
     flex-direction: row;
     flex-wrap: nowrap;
     @include tablet {
+    }
+  }
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: normal;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    @include tablet {
+      display: inline-block;
+      width: 12%;
     }
   }
   &__column {
@@ -33,14 +46,13 @@
     @include tablet {
       flex-direction: row;
       flex-wrap: nowrap;
-      justify-content: flex-start;
-      width: 40%;
+      // justify-content: flex-start;
+      width: 20%;
     }
   }
   
   &__chevron {
     display: flex;
-    margin-top: 0.25rem;
   }
   
   &__chevron-link {
@@ -63,21 +75,10 @@
       @include body-large;
     }
 
-    &__chevron-image{
-    }
-//   &__info-warehouse {
-  //     @include tablet {
-//       //   width: 100%;
-//       display: flex;
-//       //   justify-content: center;
-//       align-items: center;
-//     }
-//   }
   &__info-address {
     @include tablet {
       width: 100%;
       display: flex;
-      //   justify-content: center;
       align-items: center;
     }
   }
@@ -86,17 +87,16 @@
     width: 300px;
     display: flex;
     justify-content: flex-start;
-    // align-items: normal;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 1rem;
 
     @include tablet {
-      gap: 5rem;
-      width: auto;
+      // gap: 5rem;
+      width: 20%;
       flex-direction: row;
       flex-wrap: nowrap;
-      justify-content: flex-start;
+      // justify-content: flex-start;
     }
   }
 
@@ -130,17 +130,6 @@
 
 
 
-  &__actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: normal;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    @include tablet {
-      display: inline-block;
-      width: 12%;
-    }
-  }
 
   &__icon {
     height: 1.7rem;
