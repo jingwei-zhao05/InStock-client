@@ -9,5 +9,7 @@ export const getInventoriesEndpoint = `${API_URL}/inventories`;
 export const postInventoryEndpoint = getInventoriesEndpoint;
 export const getInventoryDetailEndpoint = (id) =>
   `${API_URL}/inventories/${id}`;
+export const getWarehouseInventoryItemsEndpoint = (id) =>
+  `${API_URL}/warehouses/${id}/inventories`;
 export const putInventoryEndpoint = getInventoryDetailEndpoint;
 export const InventoryEndpoint = getInventoryDetailEndpoint;
