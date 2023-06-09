@@ -6,7 +6,7 @@ function InventoryPage(){
     return (
         <div className="warehouse-page">
         <InventoryPageHeader/>
-          <InventoryPageList />
+        <InventoryPageList />
         </div>
       );
 }

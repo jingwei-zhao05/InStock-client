@@ -18,7 +18,7 @@ function InventoryPageHeader() {
               />
               <Link to="/inventory/add">
                 <button className="inventory__header-form-button">
-                  + Add New Warehouse
+                  + Add New Item
                 </button>
               </Link>
             </form>
