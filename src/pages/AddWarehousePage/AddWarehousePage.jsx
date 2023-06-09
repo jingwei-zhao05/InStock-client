@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../AddWarehousePage/AddWarehousePage.scss";
 import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/icons/error-24px.svg";
-import postWarehouseEndpoint from "../../utils/api";
+import { postWarehouseEndpoint } from "../../utils/api";
 
 const initialValues = {
   warehouseName: "",
@@ -59,6 +59,28 @@ export default function AddWarehousePage() {
     if (values.email.trim() === "") {
       validationErrors.email = "Email is required";
     }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      axios
+        .post(postWarehouseEndpoint, {
+          warehouse_name: values.warehouseName,
+          address: values.address,
+          city: values.city,
+          country: values.country,
+          contact_name: values.contactName,
+          contact_position: values.position,
+          contact_phone: values.phoneNum,
+          contact_email: values.email,
+        })
+        .then(() => {
+          navigate(-1);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -87,6 +109,9 @@ export default function AddWarehousePage() {
               }
               type="text"
               name="warehouseName"
+              placeholder="Your Warehouse Name"
+              value={values.warehouseName}
+              onChange={handleInputChange}
             />
             {errors.warehouseName && (
               <div className="warehouse-form__error">
@@ -111,6 +136,7 @@ export default function AddWarehousePage() {
               }
               type="text"
               name="address"
+              placeholder="Your Address"
               value={values.address}
               onChange={handleInputChange}
             />
@@ -137,6 +163,7 @@ export default function AddWarehousePage() {
               }
               type="text"
               name="city"
+              placeholder=" Your City"
               value={values.city}
               onChange={handleInputChange}
             />
@@ -163,6 +190,7 @@ export default function AddWarehousePage() {
               }
               type="text"
               name="country"
+              placeholder=" Your Country"
               value={values.country}
               onChange={handleInputChange}
             />
@@ -192,6 +220,7 @@ export default function AddWarehousePage() {
               }
               type="text"
               name="contactName"
+              placeholder=" Your Contact Name"
               value={values.contactName}
               onChange={handleInputChange}
             />
@@ -218,6 +247,7 @@ export default function AddWarehousePage() {
               }
               type="text"
               name="position"
+              placeholder=" Your Position"
               value={values.position}
               onChange={handleInputChange}
             />
@@ -244,6 +274,7 @@ export default function AddWarehousePage() {
               }
               type="text"
               name="phoneNum"
+              placeholder="Your Phone Number"
               value={values.phoneNum}
               onChange={handleInputChange}
             />
@@ -270,6 +301,7 @@ export default function AddWarehousePage() {
               }
               type="email"
               name="email"
+              placeholder=" Your Email"
               value={values.email}
               onChange={handleInputChange}
             />
