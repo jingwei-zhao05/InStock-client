@@ -3,7 +3,7 @@ import axios from "axios";
 import close from '../../assets/icons/close-24px.svg';
 import './WarehouseModal.scss';
 
-const Modal = ({ isOpen, onClose, warehouseId, warehouseName, children }) => {
+const Modal = ({ isOpen, onClose, warehouseId, warehouseName }) => {
   const handleDelete = () => {
     axios
       .delete(`http://localhost:8080/warehouses/${warehouseId}`)
