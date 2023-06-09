@@ -5,7 +5,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import WarehouseInventorieItems from '../WarehouseInventorieItems/WarehouseInventorieItems';
 import { useParams } from 'react-router-dom'
-
 function WarehouseInventorieListPageList(){
     const [WarehouseInventoryList, setWarehouseInventoryList] = useState([]);
     const [isLoading, setisLoading] = useState(true);
