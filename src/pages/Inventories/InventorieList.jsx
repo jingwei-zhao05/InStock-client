@@ -93,6 +93,7 @@ function InventorieList() {
             <WarehouseItemsList
               itemDetails={itemDetails}
               key={itemDetails.id}
+              id={itemDetails.id}
             />
           );
         })}
