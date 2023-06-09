@@ -1,0 +1,189 @@
+@import "../../styles/partials/fonts";
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/variables";
+
+.warehouses {
+  width: 100%;
+  border-radius: 4px;
+  background: $White;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+
+  @include tablet {
+  }
+
+  @include desktop {
+    @include desktop-grid;
+    width: 80%;
+  }
+  &__heading {
+    background-color: $Light-Grey;
+    color: $Slate;
+    display: none;
+    padding: 1rem 0;
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 4rem;
+    }
+  }
+  &__header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: normal;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include tablet {
+      padding: 1.25rem 3.5rem;
+
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+  }
+
+  &__header-title {
+    @include page-header;
+    color: $Instock-Black;
+    margin-top: 0.75rem;
+
+    @include tablet {
+      margin-top: 2rem;
+    }
+  }
+
+  &__header-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: normal;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  @include tablet {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  @include desktop {
+    @include desktop-grid;
+  }
+
+  &__header-form {
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid $Cloud;
+
+    @include tablet {
+      display: flex;
+      height: 40px;
+      margin-top: 10px;
+      border-bottom: none;
+    }
+  }
+
+  &__header-form-search {
+    background-image: url("../../assets/icons/search-24px.svg");
+    background-repeat: no-repeat;
+    background-position: 94%;
+    border-radius: 20px;
+    border: 1px solid $Cloud;
+    padding: 7px 16px;
+    width: stretch;
+    height: 2.25rem;
+    margin-bottom: 15px;
+    &:focus {
+      outline: none;
+      border: 1px solid $Instock-Indigo;
+    }
+
+    @include tablet {
+      margin-right: 0.9375rem;
+      width: 13rem;
+      height: 2.375rem;
+    }
+    @include desktop {
+      width: 20rem;
+    }
+  }
+
+  &__header-form-button {
+    background-color: $Instock-Indigo;
+    color: $White;
+    width: stretch;
+    border-radius: 1.25rem;
+    border: none;
+    margin-bottom: 5px;
+    height: 2.25rem;
+
+    @include tablet {
+      height: 2.375rem;
+      width: 11rem;
+    }
+    &:hover {
+      background-color: $Instock-Black;
+    }
+  }
+
+  &__headings-container {
+    background-color: $Light-Grey;
+  }
+  &__heading {
+    @include tablet {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+  &__container {
+    display: flex;
+    width: 20%;
+  }
+
+  &__heading-warehouse {
+    @include labels-buttons;
+    margin: 8px 0;
+    color: $Slate;
+    padding-left: 2rem;
+
+    @include tablet {
+      padding-left: 0;
+    }
+  }
+
+  &__heading-icon {
+    width: 1.0625rem;
+  }
+
+  &__container--warehouseWitdh {
+    @include tablet {
+      width: 50%;
+    }
+  }
+
+  &__container--addressWitdh {
+    @include tablet {
+      width: 40%;
+    }
+  }
+
+  &__container--contactNameWitdh {
+    @include tablet {
+      width: 50%;
+    }
+  }
+
+  &__container--contactInformationWitdh {
+    @include tablet {
+      width: 50%;
+    }
+  }
+
+  &__container--actionsWitdh {
+    @include tablet {
+      width: 30%;
+    }
+  }
+}

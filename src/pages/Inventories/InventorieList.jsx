@@ -5,11 +5,10 @@ import Arrows from "../../assets/icons/sort-24px.svg";
 import { useParams, Link } from "react-router-dom";
 // import arrow from '../../assets/images/icons/arrow_back-24px.svg';
 import WarehouseItemsList from "../../components/WarehouseItemsList/WarehouseItemsList";
-function InventorieList() {
 
+function InventorieList() {
   const { id } = useParams();
   const [warehouseItemsList, setwarehouseItemsList] = useState([]);
-
 
   useEffect(() => {
     axios
@@ -29,7 +28,76 @@ function InventorieList() {
   console.log(warehouseItemsList);
   return (
     <>
-      <WarehouseDetails/>
+      <section className="warehouses">
+        <div className="warehouses__header">
+          <h1 className="warehouses__header-title">Warehouses</h1>
+          <div className="warehouses__header-container">
+            <form className="warehouses__header-form">
+              <input
+                type="search"
+                name="search"
+                className="warehouses__header-form-search"
+                placeholder="Search..."
+              />
+              <Link to="">
+                <button className="warehouses__header-form-button">
+                  + Add New Warehouse
+                </button>
+              </Link>
+            </form>
+          </div>
+        </div>
+
+        <section className="warehouses__heading">
+          <div className="warehouses__container warehouses__container--warehouseWitdh">
+            <h4 className="warehouses__heading-warehouse">WAREHOUSE</h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="warehouses__heading-icon "
+            />
+          </div>
+          <div className="warehouses__container warehouses__container--addressWitdh">
+            <h4 className="warehouses__heading-warehouse">ADDRESS</h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="warehouses__heading-icon"
+            />
+          </div>
+          <div className="warehouses__container warehouses__container--contactNameWitdh">
+            <h4 className="warehouses__heading-warehouse">CONTACT NAME</h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="warehouses__heading-icon"
+            />
+          </div>
+          <div className="warehouses__container warehouses__container--contactInformationWitdh">
+            <h4 className="warehouses__heading-warehouse">
+              CONTACT INFORMATION
+            </h4>
+            <img
+              src={Arrows}
+              alt="filter-arrows"
+              className="warehouses__heading-icon"
+            />
+          </div>
+          <div className="warehouses__container warehouses__container--actionsWitdh">
+            <h4 className="warehouses__heading-warehouse">ACTIONS</h4>
+          </div>
+        </section>
+        {warehouseItemsList.map((itemDetails) => {
+          console.log(itemDetails);
+          return (
+            <WarehouseItemsList
+              itemDetails={itemDetails}
+              key={itemDetails.id}
+            />
+          );
+        })}
+      </section>
+      {/* <WarehouseDetails/>
       <section className="inventories">
         <div className="inventories__header">
           <h1 className="inventories__header-title">inventory</h1>
@@ -96,7 +164,7 @@ function InventorieList() {
             />
           );
         })}
-      </section>
+      </section> */}
     </>
   );
 }

@@ -7,70 +7,59 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 
 function WarehouseItemsList({ itemDetails }) {
   return (
-    <>
-      <section>
-        {/* <h1>{itemDetails.item_name}</h1>
-        <h1>{itemDetails.category}</h1>
-        <h1>{itemDetails.status}</h1>
-        <h1>{itemDetails.quantity}</h1>
-        <h1>{itemDetails.warehouse_name}</h1>
-        <div>
-          <img src={""} />
-          <img src={""} />
-        </div> */}
-        <div className="inventory__box">
-          <div className="inventory__text-box">
-            <div className="inventory__column">
-                <h3 class="inventory__mobile-header">INVENTORYITEM</h3>
-                <div className="inventory__chevron">
-                  <div className="inventory__chevron-link">
-                    <Link to={`#`} class="inventory__link-anchor">
-                      {itemDetails.item_name}
-                    </Link>
-                    <img
-                      class="inventory__chevron-image"
-                      src={Chevron}
-                      alt="chevron"
-                    ></img>
-                  </div>
-                </div>
-              <div className="inventory__info-address">
-                <h3 class="inventory__mobile-header">CATEGORY</h3>
-                <p className="inventory__text">{itemDetails.category}</p>
-              </div>
-            </div>
-
-            <div className="inventory__column-contacts">
-              <div className="inventory__info-contact">
-                <h3 class="inventory__mobile-header">STATUS</h3>
-               
-                <p className={itemDetails.status === "In Stock" ? "inventory__contact-text in-stock" : "inventory__contact-text out-stock"}>{itemDetails.status}</p>
-              </div>
-              <div className="inventory__info-contact-info">
-                <h3 class="inventory__mobile-header">QTY</h3>
-                <p>{itemDetails.quantity}</p>
-              </div>
-              <div className="inventory__info-contact-info">
-                <h3 class="inventory__mobile-header">WAREHOUSE</h3>
-                <p>{itemDetails.warehouse_name}</p>
-              </div>
-            </div>
-          </div>
-          <div className="inventory__actions">
-            <Link to="/">
-              <img
-                src={RemoveIcon}
-                alt="remove icon"
-                className="inventory__icon"
-              />
+ <div className="warehouseList__box">
+      <div className="warehouseList__info-warehouse">
+        <h3 class="warehouseList__mobile-header">Warehouse</h3>
+        <div className="warehouseList__chevron">
+          <div className="warehouseList__chevron-link">
+            <Link to={`/warehouses/${id}`} class="warehouseList__link-anchor">
+              {name}
             </Link>
-            <Link to="/" class="inventory__link">
-              <img src={EditIcon} alt="edit icon" class="inventory__icon" />
-            </Link>
+            <img
+              class="warehouseList__chevron-image"
+              src={Chevron}
+              alt="chevron"
+            ></img>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+      <div className="warehouseList__info-address">
+        <h3 class="warehouseList__mobile-header">Address</h3>
+        <p className="warehouseList__text">
+          {address}, {city}, {country}
+        </p>
+      </div>
+      <div className="warehouseList__info-contact">
+        <h3 class="warehouseList__mobile-header">Contact Name</h3>
+        <p className="warehouseList__contact-text">{contactName}</p>
+      </div>
+      <div className="warehouseList__info-contact-info">
+        <h3 class="warehouseList__mobile-header">Contact Information</h3>
+        <p>{contactPhone}</p>
+        <p>{contactEmail}</p>
+      </div>
+
+      <div className="warehouseList__actions">
+        <Link to="/">
+          <img
+            src={RemoveIcon}
+            alt="remove icon"
+            className="warehouseList__icon"
+            onClick={handleOpenModal}
+          />
+        </Link>
+        <Link to={`/warehouses/${id}/edit`} class="warehouseList__link">
+          <img src={EditIcon} alt="edit icon" class="warehouseList__icon" />
+        </Link>
+      </div>
+      {/* <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        warehouseId={id}
+        warehouseName={name}
+      /> */}
+    </div>
+     
   );
 }
 export default WarehouseItemsList;
