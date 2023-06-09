@@ -80,6 +80,7 @@ export default function Warehouse({
           <img src={EditIcon} alt="edit icon" class="warehouseList__icon" />
         </Link>
       </div>
+      
       <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
