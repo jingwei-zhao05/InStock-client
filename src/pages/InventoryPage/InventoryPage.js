@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Arrows from "../../assets/icons/sort-24px.svg";
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
-import { GetInventoryList } from "../../utility/API";
+import {getInventoriesEndpoint} from '../../utils/api'
 import './InventoryPage.scss';
 
 function InventoryPage() {
@@ -13,7 +13,7 @@ function InventoryPage() {
 
   const fetchWarehouses = () => {
     axios
-      .get(GetInventoryList)
+      .get(getInventoriesEndpoint)
       .then((response) => {
         setIsLoading(false);
         setInventoryList(response.data);
