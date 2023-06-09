@@ -1,11 +1,12 @@
 import "./InventoryPageList.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { GetInventoryList } from "../../utility/API";
+import { getInventoriesEndpoint } from "../../utils/api";
 import { Link } from "react-router-dom";
 import Arrows from "../../assets/icons/sort-24px.svg";
 import InventoryItemDetailsPage from "../../pages/InventoryItemDetailsPage/InventoryItemDetails";
 import InventoryItem from "../InventoryItem/InventoryItem";
+import InventoryPageHeader from "../InventoryPageHeader/InventoryPageHeader";
 
 function InventoryPageList() {
   const [InventoryList, setInventoryList] = useState([]);
@@ -14,7 +15,7 @@ function InventoryPageList() {
 
   useEffect(() => {
     axios
-      .get(GetInventoryList)
+      .get(getInventoriesEndpoint)
       .then((response) => {
         setisLoading(false);
         setInventoryList(response.data);
@@ -35,7 +36,8 @@ function InventoryPageList() {
   console.log(InventoryList);
   return (
     <>
-      <section className="inventories">
+    
+      {/* <section className="inventories">
         <div className="inventories__header">
           <h1 className="inventories__header-title">inventory</h1>
           <div className="inventories__header-container">
@@ -99,7 +101,7 @@ function InventoryPageList() {
           <div className="inventories__container inventories__container--actionsWidth">
             <h4 className="inventories__heading-warehouse">ACTIONS</h4>
           </div>
-        </section>
+        </section> */}
         {InventoryList.map((itemDetails) => {
           console.log(itemDetails);
           return (
@@ -110,7 +112,7 @@ function InventoryPageList() {
             />
           );
         })}
-      </section>
+      {/* </section> */}
     </>
   );
 }
