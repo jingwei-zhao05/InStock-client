@@ -4,7 +4,6 @@
 .details {
   display: flex;
   flex-direction: column;
-  @include cardSizing;
 
   &__header-container {
     display: flex;
@@ -118,9 +117,11 @@
       flex-direction: column;
       padding-right: 7rem;
       border-right: 1px solid $Cloud;
+      width: 30rem;
     }
     @include desktop {
       padding-right: 16rem;
+      width: 30rem;
     }
   }
 
