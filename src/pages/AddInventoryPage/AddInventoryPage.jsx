@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/icons/error-24px.svg";
-import dropDownIcon from "../../assets/icons/arrow_drop_down-24px.svg";
 import {
   getWarehousesEndpoint,
   postInventoryEndpoint,
@@ -12,18 +11,45 @@ import {
 import "./AddInventoryPage.scss";
 
 const initialValues = {
+  id: "",
   itemName: "",
   description: "",
   category: "",
   status: "",
   quantity: 0,
-  warehouse: "",
 };
 
 export default function AddInventoryPage() {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [warehouses, setWarehouses] = useState([]);
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get(getWarehousesEndpoint).then((response) => {
+      const warehouses = response.data;
+      const filteredwarehouse = warehouses.map(({ id, warehouse_name }) => ({
+        id,
+        warehouse_name,
+      }));
+      setWarehouses(filteredwarehouse);
+    });
+
+    axios.get(getInventoriesEndpoint).then((response) => {
+      const inventories = response.data;
+      const categories = inventories.map((inventory) => inventory.category);
+      const uniqueCategory = [];
+      categories.forEach((category) => {
+        if (!uniqueCategory.includes(category) && category !== "") {
+          uniqueCategory.push(category);
+        }
+      });
+
+      setCategories(uniqueCategory);
+    });
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -34,7 +60,55 @@ export default function AddInventoryPage() {
     });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const validationErrors = {};
+
+    if (values.itemName.trim() === "") {
+      validationErrors.itemName = "Item name is required";
+    }
+    if (description.trim() === "") {
+      validationErrors.description = "Description is required";
+    }
+    if (values.category === "") {
+      validationErrors.category = "City is required";
+    }
+    if (values.quantity === "" || values.quantity === 0) {
+      validationErrors.quantity = "Quantity is required";
+    }
+    if (values.id === "") {
+      validationErrors.warehouse = "Warehouse is required";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      axios
+        .post(postInventoryEndpoint, {
+          warehouse_id: values.id,
+          item_name: values.itemName,
+          description: description,
+          category: values.category,
+          status: values.status,
+          quantity: values.quantity,
+        })
+        .then(() => {
+          navigate(-1);
+          console.log(values.category);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+  };
+
+  const handleCancelClick = () => {
+    setValues(initialValues);
+    setDescription("");
+    console.log(initialValues);
+    console.log(description);
+    navigate(-1);
+  };
 
   return (
     <article className="add-inventory">
@@ -49,8 +123,8 @@ export default function AddInventoryPage() {
         />
         <h1 className="add-inventory__title">Add New Inventory Item</h1>
       </div>
-      <form className="add-inventory-form" onSubmit={handleSubmit}>
-        <div className="item-form">
+      <form className="item-form" onSubmit={handleSubmit}>
+        <div className="details-form">
           <h2 className="item-form__title">Item Details</h2>
           <label className="item-form__label">
             Item Name
@@ -83,16 +157,16 @@ export default function AddInventoryPage() {
             Description
             <textarea
               className={
-                errors.itemDescription
-                  ? "item-form__input item-form__input--error"
-                  : "item-form__input"
+                errors.description
+                  ? "item-form__textarea item-form__textarea--error"
+                  : "item-form__textarea"
               }
               name="itemDescription"
-              placeholder="Please enter a brief item description"
-              onChange={handleInputChange}
+              placeholder="Please enter a brief item description..."
+              onChange={(event) => setDescription(event.target.value)}
             ></textarea>
-            {errors.itemDescription && (
-              <div className="item-form__error">
+            {errors.description && (
+              <div className="item-form__error item-form__error--description">
                 <img
                   className="item-form__error-icon"
                   src={errorIcon}
@@ -106,80 +180,133 @@ export default function AddInventoryPage() {
           </label>
           <label className="item-form__label">
             Category
-            <select className="item-form__category" name="category">
-              <option value="" disabled selected>
+            <select
+              className={
+                errors.category
+                  ? "item-form__select item-form__select--error"
+                  : "item-form__select"
+              }
+              name="category"
+              defaultValue={"DEFAULT"}
+              onChange={handleInputChange}
+            >
+              <option value="DEFAULT" disabled>
                 Please select
               </option>
-              <option value="Electronics">Electronics</option>
-              <option value="Gear">Gear</option>
-              <option value="Apparel">Apparel</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Health">Health</option>
+              {categories.map((category) => {
+                return <option value={category}>{category}</option>;
+              })}
             </select>
+            {errors.category && (
+              <div className="item-form__error">
+                <img
+                  className="item-form__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="item-form__error-message">
+                  This field is required
+                </p>
+              </div>
+            )}
           </label>
         </div>
         <div className="item-availability">
-          <h2 className="item-availability__title">Item Availability</h2>
+          <h2 className="item-form__title">Item Availability</h2>
           <label className="item-form__label">Status </label>
-          <label>
-            <input
-              className=""
-              type="radio"
-              name="status"
-              value="In Stock"
-              onChange={handleInputChange}
-            />
-            In stock
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="status"
-              value="Out of Stock"
-              onChange={handleInputChange}
-            />
-            Out of stock
-          </label>
+          <div className="item-form__radio">
+            <label className="item-form__radio-label">
+              <input
+                className="item-form__status"
+                type="radio"
+                name="status"
+                value="In Stock"
+                onChange={handleInputChange}
+              />
+              In stock
+            </label>
+            <label className="item-form__radio-label">
+              <input
+                className="item-form__status"
+                type="radio"
+                name="status"
+                value="Out of Stock"
+                onChange={handleInputChange}
+              />
+              Out of stock
+            </label>
+          </div>
+
           {values.status === "In Stock" && (
-            <label>
+            <label className="item-form__label">
               Quantity
               <input
                 className={
                   errors.quantity
-                    ? "item-form__input item-form__input--error"
-                    : "item-form__input"
+                    ? "item-form__input item-form__input--error item-form__input--quantity"
+                    : "item-form__input item-form__input--quantity"
                 }
                 type="number"
                 name="quantity"
                 value={values.quantity}
                 onChange={handleInputChange}
               />
+              {errors.quantity && (
+                <div className="item-form__error">
+                  <img
+                    className="item-form__error-icon"
+                    src={errorIcon}
+                    alt="something wrong here"
+                  />
+                  <p className="item-form__error-message">
+                    This field is required
+                  </p>
+                </div>
+              )}
             </label>
           )}
           <label className="item-form__label">
             Warehouse
-            <select className="item-form__category" name="category">
-              <option value="" disabled selected>
+            <select
+              className={
+                errors.warehouse
+                  ? "item-form__select item-form__select--error"
+                  : "item-form__select"
+              }
+              name="id"
+              defaultValue={"DEFAULT"}
+              onChange={handleInputChange}
+            >
+              <option value="DEFAULT" disabled>
                 Please select
               </option>
-              <option value="Electronics">Electronics</option>
-              <option value="Gear">Gear</option>
-              <option value="Apparel">Apparel</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Health">Health</option>
+              {warehouses.map(({ id, warehouse_name }) => {
+                return <option value={id}>{warehouse_name}</option>;
+              })}
             </select>
+            {errors.warehouse && (
+              <div className="item-form__error">
+                <img
+                  className="item-form__error-icon"
+                  src={errorIcon}
+                  alt="something wrong here"
+                />
+                <p className="item-form__error-message">
+                  This field is required
+                </p>
+              </div>
+            )}
           </label>
         </div>
-        <div className="item-form__buttons">
+        <div className="add-inventory__buttons">
           <button
-            className="item-form__buttons-cancel"
-            onClick={() => {
-              navigate(-1);
-            }}
+            type="button"
+            className="add-inventory__buttons-cancel"
+            onClick={handleCancelClick}
           >
             Cancel
           </button>
-          <button className="item-form__buttons-submit">+Add Item</button>
+          <button className="add-inventory__buttons-submit">+ Add Item</button>
         </div>
       </form>
     </article>

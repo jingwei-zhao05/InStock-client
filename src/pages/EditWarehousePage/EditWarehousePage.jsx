@@ -338,6 +338,7 @@ export default function EditWarehousePage() {
         </div>
         <div className="edit-warehouse__buttons">
           <button
+            type="button"
             className="edit-warehouse__buttons-cancel"
             onClick={() => {
               navigate(-1);

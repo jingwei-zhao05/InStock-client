@@ -4,9 +4,9 @@ import Footer from "./components/Footer/Footer";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import InventoryItemDetailsPage from "./pages/InventoryItemDetailsPage/InventoryItemDetails";
 import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage";
-import "./App.scss";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage";
 import AddInventoryPage from "./pages/AddInventoryPage/AddInventoryPage";
+import "./App.scss";
 
 function App() {
   return (
