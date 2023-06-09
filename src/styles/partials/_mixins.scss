@@ -145,3 +145,64 @@
     margin: -5.875rem auto 5.9375rem auto;
   }
 }
+
+@mixin buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 4.25rem;
+  background: rgba(247, 248, 249, 0.7);
+
+  @include tablet {
+    width: 100%;
+    justify-content: flex-end;
+    height: 4.375rem;
+  }
+}
+
+@mixin button-cancel {
+  width: 50%;
+  height: 2.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid $Cloud;
+  padding: 0.5rem;
+  margin-left: 1.5rem;
+  cursor: pointer;
+  @include labels-buttons;
+
+  @include tablet {
+    height: 2.375rem;
+    padding: 0.5rem 1rem;
+    width: auto;
+    @include tablet_desktop_labels-buttons;
+  }
+}
+
+@mixin button-submit {
+  width: 50%;
+  height: 2.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid $Cloud;
+  padding: 0.5rem;
+  margin-right: 1.5rem;
+  background-color: $Instock-Indigo;
+  color: $White;
+  cursor: pointer;
+  @include labels-buttons;
+
+  @include tablet {
+    height: 2.375rem;
+    padding: 0.5rem 1rem;
+    width: auto;
+    @include tablet_desktop_labels-buttons;
+  }
+
+  @include tablet {
+    margin-right: 2rem;
+  }
+
+  @include desktop {
+    margin-right: 2.5rem;
+  }
+}
