@@ -7,6 +7,7 @@ import InventoryItemDetailsPage from "./pages/InventoryItemDetailsPage/Inventory
 import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage";
 import AddWarehousePage from "./pages/AddWarehousePage/AddWarehousePage";
+import "./App.scss";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<WarehousesPage />} />
-        <Route path="/warehouses/:id" element={""} />
+        <Route path="/warehouses/:id" element={<WarehouseDetails />} />
         <Route path="/warehouses/:id/edit" element={<EditWarehousePage />} />
         <Route path="/warehouses/add" element={<AddWarehousePage />} />
         <Route path="/inventory" element={<InventoryPage />} />
