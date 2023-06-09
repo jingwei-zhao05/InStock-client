@@ -27,7 +27,9 @@ function WarehouseDetails() {
     <div className="details">
       <div className="details__header-container">
         <div className="details__title-arrow">
+          <Link to="/">
           <img src={arrow} alt="Back" className="details__arrow" />
+          </Link>
           <h1 className="details__title">{warehouse.warehouse_name}</h1>
         </div>
         <Link to={`/warehouses/${id}/edit`}>
@@ -40,10 +42,10 @@ function WarehouseDetails() {
       <div className="details__info-container">
         <div className="details__location-container">
           <p className="details__subheader">WAREHOUSE ADDRESS:</p>
-          <p className="details__location">{warehouse.address}, </p>
-          <p className="details__location">
-            {warehouse.city}, {warehouse.country}
-          </p>
+          <div className="details__inner-container">
+            <p className="details__location">{warehouse.address}, </p>
+            <p className="details__location">{warehouse.city}, {warehouse.country}</p>
+          </div>
         </div>
         <div className="details__contact-container">
           <div className="details__contact-box">
@@ -51,7 +53,7 @@ function WarehouseDetails() {
             <p>{warehouse.contact_name}</p>
             <p>{warehouse.contact_position}</p>
           </div>
-          <div>
+          <div className="details__contact-holder">
             <p className="details__subheader">CONTACT INFO:</p>
             <p>{warehouse.contact_phone}</p>
             <p>{warehouse.contact_email}</p>
