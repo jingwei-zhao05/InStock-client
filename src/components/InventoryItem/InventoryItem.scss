@@ -5,10 +5,9 @@
 .inventory {
   &__box {
     border-bottom: 0.1rem solid $Cloud;
-    padding: 1rem 0;
     
     @include tablet {
-      padding-inline: 1rem;
+      padding: 1rem 0rem 1rem 0rem;
       display: flex;
       flex-direction: row;
       // flex-wrap: nowrap;
@@ -22,6 +21,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     @include tablet {
+      display: flex;
     }
   }
   &__actions {

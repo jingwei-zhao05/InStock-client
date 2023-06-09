@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Arrows from "../../assets/icons/sort-24px.svg";
 import InventoryItemDetailsPage from "../../pages/InventoryItemDetailsPage/InventoryItemDetails"
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
+
+
 function InventoryPage() {
   const [InventoryList, setInventoryList] = useState([]);
   const [isLoading, setisLoading] = useState(true);
@@ -124,7 +126,7 @@ function InventoryPage() {
         {InventoryList.map((itemDetails) => {
           console.log(itemDetails);
           return (
-            <InventoryItem itemDetails={itemDetails} key={itemDetails.id} />
+            <InventoryItem itemDetails={itemDetails} key={itemDetails.id}  id={itemDetails.id}/>
           );
         })} 
       </section>

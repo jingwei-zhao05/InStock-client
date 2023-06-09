@@ -4,8 +4,23 @@ import { Link, Navigate } from "react-router-dom";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import RemoveIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
+import Modal from "../../modal/WarehouseModal/WarehouseModal";
+import "../../modal/WarehouseModal/WarehouseModal.scss";
+import {  useState } from "react";
 
-function InventoryItem({ itemDetails }) {
+function InventoryItem({ itemDetails , id }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = (isDeleted) => {
+    setIsModalOpen(false);
+    if (isDeleted) {
+    }
+  };
+
   return (
     <>
       <section>
@@ -15,7 +30,7 @@ function InventoryItem({ itemDetails }) {
                 <div className="inventory__chevron">
                   <div className="inventory__chevron-link">
                 <h3 className="inventory__mobile-header">INVENTORYITEM</h3>
-                    <Link to={`#`} className="inventory__link-anchor">
+                    <Link to={`/warehouses/${id}`} className="inventory__link-anchor">
                       {itemDetails.item_name}
                     <img
                       className="inventory__chevron-image"
@@ -55,23 +70,18 @@ function InventoryItem({ itemDetails }) {
                 className="inventory__icon"
               />
             </Link>
-            <Link to="/" class="inventory__link">
+            <Link to={`/warehouses/${id}/edit`}  class="inventory__link">
               <img src={EditIcon} alt="edit icon" class="inventory__icon" />
             </Link>
           </div>
         </div>
       </section>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        itemId={id}
+      />
     </>
   );
 }
 export default InventoryItem;
-
-// {
-//     "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3",
-//     "warehouse_name": "Manhattan",
-//     "item_name": "Television",
-//     "description": "This 50\", 4K LED TV provides a crystal-clear picture and vivid colors.",
-//     "category": "Electronics",
-//     "status": "In Stock",
-//     "quantity": 500
-// }

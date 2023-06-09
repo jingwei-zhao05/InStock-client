@@ -130,14 +130,15 @@
     display: none;
     @include tablet {
       display: flex;
-      justify-content: space-around;
-      padding-inline: 1rem;
+      justify-content: flex-start;
+      padding: 1rem 0rem 1rem 2rem;
+      background-color: #f7f8f9;
 
     }
   }
   &__container {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     width: 20%;
   }
 
