@@ -17,7 +17,7 @@ function WarehousesHeader() {
                 className="warehouses__header-form-search"
                 placeholder="Search..."
               />
-              <Link to="">
+              <Link to="/warehouses/add">
                 <button className="warehouses__header-form-button">
                   + Add New Warehouse
                 </button>
