@@ -37,28 +37,6 @@ function InventoryPage() {
   return (
     <>
      <section className="inventories">
-      {/* <section className="inventory">
-        <section className="inventory__head">
-          <h1 className="inventory__header">Inventory</h1>
-          <form className="form">
-            <lable>
-            <input
-                type="search"
-                name="search"
-                className="form__search"
-                placeholder="Search..."
-              />
-              <img src={"#"}/>
-            </lable>
-            <input   
-                type="text"
-                name="add-buton"
-                placeholder="+Add New Item"
-                className="form__add-button"
-                />
-          </form>
-        </section> */}
-        
            <div className="inventories__header">
           <h1 className="inventories__header-title">inventory</h1>
           <div className="inventories__header-container">
@@ -79,7 +57,7 @@ function InventoryPage() {
         </div>
 
         <section className="inventories__heading">
-          <div className="inventories__container">
+          <div className="inventories__container inventories__container--inventoryitemWidth">
             <h4 className="inventories__heading-warehouse">INVENTORYITEM</h4>
             <img
               src={Arrows}
@@ -87,7 +65,7 @@ function InventoryPage() {
               className="inventories__heading-icon "
             />
           </div>
-          <div className="inventories__container">
+          <div className="inventories__container inventories__container--categoryWidth">
             <h4 className="inventories__heading-warehouse">CATEGORY</h4>
             <img
               src={Arrows}
@@ -95,7 +73,7 @@ function InventoryPage() {
               className="inventories__heading-icon"
             />
           </div>
-          <div className="inventories__container">
+          <div className="inventories__container inventories__container--statusWitdh">
             <h4 className="inventories__heading-warehouse">STATUS</h4>
             <img
               src={Arrows}
@@ -103,7 +81,7 @@ function InventoryPage() {
               className="inventories__heading-icon"
             />
           </div>
-          <div className="inventories__container">
+          <div className="inventories__container inventories__container--qtyWitdh">
             <h4 className="inventories__heading-warehouse">QTY</h4>
             <img
               src={Arrows}
@@ -111,7 +89,7 @@ function InventoryPage() {
               className="inventories__heading-icon"
             />
           </div>
-          <div className="inventories__container">
+          <div className="inventories__container inventories__container--warehousenameWidth">
             <h4 className="inventories__heading-warehouse">WAREHOUSE</h4>
             <img
               src={Arrows}
@@ -119,7 +97,7 @@ function InventoryPage() {
               className="inventories__heading-icon"
             />
           </div>
-          <div className="inventories__container">
+          <div className="inventories__container inventories__container--actionsWidth">
             <h4 className="inventories__heading-warehouse">ACTIONS</h4>
           </div>
         </section>
