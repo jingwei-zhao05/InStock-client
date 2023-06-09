@@ -64,7 +64,6 @@ function InventoryItemDetails() {
             {InventoryItem.category}
           </p>
         </div>
-        <div className="item-details__line"></div>
         <div className="item-details__availability">
           <div className="item-details__availability-amount">
             <div className="item-details__availability-amount-status">

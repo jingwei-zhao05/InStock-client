@@ -1,38 +1,41 @@
-import "./InventoryPage.scss";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Arrows from "../../assets/icons/sort-24px.svg";
-import InventoryItemDetailsPage from "../../pages/InventoryItemDetailsPage/InventoryItemDetails"
 import InventoryItem from "../../components/InventoryItem/InventoryItem";
 import {getInventoriesEndpoint} from '../../utils/api'
+import './InventoryPage.scss';
 
 function InventoryPage() {
   const [InventoryList, setInventoryList] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
-  const [hasError, sethasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
+  const fetchWarehouses = () => {
     axios
       .get(getInventoriesEndpoint)
       .then((response) => {
-        setisLoading(false);
+        setIsLoading(false);
         setInventoryList(response.data);
-        console.log(response);
       })
       .catch(() => {
-        sethasError(true);
-        setisLoading(false);
+        setHasError(true);
+        setIsLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchWarehouses();
   }, []);
 
   if (isLoading) {
-    return <h1>Loading ...</h1>;
+    return <h1>Loading...</h1>;
   }
   if (hasError) {
-    return <h1>error</h1>;
+    return <h1>Error</h1>;
   }
-  console.log(InventoryList);
+
   return (
     <>
      <section className="inventories">
@@ -54,7 +57,6 @@ function InventoryPage() {
             </form>
           </div>
         </div>
-
         <section className="inventories__heading">
           <div className="inventories__container inventories__container--inventoryitemWidth">
             <h4 className="inventories__heading-warehouse">INVENTORYITEM</h4>
@@ -101,9 +103,13 @@ function InventoryPage() {
           </div>
         </section>
         {InventoryList.map((itemDetails) => {
-          console.log(itemDetails);
           return (
-            <InventoryItem itemDetails={itemDetails} key={itemDetails.id}  id={itemDetails.id}/>
+            <InventoryItem
+              itemDetails={itemDetails}
+              key={itemDetails.id}
+              id={itemDetails.id}
+              fetchWarehouses={fetchWarehouses}
+            />
           );
         })} 
       </section>
