@@ -4,21 +4,24 @@ import { Link } from "react-router-dom";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import RemoveIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
-import Modal from "../../modal/WarehouseModal/WarehouseModal";
+import Modal from "../../modal/InventoryModal/InventoryDetailModal";
 import "../../modal/WarehouseModal/WarehouseModal.scss";
-function WarehouseInventorieItems({ id, name, category, status, quantity }) {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+import { useParams } from "react-router";
+function WarehouseInventorieItems({itemId, name, category, status, quantity, fetchInventories }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const handleOpenModal = () => {
-  //   setIsModalOpen(true);
-  // };
+  const { id } = useParams();
 
-  // const handleCloseModal = (isDeleted) => {
-  //   setIsModalOpen(false);
-  //   if (isDeleted) {
-  //     fetchWarehouses();
-  //   }
-  // };
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = (isDeleted) => {
+    setIsModalOpen(false);
+    if (isDeleted) {
+      fetchInventories();
+    }
+  };
 
   return (
     <div className="warehouseInventoryItems__box">
@@ -55,12 +58,12 @@ function WarehouseInventorieItems({ id, name, category, status, quantity }) {
       </div>
 
       <div className="warehouseInventoryItems__actions">
-        <Link to="/">
+        <Link to={`/warehouses/${id}`} >
           <img
             src={RemoveIcon}
             alt="remove icon"
-            className="warehouseInventoryItems__icon"
-            // onClick={handleOpenModal}
+            className="inventory__icon"
+            onClick={handleOpenModal}
           />
         </Link>
         <Link
@@ -74,12 +77,13 @@ function WarehouseInventorieItems({ id, name, category, status, quantity }) {
           />
         </Link>
       </div>
-      {/* <Modal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          warehouseId={id}
-          warehouseName={name}
-        /> */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        itemDetailsId={itemId}
+        itemDetailsName={name}
+        fetchInventories={fetchInventories}
+      />
     </div>
   );
 }

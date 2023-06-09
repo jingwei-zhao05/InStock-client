@@ -1,5 +1,4 @@
 import './WarehouseInventorieListPageList.scss';
-
 import { getWarehouseInventoryItemsEndpoint } from "../../utils/api";
 import React from "react";
 import axios from "axios";
@@ -10,9 +9,11 @@ function WarehouseInventorieListPageList(){
     const [WarehouseInventoryList, setWarehouseInventoryList] = useState([]);
     const [isLoading, setisLoading] = useState(true);
     const [hasError, sethasError] = useState(false);
+    const [defaultWarehouses, setdefaultWarehouses] = useState(null);
+
     const {id} =useParams();
 
-    useEffect(() => {
+    const fetchInventories = () => {
       axios
         .get(getWarehouseInventoryItemsEndpoint(id))
         .then((response) => {
@@ -24,8 +25,12 @@ function WarehouseInventorieListPageList(){
           sethasError(true);
           setisLoading(false);
         });
+    }
+
+    useEffect(() => {
+      fetchInventories()
     }, []);
-  
+
     if (isLoading) {
       return <h1>Loading ...</h1>;
     }
@@ -39,14 +44,13 @@ function WarehouseInventorieListPageList(){
           <li className="warehouse">
             {
               <WarehouseInventorieItems
+                itemId = {item.id}
                 key={item.id}
-                id={item.id}
                 name={item.item_name}
                 category={item.category}
                 status={item.status}
                 quantity={item.quantity}
-
-                // fetchWarehouses= {fetchWarehouses}
+                fetchInventories={fetchInventories}
               />
             }
           </li>
