@@ -1,5 +1,6 @@
 import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails";
 import "./InventorieList.scss";
+
 function InventorieList() {
 
   const [defaultWarehouses, setdefaultWarehouses] = useState(null);
