@@ -7,7 +7,7 @@ import Modal from "../../modal/InventoryModal/InventoryModal";
 import './InventoryItem.scss';
 
 // function InventoryItem({ itemDetails, id, }) {
-function InventoryItem({ itemDetails, id, fetchWarehouses }) {
+  function InventoryItem({ itemDetails, id, fetchInventories }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -17,7 +17,7 @@ function InventoryItem({ itemDetails, id, fetchWarehouses }) {
   const handleCloseModal = (isDeleted) => {
     setIsModalOpen(false);
     if (isDeleted) {
-      fetchWarehouses();
+      fetchInventories();
     }
   };
 
@@ -70,9 +70,7 @@ function InventoryItem({ itemDetails, id, fetchWarehouses }) {
         <img src={EditIcon} alt="edit icon" class="inventory__icon" />
       </Link>
     </div>
-    
-
-        <Modal
+      <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         itemDetailsId={id}
