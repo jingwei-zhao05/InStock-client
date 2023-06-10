@@ -12,7 +12,10 @@ function WarehouseItemsList({ itemDetails, id }) {
         <h3 className="warehouseList__mobile-header">INVENTORYITEM</h3>
         <div className="warehouseList__chevron">
           <div className="warehouseList__chevron-link">
-            <Link to={`/warehouses/${id}`} class="warehouseList__link-anchor">
+            <Link
+              to={`/warehouses/${id}`}
+              className="warehouseList__link-anchor"
+            >
               {itemDetails.item_name}
             </Link>
             <img
