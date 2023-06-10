@@ -45,18 +45,18 @@
     display: inline-block;
     order: -2;
     @include tablet {
-      //   width: 100%;
       display: flex;
-      //   justify-content: center;
+
       align-items: center;
     }
   }
   &__info-address {
-    width: 55%;
+    width: 50%;
     display: inline-block;
     @include tablet {
+      width: 55%;
       display: flex;
-      //   justify-content: center;
+
       align-items: center;
     }
   }
@@ -66,7 +66,6 @@
     width: 300px;
     display: flex;
     justify-content: flex-start;
-    // align-items: normal;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 1rem;
@@ -81,14 +80,13 @@
   }
 
   &__info-contact {
-    width: 45%;
+    width: 40%;
     display: inline-block;
     order: -1;
     @include tablet {
+      width: 45%;
       display: flex;
-      //   justify-content: center;
       align-items: center;
-      //   padding-left: 2rem;
     }
   }
 
