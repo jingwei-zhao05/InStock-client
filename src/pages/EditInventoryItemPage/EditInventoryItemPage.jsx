@@ -1,50 +1,93 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/icons/error-24px.svg";
 import {
   getWarehouseDetailEndpoint,
-  putWarehouseEndpoint,
+  getWarehousesEndpoint,
+  getInventoryDetailEndpoint,
+  putInventoryEndpoint,
+  getInventoriesEndpoint,
 } from "../../utils/api";
 import "./EditInventoryItemPage.scss";
 
 const initialValues = {
-  warehouseName: "",
-  address: "",
-  city: "",
-  country: "",
-  contactName: "",
-  position: "",
-  phoneNum: "",
-  email: "",
+  id: "",
+  itemName: "",
+  description: "",
+  category: "",
+  status: "",
+  quantity: 0,
 };
 
-export default function EditInventoryItemPage() {
-  const { id: inventoryItemId } = useParams();
+export default function EditInventoryPage() {
+  const { id: InventoryId } = useParams();
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [warehouses, setWarehouses] = useState([]);
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
+
 
   useEffect(() => {
     axios
-      .get(getWarehouseDetailEndpoint(inventoryItemId))
+      .get(getWarehouseDetailEndpoint(InventoryId))
       .then((response) => {
         setValues({
           warehouseName: response.data.warehouse_name,
-          address: response.data.address,
-          city: response.data.city,
-          country: response.data.country,
-          contactName: response.data.contact_name,
-          position: response.data.contact_position,
-          phoneNum: response.data.contact_phone,
-          email: response.data.contact_email,
+          itemName: response.data.item_name,
+          description: response.data.description,
+          category: response.data.category,
+          status: response.data.status,
+          quantity: response.data.quantity,
         });
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [inventoryItemId]);
+  }, [InventoryId]);
+
+
+  useEffect(() => {
+    // Load warehouses
+    axios.get(getWarehousesEndpoint).then((response) => {
+      const warehouses = response.data;
+      const filteredwarehouse = warehouses.map(({ id, warehouse_name }) => ({
+        id,
+        warehouse_name,
+      }));
+      setWarehouses(filteredwarehouse);
+    });
+
+    // Load categories
+    axios.get(getInventoriesEndpoint).then((response) => {
+      const inventories = response.data;
+      const categories = inventories.map((inventory) => inventory.category);
+      const uniqueCategory = [];
+      categories.forEach((category) => {
+        if (!uniqueCategory.includes(category) && category !== "") {
+          uniqueCategory.push(category);
+        }
+      });
+      setCategories(uniqueCategory);
+    });
+
+    // Load inventory item
+    axios.get(getInventoryDetailEndpoint(InventoryId)).then((response) => {
+      const item = response.data;
+      setValues({
+        id: item.id,
+        itemName: item.item_name,
+        description: item.description,
+        category: item.category,
+        status: item.status,
+        quantity: item.quantity,
+      });
+      setDescription(item.description);
+    });
+  }, [InventoryId]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -59,48 +102,37 @@ export default function EditInventoryItemPage() {
     event.preventDefault();
     const validationErrors = {};
 
-    if (values.warehouseName.trim() === "") {
-      validationErrors.warehouseName = "Warehouse name is required";
+    if (values.itemName.trim() === "") {
+      validationErrors.itemName = "Item name is required";
     }
-    if (values.address.trim() === "") {
-      validationErrors.address = "Address is required";
+    if (description.trim() === "") {
+      validationErrors.description = "Description is required";
     }
-    if (values.city.trim() === "") {
-      validationErrors.city = "City is required";
+    if (values.category === "") {
+      validationErrors.category = "Category is required";
     }
-    if (values.country.trim() === "") {
-      validationErrors.country = "Country is required";
+    if ((!values.quantity) || values.quantity === 0) {
+      validationErrors.quantity = "Quantity is required";
     }
-    if (values.contactName.trim() === "") {
-      validationErrors.contactName = "Contact name is required";
-    }
-    if (values.position.trim() === "") {
-      validationErrors.position = "Position is required";
-    }
-    if (values.phoneNum.trim() === "") {
-      validationErrors.phoneNum = "Phone number is required";
-    }
-    if (values.email.trim() === "") {
-      validationErrors.email = "Email is required";
+    if (values.id === "") {
+      validationErrors.warehouse = "Warehouse is required";
     }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
       axios
-        .put(putWarehouseEndpoint(inventoryItemId), {
-          id: inventoryItemId,
-          warehouse_name: values.warehouseName,
-          address: values.address,
-          city: values.city,
-          country: values.country,
-          contact_name: values.contactName,
-          contact_position: values.position,
-          contact_phone: values.phoneNum,
-          contact_email: values.email,
+        .put(putInventoryEndpoint(InventoryId), {
+          warehouse_id: values.id,
+          item_name: values.itemName,
+          description: description,
+          category: values.category,
+          status: values.status,
+          quantity:  Number(values.quantity),
         })
-        .then(() => {
+        .then((response) => {
           navigate(-1);
+          console.log(response.data)
         })
         .catch((error) => {
           alert(error);
@@ -108,9 +140,15 @@ export default function EditInventoryItemPage() {
     }
   };
 
+  const handleCancelClick = () => {
+    setValues(initialValues);
+    setDescription("");
+    navigate(-1);
+  };
+  
   return (
-    <article className="edit-warehouse">
-      <div className="edit-warehouse__header">
+    <article className="add-inventory">
+      <div className="add-inventory__header">
         <img
           className="go-back-arrow"
           src={arrowBackIcon}
@@ -119,233 +157,195 @@ export default function EditInventoryItemPage() {
             navigate(-1);
           }}
         />
-        <h1 className="edit-warehouse__title">Edit Warehouse</h1>
+        <h1 className="add-inventory__title">Edit Inventory Item</h1>
       </div>
-      <form className="edit-warehouse-form" onSubmit={handleSubmit}>
-        <div className="warehouse-form warehouse-form--left">
-          <h2 className="warehouse-form__title">Warehouse Details</h2>
-          <lable className="warehouse-form__lable" htmlFor="warehouseName">
-            Warehouse Name
+      <form className="item-form" onSubmit={handleSubmit}>
+        <div className="details-form">
+          <h2 className="item-form__title">Item Details</h2>
+          <label className="item-form__label">
+            Item Name
             <input
               className={
-                errors.warehouseName
-                  ? "warehouse-form__input warehouse-form__input--error"
-                  : "warehouse-form__input"
+                errors.itemName
+                  ? "item-form__input item-form__input--error"
+                  : "item-form__input"
               }
               type="text"
-              name="warehouseName"
-              value={values.warehouseName}
+              name="itemName"
+              placeholder="Item Name"
+              value={values.itemName}
               onChange={handleInputChange}
             />
-            {errors.warehouseName && (
-              <div className="warehouse-form__error">
+            {errors.itemName && (
+              <div className="item-form__error">
                 <img
-                  className="warehouse-form__error-icon"
+                  className="item-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-form__error-message">
+                <p className="item-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="address">
-            Street Address
-            <input
+          </label>
+          <label className="item-form__label">
+            Description
+            <textarea
               className={
-                errors.address
-                  ? "warehouse-form__input warehouse-form__input--error"
-                  : "warehouse-form__input"
+                errors.description
+                  ? "item-form__textarea item-form__textarea--error"
+                  : "item-form__textarea"
               }
-              type="text"
-              name="address"
-              value={values.address}
-              onChange={handleInputChange}
-            />
-            {errors.address && (
-              <div className="warehouse-form__error">
+              name="itemDescription"
+              placeholder="Please enter a brief item description..."
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            ></textarea>
+            {errors.description && (
+              <div className="item-form__error item-form__error--description">
                 <img
-                  className="warehouse-form__error-icon"
+                  className="item-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-form__error-message">
+                <p className="item-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="city">
-            City
-            <input
+          </label>
+          <label className="item-form__label">
+            Category
+            <select
               className={
-                errors.city
-                  ? "warehouse-form__input warehouse-form__input--error"
-                  : "warehouse-form__input"
+                errors.category
+                  ? "item-form__select item-form__select--error"
+                  : "item-form__select"
               }
-              type="text"
-              name="city"
-              value={values.city}
+              name="category"
+              value={values.category}
               onChange={handleInputChange}
-            />
-            {errors.city && (
-              <div className="warehouse-form__error">
+            >
+              <option value="DEFAULT" disabled>
+                Please select
+              </option>
+              {categories.map((category) => {
+                return <option value={category}>{category}</option>;
+              })}
+            </select>
+            {errors.category && (
+              <div className="item-form__error">
                 <img
-                  className="warehouse-form__error-icon"
+                  className="item-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-form__error-message">
+                <p className="item-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="country">
-            Country
-            <input
-              className={
-                errors.country
-                  ? "warehouse-form__input warehouse-form__input--error"
-                  : "warehouse-form__input"
-              }
-              type="text"
-              name="country"
-              value={values.country}
-              onChange={handleInputChange}
-            />
-            {errors.country && (
-              <div className="warehouse-form__error">
-                <img
-                  className="warehouse-form__error-icon"
-                  src={errorIcon}
-                  alt="something wrong here"
-                />
-                <p className="warehouse-form__error-message">
-                  This field is required
-                </p>
-              </div>
-            )}
-          </lable>
+          </label>
         </div>
-        <div className="warehouse-form">
-          <h2 className="warehouse-form__title">Contact Details</h2>
-          <lable className="warehouse-form__lable" htmlFor="contactName">
-            Contact Name
-            <input
+        <div className="item-availability">
+          <h2 className="item-form__title">Item Availability</h2>
+          <label className="item-form__label">Status </label>
+          <div className="item-form__radio">
+            <label className="item-form__radio-label">
+              <input
+                className="item-form__status"
+                type="radio"
+                name="status"
+                value="In Stock"
+                checked={values.status === "In Stock"}
+                onChange={handleInputChange}
+              />
+              In stock
+            </label>
+            <label className="item-form__radio-label">
+              <input
+                className="item-form__status"
+                type="radio"
+                name="status"
+                value="Out of Stock"
+                checked={values.status === "Out of Stock"}
+                onChange={handleInputChange}
+              />
+              Out of stock
+            </label>
+          </div>
+
+          {values.status === "In Stock" && (
+            <label className="item-form__label">
+              Quantity
+              <input
+                className={
+                  errors.quantity
+                    ? "item-form__input item-form__input--error item-form__input--quantity"
+                    : "item-form__input item-form__input--quantity"
+                }
+                type="number"
+                name="quantity"
+                value={values.quantity}
+                onChange={handleInputChange}
+              />
+              {errors.quantity && (
+                <div className="item-form__error">
+                  <img
+                    className="item-form__error-icon"
+                    src={errorIcon}
+                    alt="something wrong here"
+                  />
+                  <p className="item-form__error-message">
+                    This field is required
+                  </p>
+                </div>
+              )}
+            </label>
+          )}
+          <label className="item-form__label">
+            Warehouse
+            <select
               className={
-                errors.contactName
-                  ? "warehouse-form__input warehouse-form__input--error"
-                  : "warehouse-form__input"
+                errors.warehouse
+                  ? "item-form__select item-form__select--error"
+                  : "item-form__select"
               }
-              type="text"
-              name="contactName"
-              value={values.contactName}
+              name="id"
+              value={values.id}
               onChange={handleInputChange}
-            />
-            {errors.contactName && (
-              <div className="warehouse-form__error">
+            >
+              <option value="DEFAULT" disabled>
+                Please select
+              </option>
+              {warehouses.map(({ id, warehouse_name }) => {
+                return <option value={id}>{warehouse_name}</option>;
+              })}
+            </select>
+            {errors.warehouse && (
+              <div className="item-form__error">
                 <img
-                  className="warehouse-form__error-icon"
+                  className="item-form__error-icon"
                   src={errorIcon}
                   alt="something wrong here"
                 />
-                <p className="warehouse-form__error-message">
+                <p className="item-form__error-message">
                   This field is required
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="position">
-            Position
-            <input
-              className={
-                errors.position
-                  ? "warehouse-form__input warehouse-form__input--error"
-                  : "warehouse-form__input"
-              }
-              type="text"
-              name="position"
-              value={values.position}
-              onChange={handleInputChange}
-            />
-            {errors.position && (
-              <div className="warehouse-form__error">
-                <img
-                  className="warehouse-form__error-icon"
-                  src={errorIcon}
-                  alt="something wrong here"
-                />
-                <p className="warehouse-form__error-message">
-                  This field is required
-                </p>
-              </div>
-            )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="phoneNum">
-            Phone Number
-            <input
-              className={
-                errors.phoneNum
-                  ? "warehouse-form__input warehouse-form__input--error"
-                  : "warehouse-form__input"
-              }
-              type="text"
-              name="phoneNum"
-              value={values.phoneNum}
-              onChange={handleInputChange}
-            />
-            {errors.phoneNum && (
-              <div className="warehouse-form__error">
-                <img
-                  className="warehouse-form__error-icon"
-                  src={errorIcon}
-                  alt="something wrong here"
-                />
-                <p className="warehouse-form__error-message">
-                  This field is required
-                </p>
-              </div>
-            )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="email">
-            Email
-            <input
-              className={
-                errors.email
-                  ? "warehouse-form__input warehouse-form__input--error"
-                  : "warehouse-form__input"
-              }
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={handleInputChange}
-            />
-            {errors.email && (
-              <div className="warehouse-form__error">
-                <img
-                  className="warehouse-form__error-icon"
-                  src={errorIcon}
-                  alt="something wrong here"
-                />
-                <p className="warehouse-form__error-message">
-                  This field is required
-                </p>
-              </div>
-            )}
-          </lable>
+          </label>
         </div>
-        <div className="edit-warehouse__buttons">
+        <div className="add-inventory__buttons">
           <button
-            className="edit-warehouse__buttons-cancel"
-            onClick={() => {
-              navigate(-1);
-            }}
+            type="button"
+            className="add-inventory__buttons-cancel"
+            onClick={handleCancelClick}
           >
             Cancel
           </button>
-          <button className="edit-warehouse__buttons-submit">Save</button>
+          <button className="add-inventory__buttons-submit">Save</button>
         </div>
       </form>
     </article>
