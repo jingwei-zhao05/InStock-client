@@ -37,7 +37,7 @@ function WarehouseInventorieItems({
         <div className="warehouseInventoryItems__chevron">
           <div className="warehouseInventoryItems__chevron-link">
             <Link
-              to={`/warehouses/${id}`}
+              to={`/inventory/${itemId}`}
               className="warehouseInventoryItems__link-anchor"
             >
               {name}
@@ -56,7 +56,6 @@ function WarehouseInventorieItems({
       </div>
       <div className="warehouseInventoryItems__info-contact">
         <h3 className="warehouseInventoryItems__mobile-header">Status</h3>
-        {/* <p className="warehouseInventoryItems__contact-text">{status}</p> */}
         <p
           className={
             status === "In Stock"

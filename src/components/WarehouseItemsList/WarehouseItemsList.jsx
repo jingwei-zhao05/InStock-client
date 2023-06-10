@@ -44,7 +44,6 @@ function WarehouseItemsList({ itemDetails, id }) {
       </div>
       <div className="warehouseList__info-contact-info">
         <h3 className="warehouseList__mobile-header">QTY</h3>
-        {/* <p>{contactPhone}</p> */}
         <p>{itemDetails.quantity}</p>
       </div>
 
