@@ -33,13 +33,14 @@
   }
 
   &__info-warehouse {
-    width: 45%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     order: -2;
     gap: 0.25rem;
 
     @include tablet {
+      width: 45%;
       flex-direction: row;
       align-items: center;
     }
@@ -75,19 +76,21 @@
   }
 
   &__info-address {
-    width: 60%;
+    width: 50%;
     display: inline-block;
     @include tablet {
+      width: 60%;
       display: flex;
       align-items: center;
     }
   }
 
   &__info-contact {
-    width: 30%;
+    width: 50%;
     display: inline-block;
     order: -1;
     @include tablet {
+      width: 30%;
       display: flex;
       align-items: center;
       order: 0;
@@ -95,9 +98,10 @@
   }
 
   &__info-contact-info {
-    width: 55%;
+    width: 50%;
     display: inline-block;
     @include tablet {
+      width: 55%;
       display: flex;
       flex-direction: column;
       justify-content: center;

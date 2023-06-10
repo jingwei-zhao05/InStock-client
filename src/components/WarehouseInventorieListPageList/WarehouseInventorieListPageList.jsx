@@ -9,7 +9,6 @@ function WarehouseInventorieListPageList() {
   const [WarehouseInventoryList, setWarehouseInventoryList] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [hasError, sethasError] = useState(false);
-  // const [defaultWarehouses, setdefaultWarehouses] = useState(null);
 
   const { id } = useParams();
 
