@@ -140,31 +140,43 @@
 
   &__container--warehouseWitdh {
     @include tablet {
-      width: 45%;
+      width: 50%;
     }
   }
 
   &__container--addressWitdh {
     @include tablet {
+      width: 45%;
+    }
+
+    @include desktop {
       width: 60%;
     }
   }
 
   &__container--contactNameWitdh {
     @include tablet {
-      width: 30%;
+      width: 45%;
+    }
+
+    @include desktop {
+      width: 40%;
     }
   }
 
   &__container--contactInformationWitdh {
     @include tablet {
-      width: 55%;
+      width: 60%;
+    }
+
+    @include desktop {
+      width: 50%;
     }
   }
 
   &__container--actionsWitdh {
     @include tablet {
-      width: 30%;
+      width: 20%;
       padding-left: 1rem;
     }
   }

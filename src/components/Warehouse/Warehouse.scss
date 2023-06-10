@@ -32,20 +32,6 @@
     }
   }
 
-  &__info-warehouse {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    order: -2;
-    gap: 0.25rem;
-
-    @include tablet {
-      width: 45%;
-      flex-direction: row;
-      align-items: center;
-    }
-  }
-
   &__chevron-link {
     display: flex;
     gap: 0.25rem;
@@ -75,13 +61,36 @@
     }
   }
 
+  &__info-warehouse {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    order: -2;
+    gap: 0.25rem;
+
+    @include tablet {
+      width: 50%;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    @include desktop {
+      width: 50%;
+    }
+  }
+
   &__info-address {
     width: 50%;
     display: inline-block;
+
     @include tablet {
-      width: 60%;
+      width: 45%;
       display: flex;
       align-items: center;
+    }
+
+    @include desktop {
+      width: 60%;
     }
   }
 
@@ -89,22 +98,32 @@
     width: 50%;
     display: inline-block;
     order: -1;
+
     @include tablet {
-      width: 30%;
+      width: 45%;
       display: flex;
       align-items: center;
       order: 0;
+    }
+
+    @include desktop {
+      width: 40%;
     }
   }
 
   &__info-contact-info {
     width: 50%;
     display: inline-block;
+
     @include tablet {
-      width: 55%;
+      width: 60%;
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+
+    @include desktop {
+      width: 50%;
     }
   }
 
@@ -120,7 +139,7 @@
     justify-content: space-between;
 
     @include tablet {
-      width: 30%;
+      width: 20%;
       justify-content: flex-start;
       align-items: center;
       gap: 1rem;
