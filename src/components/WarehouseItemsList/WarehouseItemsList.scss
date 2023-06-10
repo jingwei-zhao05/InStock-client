@@ -52,7 +52,7 @@
     }
   }
   &__info-address {
-    width: 50%;
+    width: 55%;
     display: inline-block;
     @include tablet {
       display: flex;
@@ -81,7 +81,7 @@
   }
 
   &__info-contact {
-    width: 40%;
+    width: 45%;
     display: inline-block;
     order: -1;
     @include tablet {
@@ -93,13 +93,14 @@
   }
 
   &__info-contact-info {
+    @include body-medimum;
     width: 50%;
     display: inline-block;
     @include tablet {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      //   align-items: start;
+      @include tablet_desktop_body-medimum;
     }
   }
 
@@ -113,12 +114,17 @@
   }
 
   &__address-text {
+    @include body-medimum;
     @include tablet {
       padding-left: 1rem;
     }
   }
   &__contact-text {
+    @include body-medimum;
     padding-left: 0;
+    @include tablet {
+      @include tablet_desktop_body-medimum;
+    }
   }
 
   &__chevron {
@@ -131,6 +137,9 @@
     color: $Instock-Indigo;
     text-decoration: none;
     @include body-large;
+    @include tablet {
+      @include tablet_desktop_body-large;
+    }
   }
 
   &__actions {
