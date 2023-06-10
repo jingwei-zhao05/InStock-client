@@ -30,11 +30,13 @@ function InventoryItem({ itemDetails, id, fetchInventories }) {
             <Link to={`/inventory/${id}`} className="inventory__link-anchor">
               {itemDetails.item_name}
             </Link>
-            <img
-              className="inventory__chevron-image"
-              src={Chevron}
-              alt="chevron"
-            ></img>
+            <Link to={`/inventory/${id}`}>
+              <img
+                className="inventory__chevron-image"
+                src={Chevron}
+                alt="chevron"
+              />
+            </Link>
           </div>
         </div>
       </div>

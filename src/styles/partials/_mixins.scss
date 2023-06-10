@@ -171,6 +171,11 @@
   cursor: pointer;
   @include labels-buttons;
 
+  &:hover {
+    color: $Instock-Indigo;
+    border-color: $Instock-Indigo;
+  }
+
   @include tablet {
     height: 2.375rem;
     padding: 0.5rem 1rem;
@@ -190,6 +195,10 @@
   color: $White;
   cursor: pointer;
   @include labels-buttons;
+
+  &:hover {
+    background-color: $Graphite;
+  }
 
   @include tablet {
     height: 2.375rem;

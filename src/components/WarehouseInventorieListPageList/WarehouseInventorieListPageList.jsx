@@ -41,20 +41,18 @@ function WarehouseInventorieListPageList() {
     <ul>
       {WarehouseInventoryList.map((item) => {
         return (
-          <Link to={`/inventory/${item.id}`}>
-            <li className="warehouse" key={item.id}>
-              {
-                <WarehouseInventorieItems
-                  itemId={item.id}
-                  name={item.item_name}
-                  category={item.category}
-                  status={item.status}
-                  quantity={item.quantity}
-                  fetchInventories={fetchInventories}
-                />
-              }
-            </li>
-          </Link>
+          <li className="warehouse" key={item.id}>
+            {
+              <WarehouseInventorieItems
+                itemId={item.id}
+                name={item.item_name}
+                category={item.category}
+                status={item.status}
+                quantity={item.quantity}
+                fetchInventories={fetchInventories}
+              />
+            }
+          </li>
         );
       })}
     </ul>
