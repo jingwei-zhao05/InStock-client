@@ -3,12 +3,10 @@
 @import "../../styles/partials/variables";
 
 .warehouses {
-  margin-top: 300px;
   width: 100%;
   border-radius: 4px;
   background: $White;
   box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
-  top: 6.25rem;
 
   @include tablet {
   }
@@ -37,9 +35,12 @@
     flex-wrap: nowrap;
     align-items: normal;
     justify-content: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     @include tablet {
-      padding: 1.25rem 2rem;
+      padding: 1.25rem 3.5rem;
+
       flex-direction: row;
       flex-wrap: nowrap;
       justify-content: space-between;
@@ -154,5 +155,35 @@
 
   &__heading-icon {
     width: 1.0625rem;
+  }
+
+  &__container--warehouseWitdh {
+    @include tablet {
+      width: 50%;
+    }
+  }
+
+  &__container--addressWitdh {
+    @include tablet {
+      width: 45%;
+    }
+  }
+
+  &__container--contactNameWitdh {
+    @include tablet {
+      width: 55%;
+    }
+  }
+
+  &__container--contactInformationWitdh {
+    @include tablet {
+      width: 50%;
+    }
+  }
+
+  &__container--actionsWitdh {
+    @include tablet {
+      width: 30%;
+    }
   }
 }

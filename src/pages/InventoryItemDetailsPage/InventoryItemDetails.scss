@@ -111,21 +111,14 @@
       }
     }
   }
-  &__line {
-    @include tablet {
-      border-right: 0.5px solid $Cloud;
-      position: absolute;
-      top: 40%;
-      left: 45%;
-      bottom: 5%;
-    }
-  }
+
   &__availability {
     display: flex;
     flex-direction: column;
     @include tablet {
       width: 50%;
       padding-left: 5%;
+      border-left: 1px solid $Cloud;
     }
     &-amount {
       display: flex;
@@ -182,12 +175,14 @@
       }
     }
     &-description {
-      @include body-medimum;
       margin: 0;
       color: $Instock-Black;
       font-weight: 100;
       margin-bottom: 5%;
       @include tablet_desktop_body-medimum;
+      @include tablet {
+        // border-right: 1px solid $Cloud;
+      }
     }
   }
 }

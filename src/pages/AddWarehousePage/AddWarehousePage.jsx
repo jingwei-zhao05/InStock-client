@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../AddWarehousePage/AddWarehousePage.scss";
 import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/icons/error-24px.svg";
-import {
-  getWarehouseDetailEndpoint,
-  putWarehouseEndpoint,
-} from "../../utils/api";
-import "./EditWarehousePage.scss";
+import { postWarehouseEndpoint } from "../../utils/api";
 
 const initialValues = {
   warehouseName: "",
@@ -20,31 +17,10 @@ const initialValues = {
   email: "",
 };
 
-export default function EditWarehousePage() {
-  const { id: warehouseId } = useParams();
+export default function AddWarehousePage() {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios
-      .get(getWarehouseDetailEndpoint(warehouseId))
-      .then((response) => {
-        setValues({
-          warehouseName: response.data.warehouse_name,
-          address: response.data.address,
-          city: response.data.city,
-          country: response.data.country,
-          contactName: response.data.contact_name,
-          position: response.data.contact_position,
-          phoneNum: response.data.contact_phone,
-          email: response.data.contact_email,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [warehouseId]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -88,8 +64,7 @@ export default function EditWarehousePage() {
       setErrors(validationErrors);
     } else {
       axios
-        .put(putWarehouseEndpoint(warehouseId), {
-          id: warehouseId,
+        .post(postWarehouseEndpoint, {
           warehouse_name: values.warehouseName,
           address: values.address,
           city: values.city,
@@ -103,14 +78,14 @@ export default function EditWarehousePage() {
           navigate(-1);
         })
         .catch((error) => {
-          alert(error);
+          console.log(error);
         });
     }
   };
 
   return (
-    <article className="edit-warehouse">
-      <div className="edit-warehouse__header">
+    <article className="add-warehouse">
+      <div className="add-warehouse__header">
         <img
           className="go-back-arrow"
           src={arrowBackIcon}
@@ -119,12 +94,12 @@ export default function EditWarehousePage() {
             navigate(-1);
           }}
         />
-        <h1 className="edit-warehouse__title">Edit Warehouse</h1>
+        <h1 className="add-warehouse__title">Add New Warehouse</h1>
       </div>
-      <form className="edit-warehouse-form" onSubmit={handleSubmit}>
+      <form className="add-warehouse-form" onSubmit={handleSubmit}>
         <div className="warehouse-form warehouse-form--left">
           <h2 className="warehouse-form__title">Warehouse Details</h2>
-          <label className="warehouse-form__label">
+          <lable className="warehouse-form__lable" htmlFor="warehouseName">
             Warehouse Name
             <input
               className={
@@ -134,6 +109,7 @@ export default function EditWarehousePage() {
               }
               type="text"
               name="warehouseName"
+              placeholder="Your Warehouse Name"
               value={values.warehouseName}
               onChange={handleInputChange}
             />
@@ -149,8 +125,8 @@ export default function EditWarehousePage() {
                 </p>
               </div>
             )}
-          </label>
-          <label className="warehouse-form__label">
+          </lable>
+          <lable className="warehouse-form__lable" htmlFor="address">
             Street Address
             <input
               className={
@@ -160,6 +136,7 @@ export default function EditWarehousePage() {
               }
               type="text"
               name="address"
+              placeholder="Your Address"
               value={values.address}
               onChange={handleInputChange}
             />
@@ -175,8 +152,8 @@ export default function EditWarehousePage() {
                 </p>
               </div>
             )}
-          </label>
-          <label className="warehouse-form__label">
+          </lable>
+          <lable className="warehouse-form__lable" htmlFor="city">
             City
             <input
               className={
@@ -186,6 +163,7 @@ export default function EditWarehousePage() {
               }
               type="text"
               name="city"
+              placeholder=" Your City"
               value={values.city}
               onChange={handleInputChange}
             />
@@ -201,8 +179,8 @@ export default function EditWarehousePage() {
                 </p>
               </div>
             )}
-          </label>
-          <label className="warehouse-form__label">
+          </lable>
+          <lable className="warehouse-form__lable" htmlFor="country">
             Country
             <input
               className={
@@ -212,6 +190,7 @@ export default function EditWarehousePage() {
               }
               type="text"
               name="country"
+              placeholder=" Your Country"
               value={values.country}
               onChange={handleInputChange}
             />
@@ -227,11 +206,11 @@ export default function EditWarehousePage() {
                 </p>
               </div>
             )}
-          </label>
+          </lable>
         </div>
         <div className="warehouse-form">
           <h2 className="warehouse-form__title">Contact Details</h2>
-          <label className="warehouse-form__label">
+          <lable className="warehouse-form__lable" htmlFor="contactName">
             Contact Name
             <input
               className={
@@ -241,6 +220,7 @@ export default function EditWarehousePage() {
               }
               type="text"
               name="contactName"
+              placeholder=" Your Contact Name"
               value={values.contactName}
               onChange={handleInputChange}
             />
@@ -256,8 +236,8 @@ export default function EditWarehousePage() {
                 </p>
               </div>
             )}
-          </label>
-          <label className="warehouse-form__label">
+          </lable>
+          <lable className="warehouse-form__lable" htmlFor="position">
             Position
             <input
               className={
@@ -267,6 +247,7 @@ export default function EditWarehousePage() {
               }
               type="text"
               name="position"
+              placeholder=" Your Position"
               value={values.position}
               onChange={handleInputChange}
             />
@@ -282,8 +263,8 @@ export default function EditWarehousePage() {
                 </p>
               </div>
             )}
-          </label>
-          <label className="warehouse-form__label">
+          </lable>
+          <lable className="warehouse-form__lable" htmlFor="phoneNum">
             Phone Number
             <input
               className={
@@ -293,6 +274,7 @@ export default function EditWarehousePage() {
               }
               type="text"
               name="phoneNum"
+              placeholder="Your Phone Number"
               value={values.phoneNum}
               onChange={handleInputChange}
             />
@@ -308,8 +290,8 @@ export default function EditWarehousePage() {
                 </p>
               </div>
             )}
-          </label>
-          <label className="warehouse-form__label">
+          </lable>
+          <lable className="warehouse-form__lable" htmlFor="email">
             Email
             <input
               className={
@@ -319,6 +301,7 @@ export default function EditWarehousePage() {
               }
               type="email"
               name="email"
+              placeholder=" Your Email"
               value={values.email}
               onChange={handleInputChange}
             />
@@ -334,19 +317,18 @@ export default function EditWarehousePage() {
                 </p>
               </div>
             )}
-          </label>
+          </lable>
         </div>
-        <div className="edit-warehouse__buttons">
+        <div className="add-warehouse__buttons">
           <button
-            type="button"
-            className="edit-warehouse__buttons-cancel"
+            className="add-warehouse__buttons-cancel"
             onClick={() => {
               navigate(-1);
             }}
           >
             Cancel
           </button>
-          <button className="edit-warehouse__buttons-submit">Save</button>
+          <button className="add-warehouse__buttons-submit">Save</button>
         </div>
       </form>
     </article>

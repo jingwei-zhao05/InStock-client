@@ -2,7 +2,7 @@
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/variables";
 
-.inventory {
+.warehouseList {
   &__box {
     border-bottom: 0.1rem solid $Cloud;
     padding: 1rem 1rem 1rem 1rem;
@@ -45,9 +45,8 @@
     display: inline-block;
     order: -2;
     @include tablet {
-      //   width: 100%;
       display: flex;
-      //   justify-content: center;
+
       align-items: center;
     }
   }
@@ -55,8 +54,9 @@
     width: 50%;
     display: inline-block;
     @include tablet {
+      width: 55%;
       display: flex;
-      //   justify-content: center;
+
       align-items: center;
     }
   }
@@ -66,7 +66,6 @@
     width: 300px;
     display: flex;
     justify-content: flex-start;
-    // align-items: normal;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 1rem;
@@ -85,21 +84,21 @@
     display: inline-block;
     order: -1;
     @include tablet {
+      width: 45%;
       display: flex;
-      //   justify-content: center;
       align-items: center;
-      //   padding-left: 2rem;
     }
   }
 
   &__info-contact-info {
+    @include body-medimum;
     width: 50%;
     display: inline-block;
     @include tablet {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      //   align-items: start;
+      @include tablet_desktop_body-medimum;
     }
   }
 
@@ -113,12 +112,17 @@
   }
 
   &__address-text {
+    @include body-medimum;
     @include tablet {
       padding-left: 1rem;
     }
   }
   &__contact-text {
+    @include body-medimum;
     padding-left: 0;
+    @include tablet {
+      @include tablet_desktop_body-medimum;
+    }
   }
 
   &__chevron {
@@ -131,6 +135,9 @@
     color: $Instock-Indigo;
     text-decoration: none;
     @include body-large;
+    @include tablet {
+      @include tablet_desktop_body-large;
+    }
   }
 
   &__actions {
