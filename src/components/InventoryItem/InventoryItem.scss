@@ -162,3 +162,33 @@
     align-items: top;
   }
 }
+
+.in-stock {
+  width: 6rem;
+  height: 1.5rem;
+  margin-bottom: 0.2rem;
+  margin-top: 0.25rem;
+  color: $Green;
+  background: #15846312;
+  padding: 2px 4px;
+  border-radius: 1.25rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.out-stock {
+  width: 6rem;
+  height: 1.5rem;
+  text-transform: uppercase;
+  margin: 0;
+  color: $Red;
+  background: $Red;
+  background-color: #c9451512;
+  margin-bottom: 1rem;
+  padding: 2px 4px;
+  border-radius: 1.25rem;
+  text-align: center;
+  text-transform: uppercase;
+  @include tablet {
+    margin-bottom: 1rem;
+  }
+}
