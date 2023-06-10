@@ -8,7 +8,6 @@ import WarehouseItemsList from "../../components/WarehouseItemsList/WarehouseIte
 import './WarehouseInventorieListPage.scss';
 import WarehouseInventorieListPageHeader from "../../components/WarehouseInventorieListPageHeader/WarehouseInventorieListPageHeader";
 import WarehouseInventorieListPageList from "../../components/WarehouseInventorieListPageList/WarehouseInventorieListPageList";
-
 function WarehouseInventorieListPage() {
   const { id } = useParams();
   const [warehouseItemsList, setwarehouseItemsList] = useState([]);
