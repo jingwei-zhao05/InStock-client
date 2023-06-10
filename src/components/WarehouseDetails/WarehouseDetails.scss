@@ -168,5 +168,9 @@
 
 p {
   color: $Instock-Black;
-  font-size: 0.6875rem;
+  // font-size: 0.6875rem;
+  @include table-header;
+  @include tablet {
+    @include tablet_desktop_body-medimum;
+  }
 }
