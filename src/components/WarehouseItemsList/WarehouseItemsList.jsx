@@ -1,6 +1,6 @@
 import "./WarehouseItemsList.scss";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import RemoveIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
@@ -44,7 +44,6 @@ function WarehouseItemsList({ itemDetails, id }) {
       </div>
       <div className="warehouseList__info-contact-info">
         <h3 className="warehouseList__mobile-header">QTY</h3>
-        {/* <p>{contactPhone}</p> */}
         <p>{itemDetails.quantity}</p>
       </div>
 

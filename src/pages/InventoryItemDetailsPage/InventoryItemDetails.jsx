@@ -1,6 +1,6 @@
 import "./InventoryItemDetails.scss";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Edit from "../../assets/icons/edit-24px.svg";
 import ArrowBack from "../../assets/icons/arrow_back-24px.svg";
@@ -8,6 +8,7 @@ import { getInventoryDetailEndpoint } from "../../utils/api";
 
 function InventoryItemDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [InventoryItem, setInventoryItem] = useState(null);
 
   useEffect(() => {
@@ -29,13 +30,12 @@ function InventoryItemDetails() {
   return (
     <section className="item-details">
       <div className="item-details__header">
-        <Link to="/inventory">
-          <img
-            className="item-details__arrow-icon"
-            src={ArrowBack}
-            alt="arrow back"
-          />
-        </Link>
+        <img
+          className="item-details__arrow-icon"
+          src={ArrowBack}
+          alt="arrow back"
+          onClick={() => navigate(-1)}
+        />
         <h1 className="item-details__title">{InventoryItem.item_name}</h1>
         <Link
           to={`/inventory/${id}/edit`}

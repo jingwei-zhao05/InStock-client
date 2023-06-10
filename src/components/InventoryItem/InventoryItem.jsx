@@ -30,11 +30,13 @@ function InventoryItem({ itemDetails, id, fetchInventories }) {
             <Link to={`/inventory/${id}`} className="inventory__link-anchor">
               {itemDetails.item_name}
             </Link>
-            <img
-              className="inventory__chevron-image"
-              src={Chevron}
-              alt="chevron"
-            ></img>
+            <Link to={`/inventory/${id}`}>
+              <img
+                className="inventory__chevron-image"
+                src={Chevron}
+                alt="chevron"
+              />
+            </Link>
           </div>
         </div>
       </div>
@@ -44,7 +46,15 @@ function InventoryItem({ itemDetails, id, fetchInventories }) {
       </div>
       <div className="inventory__info-contact">
         <h3 className="inventory__mobile-header">STATUS</h3>
-        <p className="inventory__contact-text">{itemDetails.status}</p>
+        <p 
+        className={
+          itemDetails.status === "In Stock"
+              ? "inventory__contact-text in-stock"
+              : "inventory__contact-text out-stock"
+          }>
+          {itemDetails.status}
+        </p>
+        
       </div>
       <div className="inventory__info-contact-info">
         <h3 className="inventory__mobile-header">QTY</h3>

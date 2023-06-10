@@ -1,4 +1,3 @@
-import "../WarehousesList/WarehousesList.scss";
 import Warehouse from "../Warehouse/Warehouse";
 import { getWarehousesEndpoint } from "../../utils/api";
 import React from "react";
@@ -7,9 +6,9 @@ import { useEffect, useState } from "react";
 
 function WarehousesList() {
   const [defaultWarehouses, setdefaultWarehouses] = useState(null);
-  
-    const fetchWarehouses = () => {
-      axios
+
+  const fetchWarehouses = () => {
+    axios
       .get(getWarehousesEndpoint)
       .then((response) => {
         setdefaultWarehouses(response.data);
@@ -17,7 +16,7 @@ function WarehousesList() {
       .catch((err) => {
         console.error(err);
       });
-    }
+  };
 
   useEffect(() => {
     fetchWarehouses();
@@ -38,11 +37,11 @@ function WarehousesList() {
                 name={warehouse.warehouse_name}
                 address={warehouse.address}
                 city={warehouse.city}
-                coutry={warehouse.country}
+                country={warehouse.country}
                 contactName={warehouse.contact_name}
                 contactPhone={warehouse.contact_phone}
                 contactEmail={warehouse.contact_email}
-                fetchWarehouses= {fetchWarehouses}
+                fetchWarehouses={fetchWarehouses}
               />
             }
           </li>
