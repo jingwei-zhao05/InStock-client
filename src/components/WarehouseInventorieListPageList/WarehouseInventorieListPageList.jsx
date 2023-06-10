@@ -9,7 +9,6 @@ function WarehouseInventorieListPageList() {
   const [WarehouseInventoryList, setWarehouseInventoryList] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [hasError, sethasError] = useState(false);
-  // const [defaultWarehouses, setdefaultWarehouses] = useState(null);
 
   const { id } = useParams();
 
@@ -41,20 +40,18 @@ function WarehouseInventorieListPageList() {
     <ul>
       {WarehouseInventoryList.map((item) => {
         return (
-          <Link to={`/inventory/${item.id}`}>
-            <li className="warehouse" key={item.id}>
-              {
-                <WarehouseInventorieItems
-                  itemId={item.id}
-                  name={item.item_name}
-                  category={item.category}
-                  status={item.status}
-                  quantity={item.quantity}
-                  fetchInventories={fetchInventories}
-                />
-              }
-            </li>
-          </Link>
+          <li className="warehouse" key={item.id}>
+            {
+              <WarehouseInventorieItems
+                itemId={item.id}
+                name={item.item_name}
+                category={item.category}
+                status={item.status}
+                quantity={item.quantity}
+                fetchInventories={fetchInventories}
+              />
+            }
+          </li>
         );
       })}
     </ul>

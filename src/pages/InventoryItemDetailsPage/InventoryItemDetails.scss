@@ -39,6 +39,11 @@
       border-style: none;
       width: 2.25rem;
       height: 2.25rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $Graphite;
+      }
 
       @include tablet {
         display: flex;
@@ -66,6 +71,7 @@
   &__arrow-icon {
     padding-right: 1rem;
     padding-top: 0.5rem;
+    cursor: pointer;
   }
   &__title {
     @include page-header;

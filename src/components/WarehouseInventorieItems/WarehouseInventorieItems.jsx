@@ -33,7 +33,9 @@ function WarehouseInventorieItems({
   return (
     <div className="warehouseInventoryItems__box">
       <div className="warehouseInventoryItems__info-warehouse">
-        <h3 className="warehouseInventoryItems__mobile-header">Inventory</h3>
+        <h3 className="warehouseInventoryItems__mobile-header">
+          Inventory Item
+        </h3>
         <div className="warehouseInventoryItems__chevron">
           <div className="warehouseInventoryItems__chevron-link">
             <Link
@@ -42,11 +44,16 @@ function WarehouseInventorieItems({
             >
               {name}
             </Link>
-            <img
-              className="warehouseInventoryItems__chevron-image"
-              src={Chevron}
-              alt="chevron"
-            ></img>
+            <Link
+              to={`/inventory/${itemId}`}
+              className="warehouseInventoryItems__link-anchor"
+            >
+              <img
+                className="warehouseInventoryItems__chevron-image"
+                src={Chevron}
+                alt="chevron"
+              />
+            </Link>
           </div>
         </div>
       </div>
@@ -68,15 +75,18 @@ function WarehouseInventorieItems({
       </div>
       <div className="warehouseInventoryItems__info-contact-info">
         <h3 className="warehouseInventoryItems__mobile-header">quantity</h3>
-        <p>{quantity}</p>
+        <p className="warehouseInventoryItems__text">{quantity}</p>
       </div>
 
       <div className="warehouseInventoryItems__actions">
-        <Link to={`/warehouses/${id}`}>
+        <Link
+          to={`/warehouses/${id}`}
+          className="warehouseInventoryItems__link"
+        >
           <img
             src={RemoveIcon}
             alt="remove icon"
-            className="inventory__icon"
+            className="warehouseInventoryItems__icon"
             onClick={handleOpenModal}
           />
         </Link>

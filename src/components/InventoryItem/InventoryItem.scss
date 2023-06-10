@@ -142,7 +142,7 @@
     flex-wrap: nowrap;
     @include tablet {
       width: 30%;
-      display: inline-block;
+      justify-content: flex-start;
     }
   }
 

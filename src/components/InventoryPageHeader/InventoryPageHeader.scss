@@ -119,6 +119,7 @@
     border: none;
     margin-bottom: 5px;
     height: 2.25rem;
+    cursor: pointer;
 
     @include tablet {
       height: 2.375rem;
@@ -184,7 +185,11 @@
 
   &__container--actionsWitdh {
     @include tablet {
-      width: 30%;
+      width: 36%;
+    }
+
+    @include desktop {
+      width: 39%;
     }
   }
 }
