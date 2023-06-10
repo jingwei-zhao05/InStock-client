@@ -58,7 +58,7 @@ function InventoryItem({ itemDetails, id, fetchWarehouses }) {
     </div>
 
     <div className="inventory__actions">
-      <Link to="/">
+      <Link to="/inventory">
         <img
           src={RemoveIcon}
           alt="remove icon"
