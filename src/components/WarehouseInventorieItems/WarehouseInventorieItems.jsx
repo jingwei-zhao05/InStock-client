@@ -7,7 +7,14 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 import Modal from "../../modal/InventoryModal/InventoryDetailModal";
 import "../../modal/WarehouseModal/WarehouseModal.scss";
 import { useParams } from "react-router";
-function WarehouseInventorieItems({itemId, name, category, status, quantity, fetchInventories }) {
+function WarehouseInventorieItems({
+  itemId,
+  name,
+  category,
+  status,
+  quantity,
+  fetchInventories,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { id } = useParams();
@@ -26,17 +33,17 @@ function WarehouseInventorieItems({itemId, name, category, status, quantity, fet
   return (
     <div className="warehouseInventoryItems__box">
       <div className="warehouseInventoryItems__info-warehouse">
-        <h3 class="warehouseInventoryItems__mobile-header">Inventory</h3>
+        <h3 className="warehouseInventoryItems__mobile-header">Inventory</h3>
         <div className="warehouseInventoryItems__chevron">
           <div className="warehouseInventoryItems__chevron-link">
             <Link
               to={`/warehouses/${id}`}
-              class="warehouseInventoryItems__link-anchor"
+              className="warehouseInventoryItems__link-anchor"
             >
               {name}
             </Link>
             <img
-              class="warehouseInventoryItems__chevron-image"
+              className="warehouseInventoryItems__chevron-image"
               src={Chevron}
               alt="chevron"
             ></img>
@@ -44,21 +51,29 @@ function WarehouseInventorieItems({itemId, name, category, status, quantity, fet
         </div>
       </div>
       <div className="warehouseInventoryItems__info-address">
-        <h3 class="warehouseInventoryItems__mobile-header">Category</h3>
+        <h3 className="warehouseInventoryItems__mobile-header">Category</h3>
         <p className="warehouseInventoryItems__text">{category}</p>
       </div>
       <div className="warehouseInventoryItems__info-contact">
-        <h3 class="warehouseInventoryItems__mobile-header">Status</h3>
+        <h3 className="warehouseInventoryItems__mobile-header">Status</h3>
         {/* <p className="warehouseInventoryItems__contact-text">{status}</p> */}
-        <p className={status === "In Stock" ? "warehouseInventoryItems__contact-text in-stock" : "warehouseInventoryItems__contact-text out-stock"}>{status}</p>
+        <p
+          className={
+            status === "In Stock"
+              ? "warehouseInventoryItems__contact-text in-stock"
+              : "warehouseInventoryItems__contact-text out-stock"
+          }
+        >
+          {status}
+        </p>
       </div>
       <div className="warehouseInventoryItems__info-contact-info">
-        <h3 class="warehouseInventoryItems__mobile-header">quantity</h3>
+        <h3 className="warehouseInventoryItems__mobile-header">quantity</h3>
         <p>{quantity}</p>
       </div>
 
       <div className="warehouseInventoryItems__actions">
-        <Link to={`/warehouses/${id}`} >
+        <Link to={`/warehouses/${id}`}>
           <img
             src={RemoveIcon}
             alt="remove icon"
@@ -68,12 +83,12 @@ function WarehouseInventorieItems({itemId, name, category, status, quantity, fet
         </Link>
         <Link
           to={`/warehouses/${id}/edit`}
-          class="warehouseInventoryItems__link"
+          className="warehouseInventoryItems__link"
         >
           <img
             src={EditIcon}
             alt="edit icon"
-            class="warehouseInventoryItems__icon"
+            className="warehouseInventoryItems__icon"
           />
         </Link>
       </div>
