@@ -76,8 +76,8 @@ export default function Warehouse({
             onClick={handleOpenModal}
           />
         </Link>
-        <Link to={`/warehouses/${id}/edit`} class="warehouseList__link">
-          <img src={EditIcon} alt="edit icon" class="warehouseList__icon" />
+        <Link to={`/warehouses/${id}/edit`} className="warehouseList__link">
+          <img src={EditIcon} alt="edit icon" className="warehouseList__icon" />
         </Link>
       </div>
       
