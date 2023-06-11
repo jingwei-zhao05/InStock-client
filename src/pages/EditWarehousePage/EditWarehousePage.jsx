@@ -20,10 +20,21 @@ const initialValues = {
   email: "",
 };
 
+const initialErrors = {
+  warehouseName: false,
+  address: false,
+  city: false,
+  country: false,
+  contactName: false,
+  position: false,
+  phoneNum: false,
+  email: false,
+};
+
 export default function EditWarehousePage() {
   const { id: warehouseId } = useParams();
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState(initialErrors);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,6 +64,11 @@ export default function EditWarehousePage() {
       ...values,
       [name]: value,
     });
+
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -60,28 +76,28 @@ export default function EditWarehousePage() {
     const validationErrors = {};
 
     if (values.warehouseName.trim() === "") {
-      validationErrors.warehouseName = "Warehouse name is required";
+      validationErrors.warehouseName = true;
     }
     if (values.address.trim() === "") {
-      validationErrors.address = "Address is required";
+      validationErrors.address = true;
     }
     if (values.city.trim() === "") {
-      validationErrors.city = "City is required";
+      validationErrors.city = true;
     }
     if (values.country.trim() === "") {
-      validationErrors.country = "Country is required";
+      validationErrors.country = true;
     }
     if (values.contactName.trim() === "") {
-      validationErrors.contactName = "Contact name is required";
+      validationErrors.contactName = true;
     }
     if (values.position.trim() === "") {
-      validationErrors.position = "Position is required";
+      validationErrors.position = true;
     }
     if (values.phoneNum.trim() === "") {
-      validationErrors.phoneNum = "Phone number is required";
+      validationErrors.phoneNum = true;
     }
     if (values.email.trim() === "") {
-      validationErrors.email = "Email is required";
+      validationErrors.email = true;
     }
 
     if (Object.keys(validationErrors).length > 0) {

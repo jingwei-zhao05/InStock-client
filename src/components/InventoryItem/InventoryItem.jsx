@@ -6,7 +6,6 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 import Modal from "../../modal/InventoryModal/InventoryModal";
 import "./InventoryItem.scss";
 
-// function InventoryItem({ itemDetails, id, }) {
 function InventoryItem({ itemDetails, id, fetchInventories }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,15 +45,15 @@ function InventoryItem({ itemDetails, id, fetchInventories }) {
       </div>
       <div className="inventory__info-contact">
         <h3 className="inventory__mobile-header">STATUS</h3>
-        <p 
-        className={
-          itemDetails.status === "In Stock"
+        <p
+          className={
+            itemDetails.status === "In Stock"
               ? "inventory__contact-text in-stock"
               : "inventory__contact-text out-stock"
-          }>
+          }
+        >
           {itemDetails.status}
         </p>
-        
       </div>
       <div className="inventory__info-contact-info">
         <h3 className="inventory__mobile-header">QTY</h3>

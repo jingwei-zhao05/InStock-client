@@ -20,7 +20,7 @@ function InventoryItemDetails() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [id]);
 
   if (!InventoryItem) {
     return <div>Loading...</div>;

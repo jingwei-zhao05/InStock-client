@@ -4,7 +4,6 @@ import axios from "axios";
 import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
 import errorIcon from "../../assets/icons/error-24px.svg";
 import {
-  getWarehouseDetailEndpoint,
   getWarehousesEndpoint,
   getInventoryDetailEndpoint,
   putInventoryEndpoint,
@@ -13,42 +12,46 @@ import {
 import "./EditInventoryItemPage.scss";
 
 const initialValues = {
-  id: "",
   itemName: "",
-  description: "",
-  category: "",
   status: "",
   quantity: 0,
+};
+
+const initialErrors = {
+  itemName: false,
+  description: false,
+  quantity: false,
 };
 
 export default function EditInventoryPage() {
   const { id: InventoryId } = useParams();
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState(initialErrors);
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [warehouseId, setWarehouseId] = useState("");
   const [categories, setCategories] = useState([]);
   const [warehouses, setWarehouses] = useState([]);
-  const [description, setDescription] = useState("");
   const navigate = useNavigate();
-
 
   useEffect(() => {
     axios
-      .get(getWarehouseDetailEndpoint(InventoryId))
+      .get(getInventoryDetailEndpoint(InventoryId))
       .then((response) => {
+        console.log(response.data);
         setValues({
-          warehouseName: response.data.warehouse_name,
           itemName: response.data.item_name,
-          description: response.data.description,
-          category: response.data.category,
           status: response.data.status,
           quantity: response.data.quantity,
         });
+        setDescription(response.data.description);
+        setCategory(response.data.category);
+        setWarehouseId(response.data.warehouse_id);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [InventoryId]);
-
 
   useEffect(() => {
     // Load warehouses
@@ -73,21 +76,7 @@ export default function EditInventoryPage() {
       });
       setCategories(uniqueCategory);
     });
-
-    // Load inventory item
-    axios.get(getInventoryDetailEndpoint(InventoryId)).then((response) => {
-      const item = response.data;
-      setValues({
-        id: item.id,
-        itemName: item.item_name,
-        description: item.description,
-        category: item.category,
-        status: item.status,
-        quantity: item.quantity,
-      });
-      setDescription(item.description);
-    });
-  }, [InventoryId]);
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -96,6 +85,11 @@ export default function EditInventoryPage() {
       ...values,
       [name]: value,
     });
+
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -103,36 +97,48 @@ export default function EditInventoryPage() {
     const validationErrors = {};
 
     if (values.itemName.trim() === "") {
-      validationErrors.itemName = "Item name is required";
+      validationErrors.itemName = true;
     }
     if (description.trim() === "") {
-      validationErrors.description = "Description is required";
+      validationErrors.description = true;
     }
-    if (values.category === "") {
-      validationErrors.category = "Category is required";
-    }
-    if ((!values.quantity) || values.quantity === 0) {
-      validationErrors.quantity = "Quantity is required";
-    }
-    if (values.id === "") {
-      validationErrors.warehouse = "Warehouse is required";
+    if (
+      values.quantity === "" ||
+      (values.status === "In Stock" && values.quantity === 0)
+    ) {
+      validationErrors.quantity = true;
     }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+    } else if (values.status === "Out of Stock") {
+      axios
+        .put(putInventoryEndpoint(InventoryId), {
+          warehouse_id: warehouseId,
+          item_name: values.itemName,
+          description: description,
+          category: category,
+          status: "Out of Stock",
+          quantity: 0,
+        })
+        .then(() => {
+          navigate(-1);
+        })
+        .catch((error) => {
+          alert(error);
+        });
     } else {
       axios
         .put(putInventoryEndpoint(InventoryId), {
-          warehouse_id: values.id,
+          warehouse_id: warehouseId,
           item_name: values.itemName,
           description: description,
-          category: values.category,
+          category: category,
           status: values.status,
-          quantity:  Number(values.quantity),
+          quantity: values.quantity,
         })
-        .then((response) => {
+        .then(() => {
           navigate(-1);
-          console.log(response.data)
         })
         .catch((error) => {
           alert(error);
@@ -141,11 +147,27 @@ export default function EditInventoryPage() {
   };
 
   const handleCancelClick = () => {
-    setValues(initialValues);
-    setDescription("");
     navigate(-1);
   };
-  
+
+  const handleDescription = (event) => {
+    setDescription(event.target.value);
+    const { name } = event.target;
+
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
+  };
+
+  const handleCategorySelection = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const handleWarehouseSelection = (event) => {
+    setWarehouseId(event.target.value);
+  };
+
   return (
     <article className="add-inventory">
       <div className="add-inventory__header">
@@ -197,10 +219,10 @@ export default function EditInventoryPage() {
                   ? "item-form__textarea item-form__textarea--error"
                   : "item-form__textarea"
               }
-              name="itemDescription"
-              placeholder="Please enter a brief item description..."
+              name="description"
               value={description}
-              onChange={(event) => setDescription(event.target.value)}
+              placeholder="Please enter a brief item description..."
+              onChange={handleDescription}
             ></textarea>
             {errors.description && (
               <div className="item-form__error item-form__error--description">
@@ -224,14 +246,18 @@ export default function EditInventoryPage() {
                   : "item-form__select"
               }
               name="category"
-              value={values.category}
-              onChange={handleInputChange}
+              value={category}
+              onChange={handleCategorySelection}
             >
               <option value="DEFAULT" disabled>
                 Please select
               </option>
               {categories.map((category) => {
-                return <option value={category}>{category}</option>;
+                return (
+                  <option value={category} key={category}>
+                    {category}
+                  </option>
+                );
               })}
             </select>
             {errors.category && (
@@ -313,14 +339,18 @@ export default function EditInventoryPage() {
                   : "item-form__select"
               }
               name="id"
-              value={values.id}
-              onChange={handleInputChange}
+              value={warehouseId}
+              onChange={handleWarehouseSelection}
             >
               <option value="DEFAULT" disabled>
                 Please select
               </option>
               {warehouses.map(({ id, warehouse_name }) => {
-                return <option value={id}>{warehouse_name}</option>;
+                return (
+                  <option value={id} key={id}>
+                    {warehouse_name}
+                  </option>
+                );
               })}
             </select>
             {errors.warehouse && (

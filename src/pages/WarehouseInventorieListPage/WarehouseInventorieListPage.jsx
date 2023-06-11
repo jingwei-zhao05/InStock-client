@@ -1,4 +1,3 @@
-import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";

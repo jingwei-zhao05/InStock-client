@@ -91,7 +91,7 @@ function WarehouseInventorieItems({
           />
         </Link>
         <Link
-          to={`/warehouses/${id}/edit`}
+          to={`/inventory/${id}/edit`}
           className="warehouseInventoryItems__link"
         >
           <img
