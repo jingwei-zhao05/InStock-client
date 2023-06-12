@@ -4,12 +4,16 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Edit from "../../assets/icons/edit-24px.svg";
 import ArrowBack from "../../assets/icons/arrow_back-24px.svg";
-import { getInventoryDetailEndpoint } from "../../utils/api";
+import {
+  getInventoryDetailEndpoint,
+  getWarehousesEndpoint,
+} from "../../utils/api";
 
 function InventoryItemDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [InventoryItem, setInventoryItem] = useState(null);
+  const [inventoryItem, setInventoryItem] = useState(null);
+  const [warehouse, setWarehouse] = useState({});
 
   useEffect(() => {
     axios
@@ -20,9 +24,26 @@ function InventoryItemDetails() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [id]);
 
-  if (!InventoryItem) {
+  useEffect(() => {
+    if (inventoryItem) {
+      axios
+        .get(getWarehousesEndpoint)
+        .then((response) => {
+          const warehouses = response.data;
+          const foundWarehouse = warehouses.find(
+            (warehouse) => warehouse.id === inventoryItem.warehouse_id
+          );
+          setWarehouse(foundWarehouse);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [inventoryItem]);
+
+  if (!inventoryItem) {
     return <div>Loading...</div>;
   }
   const checkStatus = (status) => status === "In Stock";
@@ -36,7 +57,7 @@ function InventoryItemDetails() {
           alt="arrow back"
           onClick={() => navigate(-1)}
         />
-        <h1 className="item-details__title">{InventoryItem.item_name}</h1>
+        <h1 className="item-details__title">{inventoryItem.item_name}</h1>
         <Link
           to={`/inventory/${id}/edit`}
           className="item-details__edit-container"
@@ -57,38 +78,38 @@ function InventoryItemDetails() {
             ITEM DESCRIPTION:
           </h3>
           <p className="item-details__description-description">
-            {InventoryItem.description}
+            {inventoryItem.description}
           </p>
           <h3 className="item-details__description-header">CATEGORY:</h3>
-          <p className="item-details__description-description">
-            {InventoryItem.category}
+          <p className="item-details__description-description  item-details__category">
+            {inventoryItem.category}
           </p>
         </div>
         <div className="item-details__availability">
           <div className="item-details__availability-amount">
             <div className="item-details__availability-amount-status">
-              <h3 className="item-details__availability-header">STATUS:</h3>
+              <h3 className="item-details__description-header">STATUS:</h3>
               <p
                 className={
-                  checkStatus(InventoryItem.status)
+                  checkStatus(inventoryItem.status)
                     ? "item-details__availability-instock"
                     : "item-details__availability-outstock"
                 }
               >
-                {InventoryItem.status}
+                {inventoryItem.status}
               </p>
             </div>
             <div className="item-details__availability-amount-quantity">
-              <h3 className="item-details__availability-header">QUANTITY:</h3>
-              <p className="item-details__availability-description">
-                {InventoryItem.quantity}
+              <h3 className="item-details__description-header">QUANTITY:</h3>
+              <p className="item-details__description-description">
+                {inventoryItem.quantity}
               </p>
             </div>
           </div>
           <div className="item-details__availability-warehouse">
-            <h3 className="item-details__availability-header">WAREHOUSE:</h3>
-            <p className="item-details__availability-description">
-              {InventoryItem.warehouse_id}
+            <h3 className="item-details__description-header">WAREHOUSE:</h3>
+            <p className="item-details__description-description">
+              {warehouse.warehouse_name}
             </p>
           </div>
         </div>

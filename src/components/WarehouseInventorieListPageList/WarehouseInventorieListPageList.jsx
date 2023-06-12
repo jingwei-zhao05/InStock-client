@@ -1,10 +1,9 @@
-import "./WarehouseInventorieListPageList.scss";
 import { getWarehouseInventoryItemsEndpoint } from "../../utils/api";
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import WarehouseInventorieItems from "../WarehouseInventorieItems/WarehouseInventorieItems";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 function WarehouseInventorieListPageList() {
   const [WarehouseInventoryList, setWarehouseInventoryList] = useState([]);
   const [isLoading, setisLoading] = useState(true);
@@ -18,7 +17,6 @@ function WarehouseInventorieListPageList() {
       .then((response) => {
         setisLoading(false);
         setWarehouseInventoryList(response.data);
-        console.log(response);
       })
       .catch(() => {
         sethasError(true);
@@ -27,8 +25,17 @@ function WarehouseInventorieListPageList() {
   };
 
   useEffect(() => {
-    fetchInventories();
-  }, []);
+    axios
+      .get(getWarehouseInventoryItemsEndpoint(id))
+      .then((response) => {
+        setisLoading(false);
+        setWarehouseInventoryList(response.data);
+      })
+      .catch(() => {
+        sethasError(true);
+        setisLoading(false);
+      });
+  }, [id]);
 
   if (isLoading) {
     return <h1>Loading ...</h1>;

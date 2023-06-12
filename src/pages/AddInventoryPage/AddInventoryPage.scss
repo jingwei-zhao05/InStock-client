@@ -121,6 +121,10 @@
     background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
     background-repeat: no-repeat;
     background-position: right 18px center;
+
+    &--default {
+      color: gray;
+    }
   }
 
   &__textarea {

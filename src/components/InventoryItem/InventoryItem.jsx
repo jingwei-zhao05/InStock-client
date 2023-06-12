@@ -6,7 +6,6 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 import Modal from "../../modal/InventoryModal/InventoryModal";
 import "./InventoryItem.scss";
 
-// function InventoryItem({ itemDetails, id, }) {
 function InventoryItem({ itemDetails, id, fetchInventories }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,8 +22,8 @@ function InventoryItem({ itemDetails, id, fetchInventories }) {
 
   return (
     <div className="inventory__box">
-      <div className="inventory__info-warehouse">
-        <h3 className="inventory__mobile-header">INVENTORYITEM</h3>
+      <div className="inventory__info-inventory">
+        <h3 className="inventory__mobile-header">INVENTORY ITEM</h3>
         <div className="inventory__chevron">
           <div className="inventory__chevron-link">
             <Link to={`/inventory/${id}`} className="inventory__link-anchor">
@@ -40,29 +39,29 @@ function InventoryItem({ itemDetails, id, fetchInventories }) {
           </div>
         </div>
       </div>
-      <div className="inventory__info-address">
+      <div className="inventory__info-category">
         <h3 className="inventory__mobile-header">CATEGORY</h3>
         <p className="inventory__text">{itemDetails.category}</p>
       </div>
-      <div className="inventory__info-contact">
+      <div className="inventory__info-status">
         <h3 className="inventory__mobile-header">STATUS</h3>
-        <p 
-        className={
-          itemDetails.status === "In Stock"
+        <p
+          className={
+            itemDetails.status === "In Stock"
               ? "inventory__contact-text in-stock"
               : "inventory__contact-text out-stock"
-          }>
+          }
+        >
           {itemDetails.status}
         </p>
-        
       </div>
-      <div className="inventory__info-contact-info">
+      <div className="inventory__info-quantity">
         <h3 className="inventory__mobile-header">QTY</h3>
-        <p>{itemDetails.quantity}</p>
+        <p className="inventory__text">{itemDetails.quantity}</p>
       </div>
-      <div className="inventory__info-contact-info">
+      <div className="inventory__info-warehouse">
         <h3 className="inventory__mobile-header">WAREHOUSE</h3>
-        <p>{itemDetails.warehouse_name}</p>
+        <p className="inventory__text">{itemDetails.warehouse_name}</p>
       </div>
 
       <div className="inventory__actions">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../AddWarehousePage/AddWarehousePage.scss";
@@ -17,9 +17,20 @@ const initialValues = {
   email: "",
 };
 
+const initialErrors = {
+  warehouseName: false,
+  address: false,
+  city: false,
+  country: false,
+  contactName: false,
+  position: false,
+  phoneNum: false,
+  email: false,
+};
+
 export default function AddWarehousePage() {
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState(initialErrors);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -29,6 +40,11 @@ export default function AddWarehousePage() {
       ...values,
       [name]: value,
     });
+
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -36,28 +52,28 @@ export default function AddWarehousePage() {
     const validationErrors = {};
 
     if (values.warehouseName.trim() === "") {
-      validationErrors.warehouseName = "Warehouse name is required";
+      validationErrors.warehouseName = true;
     }
     if (values.address.trim() === "") {
-      validationErrors.address = "Address is required";
+      validationErrors.address = true;
     }
     if (values.city.trim() === "") {
-      validationErrors.city = "City is required";
+      validationErrors.city = true;
     }
     if (values.country.trim() === "") {
-      validationErrors.country = "Country is required";
+      validationErrors.country = true;
     }
     if (values.contactName.trim() === "") {
-      validationErrors.contactName = "Contact name is required";
+      validationErrors.contactName = true;
     }
     if (values.position.trim() === "") {
-      validationErrors.position = "Position is required";
+      validationErrors.position = true;
     }
     if (values.phoneNum.trim() === "") {
-      validationErrors.phoneNum = "Phone number is required";
+      validationErrors.phoneNum = true;
     }
     if (values.email.trim() === "") {
-      validationErrors.email = "Email is required";
+      validationErrors.email = true;
     }
 
     if (Object.keys(validationErrors).length > 0) {
@@ -78,7 +94,7 @@ export default function AddWarehousePage() {
           navigate(-1);
         })
         .catch((error) => {
-          console.log(error);
+          alert(error);
         });
     }
   };
@@ -99,7 +115,7 @@ export default function AddWarehousePage() {
       <form className="add-warehouse-form" onSubmit={handleSubmit}>
         <div className="warehouse-form warehouse-form--left">
           <h2 className="warehouse-form__title">Warehouse Details</h2>
-          <lable className="warehouse-form__lable" htmlFor="warehouseName">
+          <label className="warehouse-form__label">
             Warehouse Name
             <input
               className={
@@ -125,8 +141,8 @@ export default function AddWarehousePage() {
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="address">
+          </label>
+          <label className="warehouse-form__label">
             Street Address
             <input
               className={
@@ -152,8 +168,8 @@ export default function AddWarehousePage() {
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="city">
+          </label>
+          <label className="warehouse-form__label">
             City
             <input
               className={
@@ -179,8 +195,8 @@ export default function AddWarehousePage() {
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="country">
+          </label>
+          <label className="warehouse-form__label">
             Country
             <input
               className={
@@ -206,11 +222,11 @@ export default function AddWarehousePage() {
                 </p>
               </div>
             )}
-          </lable>
+          </label>
         </div>
         <div className="warehouse-form">
           <h2 className="warehouse-form__title">Contact Details</h2>
-          <lable className="warehouse-form__lable" htmlFor="contactName">
+          <label className="warehouse-form__label">
             Contact Name
             <input
               className={
@@ -236,8 +252,8 @@ export default function AddWarehousePage() {
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="position">
+          </label>
+          <label className="warehouse-form__label">
             Position
             <input
               className={
@@ -263,8 +279,8 @@ export default function AddWarehousePage() {
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="phoneNum">
+          </label>
+          <label className="warehouse-form__label">
             Phone Number
             <input
               className={
@@ -290,8 +306,8 @@ export default function AddWarehousePage() {
                 </p>
               </div>
             )}
-          </lable>
-          <lable className="warehouse-form__lable" htmlFor="email">
+          </label>
+          <label className="warehouse-form__label">
             Email
             <input
               className={
@@ -317,7 +333,7 @@ export default function AddWarehousePage() {
                 </p>
               </div>
             )}
-          </lable>
+          </label>
         </div>
         <div className="add-warehouse__buttons">
           <button

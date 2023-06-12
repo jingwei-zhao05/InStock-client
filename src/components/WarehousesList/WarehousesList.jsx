@@ -6,15 +6,19 @@ import { useEffect, useState } from "react";
 
 function WarehousesList() {
   const [defaultWarehouses, setdefaultWarehouses] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   const fetchWarehouses = () => {
     axios
       .get(getWarehousesEndpoint)
       .then((response) => {
+        setIsLoading(false);
         setdefaultWarehouses(response.data);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
+        setHasError(true);
+        setIsLoading(false);
       });
   };
 
@@ -22,15 +26,18 @@ function WarehousesList() {
     fetchWarehouses();
   }, []);
 
-  if (!defaultWarehouses) {
+  if (isLoading) {
     return <span>Loading...</span>;
+  }
+  if (hasError) {
+    return <h1>error</h1>;
   }
 
   return (
     <ul>
       {defaultWarehouses.map((warehouse) => {
         return (
-          <li className="warehouse">
+          <li className="warehouse" key={warehouse.id}>
             {
               <Warehouse
                 id={warehouse.id}

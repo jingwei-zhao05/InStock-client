@@ -53,19 +53,12 @@ function WarehouseItemsList({ itemDetails, id }) {
             src={RemoveIcon}
             alt="remove icon"
             className="warehouseList__icon"
-            // onClick={handleOpenModal}
           />
         </Link>
         <Link to={`/warehouses/${id}/edit`} className="warehouseList__link">
           <img src={EditIcon} alt="edit icon" className="warehouseList__icon" />
         </Link>
       </div>
-      {/* <Modal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        warehouseId={id}
-        warehouseName={name}
-      /> */}
     </div>
   );
 }

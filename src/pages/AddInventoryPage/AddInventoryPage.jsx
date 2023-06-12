@@ -11,20 +11,28 @@ import {
 import "./AddInventoryPage.scss";
 
 const initialValues = {
-  id: "",
   itemName: "",
-  description: "",
-  category: "",
-  status: "",
   quantity: 0,
+};
+
+const initialErrors = {
+  id: false,
+  itemName: false,
+  description: false,
+  category: false,
+  status: false,
+  quantity: false,
 };
 
 export default function AddInventoryPage() {
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState(initialErrors);
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [warehouseId, setWarehouseId] = useState("");
+  const [status, setStatus] = useState("In Stock");
   const [categories, setCategories] = useState([]);
   const [warehouses, setWarehouses] = useState([]);
-  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,6 +66,11 @@ export default function AddInventoryPage() {
       ...values,
       [name]: value,
     });
+
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -65,19 +78,22 @@ export default function AddInventoryPage() {
     const validationErrors = {};
 
     if (values.itemName.trim() === "") {
-      validationErrors.itemName = "Item name is required";
+      validationErrors.itemName = true;
     }
     if (description.trim() === "") {
-      validationErrors.description = "Description is required";
+      validationErrors.description = true;
     }
-    if (values.category === "") {
-      validationErrors.category = "City is required";
+    if (category === "") {
+      validationErrors.category = true;
     }
-    if (values.quantity === "" || values.quantity === 0) {
-      validationErrors.quantity = "Quantity is required";
+    if (
+      values.quantity === "" ||
+      (status === "In Stock" && values.quantity === 0)
+    ) {
+      validationErrors.quantity = true;
     }
-    if (values.id === "") {
-      validationErrors.warehouse = "Warehouse is required";
+    if (warehouseId === "") {
+      validationErrors.id = true;
     }
 
     if (Object.keys(validationErrors).length > 0) {
@@ -85,16 +101,15 @@ export default function AddInventoryPage() {
     } else {
       axios
         .post(postInventoryEndpoint, {
-          warehouse_id: values.id,
+          warehouse_id: warehouseId,
           item_name: values.itemName,
           description: description,
-          category: values.category,
-          status: values.status,
+          category: category,
+          status: status,
           quantity: values.quantity,
         })
         .then(() => {
           navigate(-1);
-          console.log(values.category);
         })
         .catch((error) => {
           alert(error);
@@ -105,9 +120,43 @@ export default function AddInventoryPage() {
   const handleCancelClick = () => {
     setValues(initialValues);
     setDescription("");
-    console.log(initialValues);
-    console.log(description);
+    setCategories("");
+    setWarehouseId("");
     navigate(-1);
+  };
+
+  const handleDescription = (event) => {
+    setDescription(event.target.value);
+    const { name } = event.target;
+
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
+  };
+
+  const handleStatus = (event) => {
+    setStatus(event.target.value);
+  };
+
+  const handleCategorySelection = (event) => {
+    setCategory(event.target.value);
+    const { name } = event.target;
+
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
+  };
+
+  const handleWarehouseSelection = (event) => {
+    setWarehouseId(event.target.value);
+    const { name } = event.target;
+
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
   };
 
   return (
@@ -161,9 +210,9 @@ export default function AddInventoryPage() {
                   ? "item-form__textarea item-form__textarea--error"
                   : "item-form__textarea"
               }
-              name="itemDescription"
+              name="description"
               placeholder="Please enter a brief item description..."
-              onChange={(event) => setDescription(event.target.value)}
+              onChange={handleDescription}
             ></textarea>
             {errors.description && (
               <div className="item-form__error item-form__error--description">
@@ -184,17 +233,23 @@ export default function AddInventoryPage() {
               className={
                 errors.category
                   ? "item-form__select item-form__select--error"
-                  : "item-form__select"
+                  : category
+                  ? "item-form__select"
+                  : "item-form__select item-form__select--default"
               }
               name="category"
               defaultValue={"DEFAULT"}
-              onChange={handleInputChange}
+              onChange={handleCategorySelection}
             >
               <option value="DEFAULT" disabled>
                 Please select
               </option>
               {categories.map((category) => {
-                return <option value={category}>{category}</option>;
+                return (
+                  <option value={category} key={category}>
+                    {category}
+                  </option>
+                );
               })}
             </select>
             {errors.category && (
@@ -221,7 +276,8 @@ export default function AddInventoryPage() {
                 type="radio"
                 name="status"
                 value="In Stock"
-                onChange={handleInputChange}
+                checked={status === "In Stock"}
+                onChange={handleStatus}
               />
               In stock
             </label>
@@ -231,13 +287,14 @@ export default function AddInventoryPage() {
                 type="radio"
                 name="status"
                 value="Out of Stock"
-                onChange={handleInputChange}
+                checked={status === "Out of Stock"}
+                onChange={handleStatus}
               />
               Out of stock
             </label>
           </div>
 
-          {values.status === "In Stock" && (
+          {status === "In Stock" && (
             <label className="item-form__label">
               Quantity
               <input
@@ -269,19 +326,25 @@ export default function AddInventoryPage() {
             Warehouse
             <select
               className={
-                errors.warehouse
+                errors.id
                   ? "item-form__select item-form__select--error"
-                  : "item-form__select"
+                  : warehouseId
+                  ? "item-form__select"
+                  : "item-form__select item-form__select--default"
               }
               name="id"
               defaultValue={"DEFAULT"}
-              onChange={handleInputChange}
+              onChange={handleWarehouseSelection}
             >
               <option value="DEFAULT" disabled>
                 Please select
               </option>
               {warehouses.map(({ id, warehouse_name }) => {
-                return <option value={id}>{warehouse_name}</option>;
+                return (
+                  <option value={id} key={id}>
+                    {warehouse_name}
+                  </option>
+                );
               })}
             </select>
             {errors.warehouse && (

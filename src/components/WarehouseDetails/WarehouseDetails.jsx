@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
 import "./WarehouseDetails.scss";
 import axios from "axios";
+import Edit from "../../assets/icons/edit-24px.svg";
 
 function WarehouseDetails() {
   const { id } = useParams();
@@ -37,11 +38,15 @@ function WarehouseDetails() {
           />
           <h1 className="details__title">{warehouse.warehouse_name}</h1>
         </div>
-        <Link to={`/warehouses/${id}/edit`}>
-          <button className="details__button"></button>
-        </Link>
-        <Link to={`/warehouses/${id}/edit`}>
-          <button className="details__tablet-button">Edit</button>
+        <Link to={`/warehouses/${id}/edit`} className="details__edit-container">
+          <button className="details__header-button">
+            <img
+              className="details__header-button-icon"
+              src={Edit}
+              alt="edit"
+            />
+            <p className="details__header-button-text">Edit</p>
+          </button>
         </Link>
       </div>
       <div className="details__info-container">
@@ -61,7 +66,7 @@ function WarehouseDetails() {
             <p className="details__contact">{warehouse.contact_position}</p>
           </div>
           <div className="details__contact-holder">
-            <p className="details__subheader">CONTACT INFO:</p>
+            <p className="details__subheader">CONTACT INFORMATION:</p>
             <p className="details__contact">{warehouse.contact_phone}</p>
             <p className="details__contact">{warehouse.contact_email}</p>
           </div>

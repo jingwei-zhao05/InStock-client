@@ -73,10 +73,6 @@
       flex-direction: row;
       align-items: center;
     }
-
-    @include desktop {
-      width: 50%;
-    }
   }
 
   &__info-address {
