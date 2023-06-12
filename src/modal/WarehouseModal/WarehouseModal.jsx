@@ -10,8 +10,8 @@ const Modal = ({ isOpen, onClose, warehouseId, warehouseName }) => {
       .then(() => {
         onClose(true); // Close the modal after successful deletion
       })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
+        console.log("Delete Success");
       })
       .catch((error) => {
         console.error(error);

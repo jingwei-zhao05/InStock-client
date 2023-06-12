@@ -1,4 +1,3 @@
-import "./WarehouseInventorieListPageList.scss";
 import { getWarehouseInventoryItemsEndpoint } from "../../utils/api";
 import React from "react";
 import axios from "axios";
@@ -18,7 +17,6 @@ function WarehouseInventorieListPageList() {
       .then((response) => {
         setisLoading(false);
         setWarehouseInventoryList(response.data);
-        console.log(response);
       })
       .catch(() => {
         sethasError(true);
@@ -32,7 +30,6 @@ function WarehouseInventorieListPageList() {
       .then((response) => {
         setisLoading(false);
         setWarehouseInventoryList(response.data);
-        console.log(response);
       })
       .catch(() => {
         sethasError(true);

@@ -16,8 +16,8 @@ const Modal = ({
         onClose(true);
         fetchInventories(); // Call fetchInventories after successful delete
       })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
+        console.log("Delete Success");
       })
       .catch((error) => {
         console.error(error);

@@ -93,7 +93,10 @@ export default function EditWarehousePage() {
     if (values.position.trim() === "") {
       validationErrors.position = true;
     }
-    if (values.phoneNum.trim() === "") {
+    if (
+      values.phoneNum.trim() === "" ||
+      !/^\+1\s?\(\d{3}\)\s?\d{3}-\d{4}$/.test(values.phoneNum)
+    ) {
       validationErrors.phoneNum = true;
     }
     if (values.email.trim() === "") {
@@ -320,7 +323,7 @@ export default function EditWarehousePage() {
                   alt="something wrong here"
                 />
                 <p className="warehouse-form__error-message">
-                  This field is required
+                  The format should be: +1 (xxx) xxx-xxxx
                 </p>
               </div>
             )}

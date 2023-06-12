@@ -38,7 +38,6 @@ export default function EditInventoryPage() {
     axios
       .get(getInventoryDetailEndpoint(InventoryId))
       .then((response) => {
-        console.log(response.data);
         setValues({
           itemName: response.data.item_name,
           status: response.data.status,

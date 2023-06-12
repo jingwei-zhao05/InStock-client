@@ -32,7 +32,7 @@ function WarehouseInventorieItems({
 
   return (
     <div className="warehouseInventoryItems__box">
-      <div className="warehouseInventoryItems__info-warehouse">
+      <div className="warehouseInventoryItems__info-inventory">
         <h3 className="warehouseInventoryItems__mobile-header">
           Inventory Item
         </h3>
@@ -57,11 +57,11 @@ function WarehouseInventorieItems({
           </div>
         </div>
       </div>
-      <div className="warehouseInventoryItems__info-address">
+      <div className="warehouseInventoryItems__info-category">
         <h3 className="warehouseInventoryItems__mobile-header">Category</h3>
         <p className="warehouseInventoryItems__text">{category}</p>
       </div>
-      <div className="warehouseInventoryItems__info-contact">
+      <div className="warehouseInventoryItems__info-status">
         <h3 className="warehouseInventoryItems__mobile-header">Status</h3>
         <p
           className={
@@ -73,7 +73,7 @@ function WarehouseInventorieItems({
           {status}
         </p>
       </div>
-      <div className="warehouseInventoryItems__info-contact-info">
+      <div className="warehouseInventoryItems__info-quantity">
         <h3 className="warehouseInventoryItems__mobile-header">quantity</h3>
         <p className="warehouseInventoryItems__text">{quantity}</p>
       </div>

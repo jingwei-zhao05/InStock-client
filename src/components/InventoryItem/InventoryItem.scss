@@ -5,105 +5,103 @@
 .inventory {
   &__box {
     border-bottom: 0.1rem solid $Cloud;
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
 
     @include tablet {
       flex-wrap: nowrap;
       justify-content: flex-start;
-      padding-left: 4rem;
+      padding: 1rem 2rem;
+      height: 3.625rem;
+    }
+
+    @include desktop {
+      padding: 1rem 2.5rem;
     }
   }
-  &__text-box {
-    display: flex;
-    justify-content: space-around;
-    align-items: normal;
-    flex-direction: row;
-    flex-wrap: nowrap;
+
+  &__info-inventory {
+    width: 50%;
+    order: -2;
     @include tablet {
+      display: flex;
+      align-items: center;
+      width: 55%;
     }
   }
-  &__column {
-    width: 300px;
+
+  &__info-category {
+    width: 50%;
+    @include tablet {
+      display: flex;
+      width: 45%;
+    }
+  }
+
+  &__info-status {
+    width: 50%;
+    order: -1;
     display: flex;
-    justify-content: flex-start;
-    align-items: normal;
     flex-direction: column;
-    flex-wrap: wrap;
-    gap: 1rem;
     @include tablet {
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      width: 40%;
+      order: 0;
+      align-items: flex-start;
+      width: 45%;
+    }
+  }
+
+  &__info-quantity {
+    width: 50%;
+    margin-bottom: 1rem;
+
+    @include tablet {
+      display: flex;
+      margin: 0;
+      width: 25%;
     }
   }
 
   &__info-warehouse {
     width: 50%;
-    display: inline-block;
-    order: -2;
-    @include tablet {
-      //   width: 100%;
-      display: flex;
-      //   justify-content: center;
-      align-items: center;
-    }
-  }
-  &__info-address {
-    width: 50%;
-    display: inline-block;
-    @include tablet {
-      display: flex;
-      //   justify-content: center;
-      align-items: center;
-    }
-  }
-
-  &__column-contacts {
-    width: 20%;
-    width: 300px;
     display: flex;
-    justify-content: flex-start;
-    // align-items: normal;
     flex-direction: column;
-    flex-wrap: wrap;
-    gap: 1rem;
+    justify-content: flex-end;
 
     @include tablet {
-      gap: 5rem;
-      width: auto;
-      flex-direction: row;
-      flex-wrap: nowrap;
       justify-content: flex-start;
+      width: 50%;
     }
   }
 
-  &__info-contact {
-    width: 40%;
-    display: inline-block;
-    order: -1;
+  &__actions {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    height: 1.5rem;
+    margin-top: 1rem;
+
     @include tablet {
-      display: flex;
-      //   justify-content: center;
-      align-items: center;
-      //   padding-left: 2rem;
+      width: 25%;
+      margin: 0;
+    }
+
+    @include desktop {
+      width: 15%;
     }
   }
 
-  &__info-contact-info {
-    width: 50%;
-    display: inline-block;
+  &__text {
+    @include body-medimum;
+
     @include tablet {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      //   align-items: start;
+      @include tablet_desktop_body-medimum;
     }
   }
 
   &__mobile-header {
+    width: 50%;
     @include table-header;
     color: $Slate;
     text-transform: uppercase;
@@ -112,49 +110,32 @@
     }
   }
 
-  &__address-text {
-    @include tablet {
-      padding-left: 1rem;
-    }
-  }
-  &__contact-text {
-    padding-left: 0;
-  }
-
   &__chevron {
     display: flex;
     margin-top: 0.25rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+
+    @include tablet {
+      margin: 0;
+    }
+  }
+
+  &__chevron-image {
+    width: 1.25rem;
   }
 
   &__link-anchor {
     color: $Instock-Indigo;
     text-decoration: none;
-    @include body-large;
-  }
+    @include body-medimum;
 
-  &__actions {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: normal;
-    flex-direction: row;
-    flex-wrap: nowrap;
     @include tablet {
-      width: 30%;
-      justify-content: flex-start;
+      @include tablet_desktop_body-medimum;
     }
   }
 
   &__icon {
-    height: 1.7rem;
-    margin: 1rem 0.5rem 0 0;
-    @include tablet {
-      margin: 1rem 0.5rem 0 0;
-      @include desktop {
-        margin: 1rem 2rem 0 0;
-      }
-    }
+    width: 1.5rem;
   }
 
   &__chevron-link {
@@ -164,31 +145,44 @@
 }
 
 .in-stock {
-  width: 6rem;
+  width: 3.8125rem;
   height: 1.5rem;
-  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 0.25rem;
   color: $Green;
-  background: #15846312;
-  padding: 2px 4px;
+  background: rgba(21, 132, 99, 0.07);
+  padding: 0.25rem 0.5rem;
   border-radius: 1.25rem;
-  text-align: center;
   text-transform: uppercase;
-}
-.out-stock {
-  width: 6rem;
-  height: 1.5rem;
-  text-transform: uppercase;
-  margin: 0;
-  color: $Red;
-  background: $Red;
-  background-color: #c9451512;
-  margin-bottom: 1rem;
-  padding: 2px 4px;
-  border-radius: 1.25rem;
-  text-align: center;
-  text-transform: uppercase;
+  @include table-header;
+
   @include tablet {
-    margin-bottom: 1rem;
+    width: auto;
+    margin: 0;
+    @include tablet_desktop_table-header;
+  }
+}
+
+.out-stock {
+  width: 5.375rem;
+  height: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  color: $Red;
+  background: rgba(201, 69, 21, 0.07);
+  border-radius: 1.25rem;
+  text-transform: uppercase;
+  @include table-header;
+
+  @include tablet {
+    width: auto;
+    margin: 0;
+    @include tablet_desktop_table-header;
   }
 }

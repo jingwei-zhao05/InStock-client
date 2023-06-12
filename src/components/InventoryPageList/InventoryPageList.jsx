@@ -1,4 +1,3 @@
-import "./InventoryPageList.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { getInventoriesEndpoint } from "../../utils/api";

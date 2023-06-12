@@ -9,8 +9,8 @@ const Modal = ({ isOpen, onClose, itemDetailsName, itemDetailsId }) => {
       .then(() => {
         onClose(true);
       })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
+        console.log("Delete Success");
       })
       .catch((error) => {
         console.error(error);
